@@ -7,5 +7,6 @@ target 'Celebrator' do
 
   # Pods for Celebrator
   pod 'FSCalendar'
-  
+  pod 'JTCalendar', '~> 2.0'
+
 end
