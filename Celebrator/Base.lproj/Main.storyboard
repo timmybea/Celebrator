@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,6 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PkX-wr-k6I" userLabel="White border">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="368" id="q2C-77-ylg"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="96f-fu-uuA" customClass="JTCalendarMenuView">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -26,20 +31,23 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Vj-Rv-cGr" customClass="JTHorizontalCalendarView">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="0.94901960780000005" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="3dU-yX-r6M"/>
+                                    <constraint firstAttribute="width" constant="343" id="7Gc-Kd-xeU"/>
+                                    <constraint firstAttribute="height" constant="300" id="W6m-g6-E7m"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.40000000000000002" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="96f-fu-uuA" secondAttribute="trailing" id="1gR-s8-fVv"/>
+                            <constraint firstItem="PkX-wr-k6I" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="13c-ft-pIi"/>
                             <constraint firstItem="96f-fu-uuA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="8J3-zB-ujp"/>
-                            <constraint firstItem="8Vj-Rv-cGr" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="70" id="HkA-cx-wih"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="8Vj-Rv-cGr" secondAttribute="trailing" id="PDj-b2-tII"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="96f-fu-uuA" secondAttribute="leading" id="hyo-zg-QzQ"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="8Vj-Rv-cGr" secondAttribute="leading" id="sz8-jp-bj1"/>
+                            <constraint firstItem="96f-fu-uuA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="25" id="H8a-bG-rwa"/>
+                            <constraint firstAttribute="trailing" secondItem="96f-fu-uuA" secondAttribute="trailing" constant="25" id="JJN-w0-pkh"/>
+                            <constraint firstItem="8Vj-Rv-cGr" firstAttribute="top" secondItem="96f-fu-uuA" secondAttribute="bottom" id="TRF-N3-WN6"/>
+                            <constraint firstItem="PkX-wr-k6I" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="quQ-FN-Uva"/>
+                            <constraint firstItem="8Vj-Rv-cGr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yTD-CV-f6O"/>
+                            <constraint firstAttribute="trailing" secondItem="PkX-wr-k6I" secondAttribute="trailing" constant="20" id="zfX-eh-VI7"/>
                         </constraints>
                     </view>
                     <connections>
