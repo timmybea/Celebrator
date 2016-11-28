@@ -31,7 +31,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Vj-Rv-cGr" customClass="JTHorizontalCalendarView">
-                                <color key="backgroundColor" red="1" green="0.94901960780000005" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="0.94509803921568625" blue="0.73774468680089478" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="343" id="7Gc-Kd-xeU"/>
                                     <constraint firstAttribute="height" constant="300" id="W6m-g6-E7m"/>
@@ -53,6 +53,7 @@
                     <connections>
                         <outlet property="calendarContentView" destination="8Vj-Rv-cGr" id="jKv-Ex-Tkb"/>
                         <outlet property="calendarMenuView" destination="96f-fu-uuA" id="Ros-5u-btG"/>
+                        <outlet property="whiteView" destination="PkX-wr-k6I" id="V32-Vr-zKh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

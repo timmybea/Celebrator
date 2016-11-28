@@ -10,6 +10,7 @@
 #import "Celebration.h"
 
 @interface CalendarViewController () 
+@property (weak, nonatomic) IBOutlet UIView *whiteView;
 
 @property (strong, nonatomic) Celebration *celebration;
 @property (strong, nonatomic) NSMutableDictionary *celebrationsByDate;
@@ -35,7 +36,10 @@
     // Generate celebration and store in dictionary
     [self createCelebrations];
     
-    //animated label
+    //white view appearance
+    self.whiteView.layer.cornerRadius = 10;
+    self.whiteView.layer.masksToBounds = YES;
+
     self.detailView = [[UILabel alloc] initWithFrame:CGRectZero];
     self.detailView.translatesAutoresizingMaskIntoConstraints = NO;
     self.detailView.backgroundColor = [UIColor orangeColor];
