@@ -10,11 +10,11 @@
 		2C3C024B323BB6C9B8D4D73D /* libPods-Celebrator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12A21319DD29ABDBCFAFE7FE /* libPods-Celebrator.a */; };
 		B000CE8B1DEA2C86008BB9AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B000CE8A1DEA2C86008BB9AC /* main.m */; };
 		B000CE8E1DEA2C86008BB9AC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B000CE8D1DEA2C86008BB9AC /* AppDelegate.m */; };
-		B000CE911DEA2C86008BB9AC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B000CE901DEA2C86008BB9AC /* ViewController.m */; };
 		B000CE941DEA2C86008BB9AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B000CE921DEA2C86008BB9AC /* Main.storyboard */; };
 		B000CE961DEA2C86008BB9AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B000CE951DEA2C86008BB9AC /* Assets.xcassets */; };
 		B000CE991DEA2C86008BB9AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B000CE971DEA2C86008BB9AC /* LaunchScreen.storyboard */; };
 		B040A61F1DEA4767009BFC7F /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B040A61E1DEA4767009BFC7F /* CalendarViewController.m */; };
+		B0ECEE651DEA6AD500A215DD /* Celebration.m in Sources */ = {isa = PBXBuildFile; fileRef = B0ECEE641DEA6AD500A215DD /* Celebration.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,14 +24,14 @@
 		B000CE8A1DEA2C86008BB9AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B000CE8C1DEA2C86008BB9AC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B000CE8D1DEA2C86008BB9AC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B000CE8F1DEA2C86008BB9AC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		B000CE901DEA2C86008BB9AC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B000CE931DEA2C86008BB9AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B000CE951DEA2C86008BB9AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B000CE981DEA2C86008BB9AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B000CE9A1DEA2C86008BB9AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B040A61D1DEA4767009BFC7F /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		B040A61E1DEA4767009BFC7F /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
+		B0ECEE631DEA6AD500A215DD /* Celebration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Celebration.h; sourceTree = "<group>"; };
+		B0ECEE641DEA6AD500A215DD /* Celebration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Celebration.m; sourceTree = "<group>"; };
 		C8FBA127A81B00766F7A9798 /* Pods-Celebrator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Celebrator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Celebrator/Pods-Celebrator.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,15 +85,11 @@
 		B000CE881DEA2C86008BB9AC /* Celebrator */ = {
 			isa = PBXGroup;
 			children = (
-				B040A61D1DEA4767009BFC7F /* CalendarViewController.h */,
-				B040A61E1DEA4767009BFC7F /* CalendarViewController.m */,
-				B000CE8C1DEA2C86008BB9AC /* AppDelegate.h */,
-				B000CE8D1DEA2C86008BB9AC /* AppDelegate.m */,
-				B000CE8F1DEA2C86008BB9AC /* ViewController.h */,
-				B000CE901DEA2C86008BB9AC /* ViewController.m */,
-				B000CE921DEA2C86008BB9AC /* Main.storyboard */,
+				B0ECEE371DEA4B8B00A215DD /* Model */,
+				B0ECEE361DEA4B8500A215DD /* Controller */,
+				B0ECEE351DEA4B7F00A215DD /* View */,
+				B0ECEE341DEA4B7700A215DD /* UI */,
 				B000CE951DEA2C86008BB9AC /* Assets.xcassets */,
-				B000CE971DEA2C86008BB9AC /* LaunchScreen.storyboard */,
 				B000CE9A1DEA2C86008BB9AC /* Info.plist */,
 				B000CE891DEA2C86008BB9AC /* Supporting Files */,
 			);
@@ -106,6 +102,42 @@
 				B000CE8A1DEA2C86008BB9AC /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B0ECEE341DEA4B7700A215DD /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B000CE921DEA2C86008BB9AC /* Main.storyboard */,
+				B000CE971DEA2C86008BB9AC /* LaunchScreen.storyboard */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		B0ECEE351DEA4B7F00A215DD /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		B0ECEE361DEA4B8500A215DD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B040A61D1DEA4767009BFC7F /* CalendarViewController.h */,
+				B040A61E1DEA4767009BFC7F /* CalendarViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		B0ECEE371DEA4B8B00A215DD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B000CE8C1DEA2C86008BB9AC /* AppDelegate.h */,
+				B000CE8D1DEA2C86008BB9AC /* AppDelegate.m */,
+				B0ECEE631DEA6AD500A215DD /* Celebration.h */,
+				B0ECEE641DEA6AD500A215DD /* Celebration.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,8 +262,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0ECEE651DEA6AD500A215DD /* Celebration.m in Sources */,
 				B040A61F1DEA4767009BFC7F /* CalendarViewController.m in Sources */,
-				B000CE911DEA2C86008BB9AC /* ViewController.m in Sources */,
 				B000CE8E1DEA2C86008BB9AC /* AppDelegate.m in Sources */,
 				B000CE8B1DEA2C86008BB9AC /* main.m in Sources */,
 			);

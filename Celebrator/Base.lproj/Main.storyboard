@@ -3,13 +3,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Data Source-->
+        <!--Calendar View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="CalendarViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -18,22 +19,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mwY-0A-Cfw" customClass="FSCalendar">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="96f-fu-uuA" customClass="JTCalendarMenuView">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="x68-xx-9HD"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="95y-yY-VfG"/>
-                                </connections>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="uEi-G7-Ffg"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Vj-Rv-cGr" customClass="JTHorizontalCalendarView">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="3dU-yX-r6M"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="mwY-0A-Cfw" secondAttribute="trailing" id="QZP-YN-Fy9"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="mwY-0A-Cfw" secondAttribute="bottom" id="Sev-6I-5Tm"/>
-                            <constraint firstItem="mwY-0A-Cfw" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="eKH-co-x5s"/>
-                            <constraint firstItem="mwY-0A-Cfw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="neq-Ls-mCo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="96f-fu-uuA" secondAttribute="trailing" id="1gR-s8-fVv"/>
+                            <constraint firstItem="96f-fu-uuA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="8J3-zB-ujp"/>
+                            <constraint firstItem="8Vj-Rv-cGr" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="70" id="HkA-cx-wih"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8Vj-Rv-cGr" secondAttribute="trailing" id="PDj-b2-tII"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="96f-fu-uuA" secondAttribute="leading" id="hyo-zg-QzQ"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="8Vj-Rv-cGr" secondAttribute="leading" id="sz8-jp-bj1"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="calendarContentView" destination="8Vj-Rv-cGr" id="jKv-Ex-Tkb"/>
+                        <outlet property="calendarMenuView" destination="96f-fu-uuA" id="Ros-5u-btG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
