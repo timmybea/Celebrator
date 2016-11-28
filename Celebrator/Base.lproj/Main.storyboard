@@ -1,11 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WY6-S6-cOi">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WY6-S6-cOi">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -38,10 +35,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="5HV-hJ-CbX">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5HV-hJ-CbX" id="rKq-kA-RB2">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -131,46 +128,24 @@
             </objects>
             <point key="canvasLocation" x="-410" y="269"/>
         </scene>
-        <!--Item-->
+        <!--Calendar-->
         <scene sceneID="rTf-Bp-MP5">
             <objects>
                 <navigationController id="DZ0-vV-utp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="UXI-F2-tte"/>
+                    <tabBarItem key="tabBarItem" title="Calendar" id="UXI-F2-tte"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9io-CQ-8h3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="N07-xm-5Vd" kind="relationship" relationship="rootViewController" id="nOh-PF-jcs"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="rrG-1S-cmE"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6yt-UG-GSD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-391" y="-436"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="mUU-dE-eg3">
-            <objects>
-                <viewController id="N07-xm-5Vd" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="gwO-gm-ZIQ"/>
-                        <viewControllerLayoutGuide type="bottom" id="oUG-oF-JMk"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="WQ2-kl-936">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="3n5-CC-mWZ"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" id="2hf-ZZ-rmX"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mMv-ku-jmQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="457" y="-437"/>
-        </scene>
-
+        <!--Calendar View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="CalendarViewController" sceneMemberID="viewController">
@@ -182,9 +157,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PkX-wr-k6I" userLabel="White border">
-
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="368" id="q2C-77-ylg"/>
@@ -216,6 +189,7 @@
                             <constraint firstAttribute="trailing" secondItem="PkX-wr-k6I" secondAttribute="trailing" constant="20" id="zfX-eh-VI7"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="kfr-8Q-Pb2"/>
                     <connections>
                         <outlet property="calendarContentView" destination="8Vj-Rv-cGr" id="jKv-Ex-Tkb"/>
                         <outlet property="calendarMenuView" destination="96f-fu-uuA" id="Ros-5u-btG"/>
@@ -224,7 +198,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1353" y="-437"/>
+            <point key="canvasLocation" x="457" y="-481"/>
         </scene>
     </scenes>
 </document>
