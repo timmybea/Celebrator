@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>JTCalendar.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>Pods-Celebrator.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -17,12 +22,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0BE4A16FFDEF8D8F814E3AE6A2577F6C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>157391F9AA1132BC03AEBC48EC636E46</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>805CCDD1566D6B97E30DC5F8F927BA94</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B42A2D847E8A581E3945FD46859B9889</key>
 		<dict>
 			<key>primary</key>
 			<true/>
