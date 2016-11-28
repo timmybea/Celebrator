@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		2C3C024B323BB6C9B8D4D73D /* libPods-Celebrator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12A21319DD29ABDBCFAFE7FE /* libPods-Celebrator.a */; };
+		52134E281DEA4B48009525A1 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52134E241DEA4B48009525A1 /* Bolts.framework */; };
+		52134E291DEA4B48009525A1 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52134E251DEA4B48009525A1 /* FBSDKCoreKit.framework */; };
+		52134E2A1DEA4B48009525A1 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52134E261DEA4B48009525A1 /* FBSDKLoginKit.framework */; };
+		52134E2B1DEA4B48009525A1 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52134E271DEA4B48009525A1 /* FBSDKShareKit.framework */; };
+		52134E3A1DEA799E009525A1 /* RecipientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52134E391DEA799E009525A1 /* RecipientViewController.m */; };
+		52134E3D1DEA7A14009525A1 /* AddRecipientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52134E3C1DEA7A14009525A1 /* AddRecipientViewController.m */; };
 		B000CE8B1DEA2C86008BB9AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B000CE8A1DEA2C86008BB9AC /* main.m */; };
 		B000CE8E1DEA2C86008BB9AC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B000CE8D1DEA2C86008BB9AC /* AppDelegate.m */; };
 		B000CE941DEA2C86008BB9AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B000CE921DEA2C86008BB9AC /* Main.storyboard */; };
@@ -19,6 +25,14 @@
 
 /* Begin PBXFileReference section */
 		12A21319DD29ABDBCFAFE7FE /* libPods-Celebrator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Celebrator.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52134E241DEA4B48009525A1 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		52134E251DEA4B48009525A1 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		52134E261DEA4B48009525A1 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		52134E271DEA4B48009525A1 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		52134E381DEA799E009525A1 /* RecipientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientViewController.h; sourceTree = "<group>"; };
+		52134E391DEA799E009525A1 /* RecipientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientViewController.m; sourceTree = "<group>"; };
+		52134E3B1DEA7A14009525A1 /* AddRecipientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRecipientViewController.h; sourceTree = "<group>"; };
+		52134E3C1DEA7A14009525A1 /* AddRecipientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRecipientViewController.m; sourceTree = "<group>"; };
 		880037F9CC4A4A6BCB0BEA17 /* Pods-Celebrator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Celebrator.release.xcconfig"; path = "Pods/Target Support Files/Pods-Celebrator/Pods-Celebrator.release.xcconfig"; sourceTree = "<group>"; };
 		B000CE861DEA2C86008BB9AC /* Celebrator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Celebrator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B000CE8A1DEA2C86008BB9AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -41,6 +55,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C3C024B323BB6C9B8D4D73D /* libPods-Celebrator.a in Frameworks */,
+				52134E291DEA4B48009525A1 /* FBSDKCoreKit.framework in Frameworks */,
+				52134E2B1DEA4B48009525A1 /* FBSDKShareKit.framework in Frameworks */,
+				52134E2A1DEA4B48009525A1 /* FBSDKLoginKit.framework in Frameworks */,
+				52134E281DEA4B48009525A1 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,10 +74,52 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		52134E341DEA6E4D009525A1 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B000CE921DEA2C86008BB9AC /* Main.storyboard */,
+				B000CE971DEA2C86008BB9AC /* LaunchScreen.storyboard */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		52134E351DEA6E52009525A1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		52134E361DEA6E57009525A1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B000CE8C1DEA2C86008BB9AC /* AppDelegate.h */,
+				B000CE8D1DEA2C86008BB9AC /* AppDelegate.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		52134E371DEA6E5C009525A1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B000CE8F1DEA2C86008BB9AC /* ViewController.h */,
+				B000CE901DEA2C86008BB9AC /* ViewController.m */,
+				52134E381DEA799E009525A1 /* RecipientViewController.h */,
+				52134E391DEA799E009525A1 /* RecipientViewController.m */,
+				52134E3B1DEA7A14009525A1 /* AddRecipientViewController.h */,
+				52134E3C1DEA7A14009525A1 /* AddRecipientViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		62F7A0BF85CD6FAD4FCA34B6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				12A21319DD29ABDBCFAFE7FE /* libPods-Celebrator.a */,
+				52134E241DEA4B48009525A1 /* Bolts.framework */,
+				52134E251DEA4B48009525A1 /* FBSDKCoreKit.framework */,
+				52134E261DEA4B48009525A1 /* FBSDKLoginKit.framework */,
+				52134E271DEA4B48009525A1 /* FBSDKShareKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -85,12 +145,14 @@
 		B000CE881DEA2C86008BB9AC /* Celebrator */ = {
 			isa = PBXGroup;
 			children = (
+
 				B0ECEE371DEA4B8B00A215DD /* Model */,
 				B0ECEE361DEA4B8500A215DD /* Controller */,
 				B0ECEE351DEA4B7F00A215DD /* View */,
 				B0ECEE341DEA4B7700A215DD /* UI */,
 				B000CE951DEA2C86008BB9AC /* Assets.xcassets */,
 				B000CE9A1DEA2C86008BB9AC /* Info.plist */,
+
 				B000CE891DEA2C86008BB9AC /* Supporting Files */,
 			);
 			path = Celebrator;
@@ -99,6 +161,8 @@
 		B000CE891DEA2C86008BB9AC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B000CE9A1DEA2C86008BB9AC /* Info.plist */,
+				B000CE951DEA2C86008BB9AC /* Assets.xcassets */,
 				B000CE8A1DEA2C86008BB9AC /* main.m */,
 			);
 			name = "Supporting Files";
@@ -262,7 +326,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0ECEE651DEA6AD500A215DD /* Celebration.m in Sources */,
+
+				52134E3D1DEA7A14009525A1 /* AddRecipientViewController.m in Sources */,
+				52134E3A1DEA799E009525A1 /* RecipientViewController.m in Sources */,
 				B040A61F1DEA4767009BFC7F /* CalendarViewController.m in Sources */,
 				B000CE8E1DEA2C86008BB9AC /* AppDelegate.m in Sources */,
 				B000CE8B1DEA2C86008BB9AC /* main.m in Sources */,
@@ -386,6 +452,10 @@
 			baseConfigurationReference = C8FBA127A81B00766F7A9798 /* Pods-Celebrator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Celebrator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.timbeals.Celebrator;
@@ -398,6 +468,10 @@
 			baseConfigurationReference = 880037F9CC4A4A6BCB0BEA17 /* Pods-Celebrator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Celebrator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.timbeals.Celebrator;
