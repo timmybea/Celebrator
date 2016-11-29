@@ -6,7 +6,6 @@ target 'Celebrator' do
   # use_frameworks!
 
   # Pods for Celebrator
-  pod 'FSCalendar'
   pod 'JTCalendar', '~> 2.0'
   pod 'Realm'
 
