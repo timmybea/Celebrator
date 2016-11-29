@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <JTCalendar/JTCalendar.h>
+#import "CalendarViewControllerDelegate.h"
 
 @interface CalendarViewController : UIViewController <JTCalendarDelegate>
 
+@property (weak, nonatomic) id<CalendarViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet JTCalendarMenuView *calendarMenuView;
 @property (weak, nonatomic) IBOutlet JTHorizontalCalendarView *calendarContentView;
 
