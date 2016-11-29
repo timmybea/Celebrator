@@ -63,3 +63,6 @@ iOSInjectionProject/
 
 *.xcuserstate
 .DS_Store
+Pods
+Podfile.lock
+*.xcworkspace
