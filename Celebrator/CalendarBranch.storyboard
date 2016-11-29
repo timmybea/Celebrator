@@ -21,15 +21,11 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zMF-LU-8bg" userLabel="White border">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="368" id="UcL-5c-YTC"/>
-                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JOV-3G-OUq" customClass="JTHorizontalCalendarView">
                                 <color key="backgroundColor" red="1" green="0.94509803920000002" blue="0.73774468680000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="3GX-qk-lEa"/>
-                                    <constraint firstAttribute="width" constant="343" id="YFS-nh-Rot"/>
+                                    <constraint firstAttribute="width" constant="320" id="YFS-nh-Rot"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pcJ-zZ-J5W" customClass="JTCalendarMenuView">
@@ -50,12 +46,14 @@
                             <constraint firstItem="tFY-k2-ODr" firstAttribute="top" secondItem="JOV-3G-OUq" secondAttribute="bottom" constant="8" id="9o0-yS-dXw"/>
                             <constraint firstItem="JOV-3G-OUq" firstAttribute="centerX" secondItem="8Ws-W1-FYG" secondAttribute="centerX" id="Jc4-BV-d26"/>
                             <constraint firstAttribute="trailing" secondItem="pcJ-zZ-J5W" secondAttribute="trailing" constant="25" id="NWr-tH-9Na"/>
+                            <constraint firstItem="EMF-Vc-kbe" firstAttribute="top" secondItem="zMF-LU-8bg" secondAttribute="bottom" constant="140" id="W9D-bX-mB1"/>
                             <constraint firstItem="pcJ-zZ-J5W" firstAttribute="leading" secondItem="8Ws-W1-FYG" secondAttribute="leading" constant="25" id="Xh8-U9-FaY"/>
                             <constraint firstAttribute="trailing" secondItem="zMF-LU-8bg" secondAttribute="trailing" constant="20" id="fXh-SW-zvx"/>
                             <constraint firstItem="zMF-LU-8bg" firstAttribute="leading" secondItem="8Ws-W1-FYG" secondAttribute="leading" constant="20" id="m3l-1f-EWI"/>
                             <constraint firstItem="JOV-3G-OUq" firstAttribute="top" secondItem="pcJ-zZ-J5W" secondAttribute="bottom" id="sdq-RL-wvQ"/>
                             <constraint firstItem="zMF-LU-8bg" firstAttribute="top" secondItem="Xgl-TW-0g2" secondAttribute="bottom" constant="20" id="uzw-di-YAi"/>
                             <constraint firstAttribute="trailingMargin" secondItem="tFY-k2-ODr" secondAttribute="trailing" constant="60" id="vlH-kc-GfI"/>
+                            <constraint firstItem="EMF-Vc-kbe" firstAttribute="top" secondItem="JOV-3G-OUq" secondAttribute="bottom" constant="150" id="wl4-7C-9P9"/>
                             <constraint firstItem="tFY-k2-ODr" firstAttribute="leading" secondItem="8Ws-W1-FYG" secondAttribute="leadingMargin" constant="15" id="wqh-Ec-ObI"/>
                         </constraints>
                     </view>
@@ -92,6 +90,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bnM-If-7Ps">
+                                <frame key="frameInset" minX="289" minY="591" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="NEXT"/>
+                                <connections>
+                                    <action selector="nextButtonClicked:" destination="pvA-4l-y2F" eventType="touchUpInside" id="ufO-XT-lRb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -101,6 +107,7 @@
                     </view>
                     <connections>
                         <outlet property="label" destination="zkC-m7-izW" id="WXR-rT-FpZ"/>
+                        <outlet property="nextButton" destination="bnM-If-7Ps" id="Ohz-nF-tt7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bg6-mV-1mT" userLabel="First Responder" sceneMemberID="firstResponder"/>

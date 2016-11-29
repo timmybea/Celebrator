@@ -12,8 +12,10 @@
 
 @interface CalDetailViewController () <CalendarViewControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (strong, nonatomic) NSArray *celebrationsArray;
+@property (nonatomic) int currentCelebration;
 
 @end
 
@@ -22,8 +24,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    Celebration *celebration = [self.celebrationsArray objectAtIndex:0];
-    self.label.text = celebration.occassion;
+    self.currentCelebration = 0;
+    
+    [self resetCelebrationDetails];
+    
+    if(self.celebrationsArray.count < 2)
+    {
+        self.nextButton.hidden = YES;
+    }
 }
 
 - (void)passCelebrationsArray:(NSArray *)celebrations
@@ -32,7 +40,17 @@
     
 }
 
+- (void)resetCelebrationDetails
+{
+    Celebration *celebration = [self.celebrationsArray objectAtIndex:self.currentCelebration];
+    self.label.text = celebration.occassion;
+}
 
 
+- (IBAction)nextButtonClicked:(UIButton *)sender
+{
+    self.currentCelebration += 1;
+    [self resetCelebrationDetails];
+}
 
 @end

@@ -139,7 +139,7 @@
                 [message appendString:[NSString stringWithFormat:@"It is 'persons' %@ \n", celebration.occassion]];
             }
             
-        float animationHeight = self.celebrationsForDate.count * 60;
+        float animationHeight = self.celebrationsForDate.count * 20 + 25;
         [UIView animateWithDuration:0.3 animations:^(){
         self.detailButtonHeight.constant = animationHeight;
         [self.view layoutIfNeeded];
@@ -161,10 +161,10 @@
     NSDate *date = [[self dateFormatter] dateFromString:@"09-12-2016"];
     Celebration *celebration = [[Celebration alloc] initWithOccassion:@"Birthday" andDate:date];
     
-    NSDate *date1 = [[self dateFormatter] dateFromString:@"12-12-2016"];
+    NSDate *date1 = [[self dateFormatter] dateFromString:@"09-12-2016"];
     Celebration *celebration1 = [[Celebration alloc] initWithOccassion:@"Wedding" andDate:date1];
     
-    NSDate *date2 = [[self dateFormatter] dateFromString:@"04-12-2016"];
+    NSDate *date2 = [[self dateFormatter] dateFromString:@"08-12-2016"];
     Celebration *celebration2 = [[Celebration alloc] initWithOccassion:@"Anniversary" andDate:date2];
     
     NSArray *celebrations = [[NSArray alloc] initWithObjects:celebration, celebration1, celebration2, nil];
