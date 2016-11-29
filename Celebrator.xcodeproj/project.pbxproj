@@ -12,6 +12,12 @@
 		52134E291DEA4B48009525A1 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52134E251DEA4B48009525A1 /* FBSDKCoreKit.framework */; };
 		52134E2A1DEA4B48009525A1 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52134E261DEA4B48009525A1 /* FBSDKLoginKit.framework */; };
 		52134E2B1DEA4B48009525A1 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52134E271DEA4B48009525A1 /* FBSDKShareKit.framework */; };
+		52134E2E1DEA560F009525A1 /* FBAddRecipientTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52134E2D1DEA560E009525A1 /* FBAddRecipientTableView.m */; };
+		522E8D6E1DED0CC8006C38D6 /* Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E8D6D1DED0CC8006C38D6 /* Recipient.m */; };
+		522E8D711DED12E8006C38D6 /* CelebrationRealm.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E8D701DED12E8006C38D6 /* CelebrationRealm.m */; };
+		522E8D751DEE07EE006C38D6 /* Celebration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522E8D741DEE07EE006C38D6 /* Celebration.swift */; };
+		522E8D781DEE143F006C38D6 /* RecipientListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E8D771DEE143F006C38D6 /* RecipientListView.m */; };
+		522E8D7B1DEE14DF006C38D6 /* ListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E8D7A1DEE14DF006C38D6 /* ListViewCell.m */; };
 		B000CE8B1DEA2C86008BB9AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B000CE8A1DEA2C86008BB9AC /* main.m */; };
 		B000CE8E1DEA2C86008BB9AC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B000CE8D1DEA2C86008BB9AC /* AppDelegate.m */; };
 		B000CE941DEA2C86008BB9AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B000CE921DEA2C86008BB9AC /* Main.storyboard */; };
@@ -34,6 +40,19 @@
 		52134E251DEA4B48009525A1 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		52134E261DEA4B48009525A1 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		52134E271DEA4B48009525A1 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		52134E2C1DEA560E009525A1 /* FBAddRecipientTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBAddRecipientTableView.h; sourceTree = "<group>"; };
+		52134E2D1DEA560E009525A1 /* FBAddRecipientTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBAddRecipientTableView.m; sourceTree = "<group>"; };
+		522E8D6C1DED0CC8006C38D6 /* Recipient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recipient.h; sourceTree = "<group>"; };
+		522E8D6D1DED0CC8006C38D6 /* Recipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recipient.m; sourceTree = "<group>"; };
+		522E8D6F1DED12E8006C38D6 /* CelebrationRealm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CelebrationRealm.h; sourceTree = "<group>"; };
+		522E8D701DED12E8006C38D6 /* CelebrationRealm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CelebrationRealm.m; sourceTree = "<group>"; };
+		522E8D721DED2677006C38D6 /* ModelProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelProtocols.h; sourceTree = "<group>"; };
+		522E8D731DEE07ED006C38D6 /* Celebrator-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Celebrator-Bridging-Header.h"; sourceTree = "<group>"; };
+		522E8D741DEE07EE006C38D6 /* Celebration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Celebration.swift; sourceTree = "<group>"; };
+		522E8D761DEE143F006C38D6 /* RecipientListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientListView.h; sourceTree = "<group>"; };
+		522E8D771DEE143F006C38D6 /* RecipientListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientListView.m; sourceTree = "<group>"; };
+		522E8D791DEE14DF006C38D6 /* ListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewCell.h; sourceTree = "<group>"; };
+		522E8D7A1DEE14DF006C38D6 /* ListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewCell.m; sourceTree = "<group>"; };
 		880037F9CC4A4A6BCB0BEA17 /* Pods-Celebrator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Celebrator.release.xcconfig"; path = "Pods/Target Support Files/Pods-Celebrator/Pods-Celebrator.release.xcconfig"; sourceTree = "<group>"; };
 		B000CE861DEA2C86008BB9AC /* Celebrator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Celebrator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B000CE8A1DEA2C86008BB9AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -120,6 +139,13 @@
 		B000CE881DEA2C86008BB9AC /* Celebrator */ = {
 			isa = PBXGroup;
 			children = (
+				B040A61D1DEA4767009BFC7F /* CalendarViewController.h */,
+				B040A61E1DEA4767009BFC7F /* CalendarViewController.m */,
+				52134E2C1DEA560E009525A1 /* FBAddRecipientTableView.h */,
+				52134E2D1DEA560E009525A1 /* FBAddRecipientTableView.m */,
+				B000CE8C1DEA2C86008BB9AC /* AppDelegate.h */,
+				B000CE8D1DEA2C86008BB9AC /* AppDelegate.m */,
+				B000CE921DEA2C86008BB9AC /* Main.storyboard */,
 				B0ECEE371DEA4B8B00A215DD /* Model */,
 				B0ECEE361DEA4B8500A215DD /* Controller */,
 				B0ECEE351DEA4B7F00A215DD /* View */,
@@ -142,7 +168,6 @@
 		B0ECEE341DEA4B7700A215DD /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				B000CE921DEA2C86008BB9AC /* Main.storyboard */,
 				B000CE971DEA2C86008BB9AC /* LaunchScreen.storyboard */,
 				B04D8EB51DECE7CB0082C9C1 /* CalendarBranch.storyboard */,
 				B04D8EB71DECE7E80082C9C1 /* RecipientBranch.storyboard */,
@@ -156,6 +181,10 @@
 			children = (
 				B02EFFCF1DECEFE1000DCA97 /* CalendarDetailView.h */,
 				B02EFFD01DECEFE1000DCA97 /* CalendarDetailView.m */,
+				522E8D761DEE143F006C38D6 /* RecipientListView.h */,
+				522E8D771DEE143F006C38D6 /* RecipientListView.m */,
+				522E8D791DEE14DF006C38D6 /* ListViewCell.h */,
+				522E8D7A1DEE14DF006C38D6 /* ListViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -179,10 +208,15 @@
 		B0ECEE371DEA4B8B00A215DD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B000CE8C1DEA2C86008BB9AC /* AppDelegate.h */,
-				B000CE8D1DEA2C86008BB9AC /* AppDelegate.m */,
+				522E8D741DEE07EE006C38D6 /* Celebration.swift */,
 				B0ECEE631DEA6AD500A215DD /* Celebration.h */,
 				B0ECEE641DEA6AD500A215DD /* Celebration.m */,
+				522E8D6F1DED12E8006C38D6 /* CelebrationRealm.h */,
+				522E8D701DED12E8006C38D6 /* CelebrationRealm.m */,
+				522E8D6C1DED0CC8006C38D6 /* Recipient.h */,
+				522E8D6D1DED0CC8006C38D6 /* Recipient.m */,
+				522E8D721DED2677006C38D6 /* ModelProtocols.h */,
+				522E8D731DEE07ED006C38D6 /* Celebrator-Bridging-Header.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -221,6 +255,7 @@
 				TargetAttributes = {
 					B000CE851DEA2C86008BB9AC = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -314,9 +349,15 @@
 			files = (
 				B02EFFD11DECEFE1000DCA97 /* CalendarDetailView.m in Sources */,
 				B07560A41DECE03E009432A0 /* Celebration.m in Sources */,
+				522E8D6E1DED0CC8006C38D6 /* Recipient.m in Sources */,
 				B07560A31DECDF8F009432A0 /* RecipientViewController.m in Sources */,
 				B07560A01DECDEE2009432A0 /* AddRecipientViewController.m in Sources */,
+				522E8D7B1DEE14DF006C38D6 /* ListViewCell.m in Sources */,
 				B040A61F1DEA4767009BFC7F /* CalendarViewController.m in Sources */,
+				52134E2E1DEA560F009525A1 /* FBAddRecipientTableView.m in Sources */,
+				522E8D781DEE143F006C38D6 /* RecipientListView.m in Sources */,
+				522E8D751DEE07EE006C38D6 /* Celebration.swift in Sources */,
+				522E8D711DED12E8006C38D6 /* CelebrationRealm.m in Sources */,
 				B000CE8E1DEA2C86008BB9AC /* AppDelegate.m in Sources */,
 				B02EFFD41DED0CCE000DCA97 /* CalDetailViewController.m in Sources */,
 				B000CE8B1DEA2C86008BB9AC /* main.m in Sources */,
@@ -440,6 +481,7 @@
 			baseConfigurationReference = C8FBA127A81B00766F7A9798 /* Pods-Celebrator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -448,6 +490,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.timbeals.Celebrator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Celebrator/Celebrator-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -456,6 +501,7 @@
 			baseConfigurationReference = 880037F9CC4A4A6BCB0BEA17 /* Pods-Celebrator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -464,6 +510,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.timbeals.Celebrator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Celebrator/Celebrator-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
