@@ -9,7 +9,7 @@
 #import "CalendarViewController.h"
 #import "Celebration.h"
 
-@interface CalendarViewController () <FSCalendarDelegate, FSCalendarDataSource>
+@interface CalendarViewController ()
 @property (weak, nonatomic) IBOutlet UIView *whiteView;
 
 @property (strong, nonatomic) Celebration *celebration;
