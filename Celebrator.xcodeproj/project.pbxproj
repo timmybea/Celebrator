@@ -32,6 +32,8 @@
 		B07560A01DECDEE2009432A0 /* AddRecipientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B075609F1DECDEE2009432A0 /* AddRecipientViewController.m */; };
 		B07560A31DECDF8F009432A0 /* RecipientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B07560A21DECDF8F009432A0 /* RecipientViewController.m */; };
 		B07560A41DECE03E009432A0 /* Celebration.m in Sources */ = {isa = PBXBuildFile; fileRef = B0ECEE641DEA6AD500A215DD /* Celebration.m */; };
+		B0D38BC51DEE30F800D9B770 /* DropDownRecipientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0D38BC41DEE30F800D9B770 /* DropDownRecipientViewController.m */; };
+		B0D38BC81DEE6A7F00D9B770 /* CelebrationDropDown.m in Sources */ = {isa = PBXBuildFile; fileRef = B0D38BC71DEE6A7F00D9B770 /* CelebrationDropDown.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +78,10 @@
 		B075609F1DECDEE2009432A0 /* AddRecipientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRecipientViewController.m; sourceTree = "<group>"; };
 		B07560A11DECDF8F009432A0 /* RecipientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientViewController.h; sourceTree = "<group>"; };
 		B07560A21DECDF8F009432A0 /* RecipientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientViewController.m; sourceTree = "<group>"; };
+		B0D38BC31DEE30F800D9B770 /* DropDownRecipientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropDownRecipientViewController.h; sourceTree = "<group>"; };
+		B0D38BC41DEE30F800D9B770 /* DropDownRecipientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropDownRecipientViewController.m; sourceTree = "<group>"; };
+		B0D38BC61DEE6A7F00D9B770 /* CelebrationDropDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CelebrationDropDown.h; sourceTree = "<group>"; };
+		B0D38BC71DEE6A7F00D9B770 /* CelebrationDropDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CelebrationDropDown.m; sourceTree = "<group>"; };
 		B0ECEE631DEA6AD500A215DD /* Celebration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Celebration.h; sourceTree = "<group>"; };
 		B0ECEE641DEA6AD500A215DD /* Celebration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Celebration.m; sourceTree = "<group>"; };
 		C8FBA127A81B00766F7A9798 /* Pods-Celebrator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Celebrator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Celebrator/Pods-Celebrator.debug.xcconfig"; sourceTree = "<group>"; };
@@ -197,10 +203,12 @@
 				B075609E1DECDEE2009432A0 /* AddRecipientViewController.h */,
 				B075609F1DECDEE2009432A0 /* AddRecipientViewController.m */,
 				B02EFFD51DED101F000DCA97 /* CalendarViewControllerDelegate.h */,
-				B040A61D1DEA4767009BFC7F /* CalendarViewController.h */,
-				B040A61E1DEA4767009BFC7F /* CalendarViewController.m */,
 				B02EFFD21DED0CCE000DCA97 /* CalDetailViewController.h */,
 				B02EFFD31DED0CCE000DCA97 /* CalDetailViewController.m */,
+				B0D38BC31DEE30F800D9B770 /* DropDownRecipientViewController.h */,
+				B0D38BC41DEE30F800D9B770 /* DropDownRecipientViewController.m */,
+				B0D38BC61DEE6A7F00D9B770 /* CelebrationDropDown.h */,
+				B0D38BC71DEE6A7F00D9B770 /* CelebrationDropDown.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -352,6 +360,7 @@
 				522E8D6E1DED0CC8006C38D6 /* Recipient.m in Sources */,
 				B07560A31DECDF8F009432A0 /* RecipientViewController.m in Sources */,
 				B07560A01DECDEE2009432A0 /* AddRecipientViewController.m in Sources */,
+				B0D38BC81DEE6A7F00D9B770 /* CelebrationDropDown.m in Sources */,
 				522E8D7B1DEE14DF006C38D6 /* ListViewCell.m in Sources */,
 				B040A61F1DEA4767009BFC7F /* CalendarViewController.m in Sources */,
 				52134E2E1DEA560F009525A1 /* FBAddRecipientTableView.m in Sources */,
@@ -361,6 +370,7 @@
 				B000CE8E1DEA2C86008BB9AC /* AppDelegate.m in Sources */,
 				B02EFFD41DED0CCE000DCA97 /* CalDetailViewController.m in Sources */,
 				B000CE8B1DEA2C86008BB9AC /* main.m in Sources */,
+				B0D38BC51DEE30F800D9B770 /* DropDownRecipientViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
