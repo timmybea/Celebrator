@@ -30,6 +30,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Gifter Name2.png"]];
+    
     [self.view insertSubview:self.dropDownView belowSubview:self.tableView];
     self.isDropDownBehind = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeViewHierarchy:) name:@"groupDropDown" object:nil];
