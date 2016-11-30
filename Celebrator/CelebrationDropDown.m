@@ -64,9 +64,11 @@
     {
         [self.celebrationButton setTitle:cell.textLabel.text forState:UIControlStateNormal];
         self.tableView.hidden = YES;
+        
+        NSDictionary *celebration = @{@"celebration": cell.textLabel.text};
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"celebrationSet" object:self userInfo:celebration];
     }
 }
-
 
 - (void)appearTextField
 {
@@ -97,6 +99,9 @@
 }
 
 - (void) textFieldDidEndEditing:(UITextField *)textField {
+    NSDictionary *celebration = @{@"celebration": textField.text};
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"celebrationSet" object:self userInfo:celebration];
+    
     [textField resignFirstResponder];
     self.textField.hidden = YES;
     self.celebrationButton.hidden = NO;
@@ -105,6 +110,9 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    NSDictionary *celebration = @{@"celebration": textField.text};
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"celebrationSet" object:self userInfo:celebration];
+    
     [textField resignFirstResponder];
     self.textField.hidden = YES;
     self.celebrationButton.hidden = NO;

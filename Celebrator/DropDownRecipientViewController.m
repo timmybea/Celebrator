@@ -53,6 +53,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"groupDropDown" object:self userInfo:nil];
+    
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     
     if([cell.textLabel.text isEqualToString:@"Other"])
@@ -61,8 +63,10 @@
     }
     else
     {
-    [self.groupButton setTitle:cell.textLabel.text forState:UIControlStateNormal];
-    self.tableView.hidden = YES;
+        NSDictionary *group = @{@"group": cell.textLabel.text};
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"groupSet" object:self userInfo:group];
+        [self.groupButton setTitle:cell.textLabel.text forState:UIControlStateNormal];
+        self.tableView.hidden = YES;
     }
 }
 
@@ -82,6 +86,8 @@
 
 - (IBAction)dropDownAction:(UIButton *)sender
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"groupDropDown" object:self userInfo:nil];
+    
     if(self.tableView.hidden == YES)
     {
         self.tableView.hidden = NO;
@@ -93,12 +99,31 @@
 }
 
 - (void) textFieldDidEndEditing:(UITextField *)textField {
+    NSDictionary *group = @{@"group": self.textField.text};
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"groupSet" object:self userInfo:group];
+    
     [textField resignFirstResponder];
+    self.textField.hidden = YES;
+    self.groupButton.hidden = NO;
+    [self.groupButton setTitle:self.textField.text forState:UIControlStateNormal];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    NSDictionary *group = @{@"group": self.textField.text};
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"groupSet" object:self userInfo:group];
+    
+    [textField resignFirstResponder];
+    self.textField.hidden = YES;
+    self.groupButton.hidden = NO;
+    [self.groupButton setTitle:self.textField.text forState:UIControlStateNormal];
+    return YES;
 }
 
 - (void)dismissKeyboard:(UITapGestureRecognizer *)sender
 {
     [self.view endEditing:YES];
 }
+
 
 @end

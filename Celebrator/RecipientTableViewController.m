@@ -60,13 +60,13 @@
 //
 //}
 
-- (void)goToAddRecipientView: (id)sender {
-    if (!self.recipientsArray)
-    {
-        self.recipientsArray = [RLMResults<Recipient *> *recipientsArray];
-    }
-    [self performSegueWithIdentifier:@"addRecipientViewController" sender:self];
-}
+//- (void)goToAddRecipientView: (id)sender {
+//    if (!self.recipientsArray)
+//    {
+//        self.recipientsArray = [RLMResults<Recipient *> *recipientsArray];
+//    }
+//    [self performSegueWithIdentifier:@"addRecipientViewController" sender:self];
+//}
 
 //- (IBAction)add:(id)sender {
 //    [self addRecipent];
@@ -151,22 +151,22 @@
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    ListViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListViewCell" forIndexPath:indexPath];
-    Recipient *recipientCell = self.recipientsArray[indexPath.row];
-    
-    return cell;
-}
-
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-
-
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    ListViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListViewCell" forIndexPath:indexPath];
+//    Recipient *recipientCell = self.recipientsArray[indexPath.row];
+//    
+//    return cell;
+//}
+//
+//
+//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    // Return NO if you do not want the specified item to be editable.
+//    return YES;
+//}
+//
+//
 //- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 //    if (editingStyle == UITableViewCellEditingStyleDelete) {
 //        // Delete the row from the data source
@@ -179,23 +179,23 @@
 
 #pragma mark - Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([[segue identifier] isEqualToString:@"showRecipientDetailView"])
-    {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        Recipient *recipient = [self.recipientsArray objectAtIndex:indexPath];
-        RecipientListDetailViewController *controller = (RecipientListDetailViewController)segue.destinationViewController;
-
-        [controller setDetailItem:recipient];
-        controller.navigationItem.leftItemsSupplementBackButton = YES;
-    }
-    else if ([[segue identifier] isEqualToString:@"addRecipientViewController"])
-    {
-        AddRecipientViewController *controller = (AddRecipientViewController *)[segue destinationViewController];
-        controller.delegate = self;
-    }
-    
-}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    if ([[segue identifier] isEqualToString:@"showRecipientDetailView"])
+//    {
+//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+//        Recipient *recipient = [self.recipientsArray objectAtIndex:indexPath];
+//        RecipientListDetailViewController *controller = (RecipientListDetailViewController)segue.destinationViewController;
+//
+//        [controller setDetailItem:recipient];
+//        controller.navigationItem.leftItemsSupplementBackButton = YES;
+//    }
+//    else if ([[segue identifier] isEqualToString:@"addRecipientViewController"])
+//    {
+//        AddRecipientViewController *controller = (AddRecipientViewController *)[segue destinationViewController];
+//        controller.delegate = self;
+//    }
+//
+//}
 
 @end
