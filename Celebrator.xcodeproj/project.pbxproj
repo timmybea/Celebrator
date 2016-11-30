@@ -203,17 +203,17 @@
 				B040A61E1DEA4767009BFC7F /* CalendarViewController.m */,
 				B07560A11DECDF8F009432A0 /* RecipientViewController.h */,
 				B07560A21DECDF8F009432A0 /* RecipientViewController.m */,
-				B075609E1DECDEE2009432A0 /* AddRecipientViewController.h */,
-				B075609F1DECDEE2009432A0 /* AddRecipientViewController.m */,
 				B02EFFD51DED101F000DCA97 /* CalendarViewControllerDelegate.h */,
 				B02EFFD21DED0CCE000DCA97 /* CalDetailViewController.h */,
 				B02EFFD31DED0CCE000DCA97 /* CalDetailViewController.m */,
+				B075609E1DECDEE2009432A0 /* AddRecipientViewController.h */,
+				B075609F1DECDEE2009432A0 /* AddRecipientViewController.m */,
 				B0D38BC31DEE30F800D9B770 /* DropDownRecipientViewController.h */,
 				B0D38BC41DEE30F800D9B770 /* DropDownRecipientViewController.m */,
-				B0D38BC61DEE6A7F00D9B770 /* CelebrationDropDown.h */,
-				B0D38BC71DEE6A7F00D9B770 /* CelebrationDropDown.m */,
 				B0D38BC91DEE84AE00D9B770 /* AddCelebrationViewController.h */,
 				B0D38BCA1DEE84AE00D9B770 /* AddCelebrationViewController.m */,
+				B0D38BC61DEE6A7F00D9B770 /* CelebrationDropDown.h */,
+				B0D38BC71DEE6A7F00D9B770 /* CelebrationDropDown.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

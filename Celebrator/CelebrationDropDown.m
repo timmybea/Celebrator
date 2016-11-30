@@ -52,6 +52,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"dropDownClicked" object:self userInfo:nil];
+    
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     
     if([cell.textLabel.text isEqualToString:@"Other"])
@@ -82,6 +84,8 @@
 
 - (IBAction)dropDownAction:(UIButton *)sender
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"dropDownClicked" object:self userInfo:nil];
+    
     if(self.tableView.hidden == YES)
     {
         self.tableView.hidden = NO;
@@ -94,6 +98,18 @@
 
 - (void) textFieldDidEndEditing:(UITextField *)textField {
     [textField resignFirstResponder];
+    self.textField.hidden = YES;
+    self.celebrationButton.hidden = NO;
+    [self.celebrationButton setTitle:self.textField.text forState:UIControlStateNormal];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    self.textField.hidden = YES;
+    self.celebrationButton.hidden = NO;
+    [self.celebrationButton setTitle:self.textField.text forState:UIControlStateNormal];
+    return YES;
 }
 
 - (void)dismissKeyboard:(UITapGestureRecognizer *)sender
