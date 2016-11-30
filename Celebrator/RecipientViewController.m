@@ -7,6 +7,7 @@
 //
 
 #import "RecipientViewController.h"
+#import "AddRecipientViewController.h"
 #import <Realm/Realm.h>
 #import "ModelProtocols.h"
 #import "Recipient.h"
@@ -22,37 +23,44 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupUI];
+//    [self setupUI];
 }
 
 
 #pragma mark - UI
 
-- (void)setupUI
-{
-   // self.title = @"";
-    self.navigationItem.RightBarButtonItem =
-    [[UIBarButtonItem alloc] initWithTitle:@"Add"
-                                     style:UIBarButtonItemStylePlain
-                                    target:self
-                                    action:@selector(Add)];
- 
-}
+//- (void)setupUI
+//{
+//   // self.title = @"";
+//
+////    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(goToAddRecipientView:)];
+////    self.navigationItem.rightBarButtonItem = addButton;
+////    self.addRecipientViewController = (AddRecipientViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+// 
+//}
 
 
-- (void)addRecipent
-{
+//- (void)addRecipent
+//{
+//
+//    Recipient *recipient = [[Recipient alloc] init];
+//    recipient.firstName = @"David";
+//    recipient.lastName = @"Henderson";
+//    
+//    RLMRealm *realm = [RLMRealm defaultRealm];
+//    
+//    [realm transactionWithBlock:^{
+//        [realm addObject:recipient];
+//    }];
+//}
 
-    Recipient *recipient = [[Recipient alloc] init];
-    recipient.firstName = @"David";
-    recipient.lastName = @"Henderson";
-    
-    RLMRealm *realm = [RLMRealm defaultRealm];
-    
-    [realm transactionWithBlock:^{
-        [realm addObject:recipient];
-    }];
-}
+//- (void)goToAddRecipientView: (id)sender {
+//    if (!self.recipientsArray) {
+//        self.recipientsArray = [[NSMutableArray alloc] init];
+//    }
+//    [self performSegueWithIdentifier:@"addRecipientViewController" sender:self];
+//}
+//
 
 
 //- (void)updateRecipient
@@ -78,19 +86,28 @@
 
 
     
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+#pragma mark - Navigation
+//
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    if ([[segue identifier] isEqualToString:@"showAddRecipientView"])
+//    {
+//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+//        Recipient *recipient = self.recipientsArray[indexPath.row];
+//        AddRecipientViewController *controller =(AddRecipientViewController *)[[segue destinationViewController] topViewController];
+//        [controller setDetailItem:object];
+//        controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
+//        controller.navigationItem.leftItemsSupplementBackButton = YES;
+//    }
+//    
+//}
+
 
 @end

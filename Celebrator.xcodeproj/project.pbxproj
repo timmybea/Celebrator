@@ -15,9 +15,10 @@
 		52134E2E1DEA560F009525A1 /* FBAddRecipientTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52134E2D1DEA560E009525A1 /* FBAddRecipientTableView.m */; };
 		522E8D6E1DED0CC8006C38D6 /* Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E8D6D1DED0CC8006C38D6 /* Recipient.m */; };
 		522E8D711DED12E8006C38D6 /* CelebrationRealm.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E8D701DED12E8006C38D6 /* CelebrationRealm.m */; };
-		522E8D751DEE07EE006C38D6 /* Celebration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522E8D741DEE07EE006C38D6 /* Celebration.swift */; };
 		522E8D781DEE143F006C38D6 /* RecipientListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E8D771DEE143F006C38D6 /* RecipientListView.m */; };
 		522E8D7B1DEE14DF006C38D6 /* ListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E8D7A1DEE14DF006C38D6 /* ListViewCell.m */; };
+		522E8D7E1DEE39AA006C38D6 /* RecipientTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E8D7D1DEE39AA006C38D6 /* RecipientTableViewController.m */; };
+		522E8D841DEE417D006C38D6 /* RecipientListDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E8D831DEE417D006C38D6 /* RecipientListDetailViewController.m */; };
 		B000CE8B1DEA2C86008BB9AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B000CE8A1DEA2C86008BB9AC /* main.m */; };
 		B000CE8E1DEA2C86008BB9AC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B000CE8D1DEA2C86008BB9AC /* AppDelegate.m */; };
 		B000CE941DEA2C86008BB9AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B000CE921DEA2C86008BB9AC /* Main.storyboard */; };
@@ -47,12 +48,14 @@
 		522E8D6F1DED12E8006C38D6 /* CelebrationRealm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CelebrationRealm.h; sourceTree = "<group>"; };
 		522E8D701DED12E8006C38D6 /* CelebrationRealm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CelebrationRealm.m; sourceTree = "<group>"; };
 		522E8D721DED2677006C38D6 /* ModelProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelProtocols.h; sourceTree = "<group>"; };
-		522E8D731DEE07ED006C38D6 /* Celebrator-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Celebrator-Bridging-Header.h"; sourceTree = "<group>"; };
-		522E8D741DEE07EE006C38D6 /* Celebration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Celebration.swift; sourceTree = "<group>"; };
 		522E8D761DEE143F006C38D6 /* RecipientListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientListView.h; sourceTree = "<group>"; };
 		522E8D771DEE143F006C38D6 /* RecipientListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientListView.m; sourceTree = "<group>"; };
 		522E8D791DEE14DF006C38D6 /* ListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewCell.h; sourceTree = "<group>"; };
 		522E8D7A1DEE14DF006C38D6 /* ListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewCell.m; sourceTree = "<group>"; };
+		522E8D7C1DEE39AA006C38D6 /* RecipientTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientTableViewController.h; sourceTree = "<group>"; };
+		522E8D7D1DEE39AA006C38D6 /* RecipientTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientTableViewController.m; sourceTree = "<group>"; };
+		522E8D821DEE417D006C38D6 /* RecipientListDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientListDetailViewController.h; sourceTree = "<group>"; };
+		522E8D831DEE417D006C38D6 /* RecipientListDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientListDetailViewController.m; sourceTree = "<group>"; };
 		880037F9CC4A4A6BCB0BEA17 /* Pods-Celebrator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Celebrator.release.xcconfig"; path = "Pods/Target Support Files/Pods-Celebrator/Pods-Celebrator.release.xcconfig"; sourceTree = "<group>"; };
 		B000CE861DEA2C86008BB9AC /* Celebrator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Celebrator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B000CE8A1DEA2C86008BB9AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -194,11 +197,13 @@
 			children = (
 				B07560A11DECDF8F009432A0 /* RecipientViewController.h */,
 				B07560A21DECDF8F009432A0 /* RecipientViewController.m */,
+				522E8D7C1DEE39AA006C38D6 /* RecipientTableViewController.h */,
+				522E8D7D1DEE39AA006C38D6 /* RecipientTableViewController.m */,
+				522E8D821DEE417D006C38D6 /* RecipientListDetailViewController.h */,
+				522E8D831DEE417D006C38D6 /* RecipientListDetailViewController.m */,
 				B075609E1DECDEE2009432A0 /* AddRecipientViewController.h */,
 				B075609F1DECDEE2009432A0 /* AddRecipientViewController.m */,
 				B02EFFD51DED101F000DCA97 /* CalendarViewControllerDelegate.h */,
-				B040A61D1DEA4767009BFC7F /* CalendarViewController.h */,
-				B040A61E1DEA4767009BFC7F /* CalendarViewController.m */,
 				B02EFFD21DED0CCE000DCA97 /* CalDetailViewController.h */,
 				B02EFFD31DED0CCE000DCA97 /* CalDetailViewController.m */,
 			);
@@ -208,7 +213,6 @@
 		B0ECEE371DEA4B8B00A215DD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				522E8D741DEE07EE006C38D6 /* Celebration.swift */,
 				B0ECEE631DEA6AD500A215DD /* Celebration.h */,
 				B0ECEE641DEA6AD500A215DD /* Celebration.m */,
 				522E8D6F1DED12E8006C38D6 /* CelebrationRealm.h */,
@@ -216,7 +220,6 @@
 				522E8D6C1DED0CC8006C38D6 /* Recipient.h */,
 				522E8D6D1DED0CC8006C38D6 /* Recipient.m */,
 				522E8D721DED2677006C38D6 /* ModelProtocols.h */,
-				522E8D731DEE07ED006C38D6 /* Celebrator-Bridging-Header.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -352,15 +355,16 @@
 				522E8D6E1DED0CC8006C38D6 /* Recipient.m in Sources */,
 				B07560A31DECDF8F009432A0 /* RecipientViewController.m in Sources */,
 				B07560A01DECDEE2009432A0 /* AddRecipientViewController.m in Sources */,
+				522E8D7E1DEE39AA006C38D6 /* RecipientTableViewController.m in Sources */,
 				522E8D7B1DEE14DF006C38D6 /* ListViewCell.m in Sources */,
 				B040A61F1DEA4767009BFC7F /* CalendarViewController.m in Sources */,
 				52134E2E1DEA560F009525A1 /* FBAddRecipientTableView.m in Sources */,
 				522E8D781DEE143F006C38D6 /* RecipientListView.m in Sources */,
-				522E8D751DEE07EE006C38D6 /* Celebration.swift in Sources */,
 				522E8D711DED12E8006C38D6 /* CelebrationRealm.m in Sources */,
 				B000CE8E1DEA2C86008BB9AC /* AppDelegate.m in Sources */,
 				B02EFFD41DED0CCE000DCA97 /* CalDetailViewController.m in Sources */,
 				B000CE8B1DEA2C86008BB9AC /* main.m in Sources */,
+				522E8D841DEE417D006C38D6 /* RecipientListDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

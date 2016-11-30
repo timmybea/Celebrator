@@ -15,8 +15,9 @@
 
 @property NSString *firstName;
 @property NSString *lastName;
-@property NSDate *birthday;
+@property NSDate *birthdate;
 @property RLMArray<CelebrationRealm> *celebrations;
+@property NSString *group;
 
 @end
 
