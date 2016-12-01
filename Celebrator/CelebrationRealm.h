@@ -15,6 +15,10 @@
 
 @property NSString *occasion;
 @property NSDate *date;
+@property BOOL giveCard;
+@property BOOL giveGift;
+@property BOOL makeCall;
+@property NSDate *reminderDate;
 @property Recipient *recipient;
 
 @end
