@@ -28,11 +28,11 @@
             </objects>
             <point key="canvasLocation" x="-1530" y="269"/>
         </scene>
-        <!--All Recipients-->
+        <!--Giftees-->
         <scene sceneID="MFU-JA-Xnu">
             <objects>
                 <navigationController id="4qr-T9-9uE" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="2" title="All Recipients" image="AllContacts4" selectedImage="AllContacts" id="K2L-UT-A9b"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Giftees" image="All_Contacts" selectedImage="AllContacts" id="K2L-UT-A9b"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="O1Z-op-4KL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -55,11 +55,11 @@
             </objects>
             <point key="canvasLocation" x="426" y="912"/>
         </scene>
-        <!--Add Recipient-->
+        <!--Add Giftee-->
         <scene sceneID="x1o-w8-8Fe">
             <objects>
                 <navigationController id="a5U-0o-dV0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="1" title="Add Recipient" image="AddContact-1" id="crc-Sr-f18"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Add Giftee" image="Add_Contact" id="crc-Sr-f18"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="J7Y-Zc-KS0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -86,7 +86,7 @@
         <scene sceneID="rTf-Bp-MP5">
             <objects>
                 <navigationController id="DZ0-vV-utp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Calendar" image="Calendar-1" id="UXI-F2-tte"/>
+                    <tabBarItem key="tabBarItem" title="Calendar" image="Calendar-2" id="UXI-F2-tte"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9io-CQ-8h3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -111,9 +111,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AddContact-1" width="16" height="16"/>
+        <image name="Add_Contact" width="16" height="16"/>
         <image name="AllContacts" width="153" height="122"/>
-        <image name="AllContacts4" width="38" height="30"/>
-        <image name="Calendar-1" width="74" height="83"/>
+        <image name="All_Contacts" width="90" height="63"/>
+        <image name="Calendar-2" width="16" height="16"/>
     </resources>
 </document>

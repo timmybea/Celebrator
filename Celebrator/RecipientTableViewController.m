@@ -50,7 +50,9 @@
 //
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 //{
-//    
+//    Recipient *recipientSectionHeader = self.data[group];
+//    return recipientSectionHeader.title;
+//
 //}
 
 
@@ -138,15 +140,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.recipientsArray.count;
-    
-//    switch (section)
-//    {
-//        case 0: return "@Family"; break;
-//        case 1: return "@Friends"; break;
-//        case 2: return "@School"; break;
-//        case 3: return "@Work"; break;
-//        case 4: return "@Other"; break;
-//    }
 }
 
 
@@ -175,6 +168,11 @@
 //    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
 //        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
 //    }   
+//}
+
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    self.selectedIndexPath = indexPath;
+//    [self performSegueWithIdentifier:@"showRecipientDetailView" sender:self];
 //}
 
 
