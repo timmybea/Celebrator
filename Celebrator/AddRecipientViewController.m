@@ -7,6 +7,12 @@
 //
 
 #import "AddRecipientViewController.h"
+#import "AddCelebrationViewController.h"
+#import "CalendarViewController.h"
+#import <Realm/Realm.h>
+#import "ModelProtocols.h"
+#import "Recipient.h"
+
 
 @interface AddRecipientViewController () <UITextFieldDelegate>
 
@@ -18,8 +24,17 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *dropDownView;
+
+@property (weak, nonatomic) IBOutlet UITextField *birthdateDayTextField;
+
+@property (weak, nonatomic) IBOutlet UITextField *birthdateMonthTextField;
+@property (weak, nonatomic) IBOutlet UITextField *birthdateYearTextField;
+
+
 @property (nonatomic) BOOL isDropDownBehind;
 @property (nonatomic) NSString *group;
+@property (nonatomic) NSDateFormatter *dateFormatter;
+@property (nonatomic) Recipient *sendRecipient;
 
 - (IBAction)saveButton:(UIButton *)sender;
 - (IBAction)AddCelebrationButton:(id)sender;
@@ -63,12 +78,47 @@
     }
 }
 
+- (NSDateFormatter *)dateFormatter
+{
+    static NSDateFormatter *dateFormatter;
+    if(!dateFormatter)
+    {
+        dateFormatter = [NSDateFormatter new];
+        dateFormatter.dateFormat = @"dd-MM-yyyy";
+    }
+    
+    return dateFormatter;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"addCelebration"])
+    {
+        AddCelebrationViewController *controller = (AddCelebrationViewController* )segue.destinationViewController;
+        controller.recipientModel = self.sendRecipient;
+    }
+}
+
 - (IBAction)saveButton:(UIButton *)sender
 {
     if([self.firstNameTextField hasText] && [self.lastNameTextField hasText])
     {
-        //INSTANTIATE RECIPIENT REALM
-        //RETURN TO HOMESCREEN (CALENDAR)
+        RLMRealm *realm = [RLMRealm defaultRealm];
+        Recipient *recipient = [[Recipient alloc] init];
+        recipient.firstName = self.firstNameTextField.text;
+        recipient.lastName = self.lastNameTextField.text;
+        NSString *dateString = [NSString stringWithFormat:@"%@-%@-%@", self.birthdateDayTextField.text, self.birthdateMonthTextField.text, self.birthdateYearTextField.text];
+        recipient.birthdate = [self.dateFormatter dateFromString:dateString];
+        recipient.group = self.group;
+        [realm transactionWithBlock:^{
+            [realm addObject:recipient];
+        }];
+        self.sendRecipient = recipient;
+        CalendarViewController *calendarVC= (CalendarViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
+     //   [calendarVC ];
+        
+        [self.tabBarController setSelectedIndex:0];
+       // [self.navigationController popToRootViewControllerAnimated:YES];
     }
     else
     {
@@ -81,6 +131,18 @@
 {
     if([self.firstNameTextField hasText] && [self.lastNameTextField hasText])
     {
+        RLMRealm *realm = [RLMRealm defaultRealm];
+        Recipient *recipient = [[Recipient alloc] init];
+        recipient.firstName = self.firstNameTextField.text;
+        recipient.lastName = self.lastNameTextField.text;
+        NSString *dateString = [NSString stringWithFormat:@"%@-%@-%@", self.birthdateDayTextField.text, self.birthdateMonthTextField.text, self.birthdateYearTextField.text];
+        recipient.birthdate = [self.dateFormatter dateFromString:dateString];
+        recipient.group = self.group;
+        [realm transactionWithBlock:^{
+            [realm addObject:recipient];
+        }];
+        self.sendRecipient = recipient;
+        
         [self performSegueWithIdentifier:@"addCelebration" sender:self];
         self.firstNameWarning.hidden = YES;
         self.lastNameWarning.hidden = YES;

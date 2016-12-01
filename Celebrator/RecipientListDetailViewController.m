@@ -18,11 +18,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-  
-    
+
     
 }
-
 
 
 - (void)didReceiveMemoryWarning {
@@ -30,15 +28,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 - (IBAction)detailEditRecipientButton:(id)sender
 {
     
 }
 
+
 - (IBAction)detailEditCelebrationButton:(id)sender
 {
     
 }
+
 
 /*
 #pragma mark - Navigation

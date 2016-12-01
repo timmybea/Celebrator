@@ -72,9 +72,9 @@
 
 - (void)appearTextField
 {
-    self.textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 339, 30)];
+    self.textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 343, 30)];
     self.textField.backgroundColor = [UIColor whiteColor];
-    self.textField.placeholder = @"enter celebration";
+    self.textField.placeholder = @"Enter celebration";
     UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 8, 20)];
     self.textField.leftView = paddingView;
     self.textField.leftViewMode = UITextFieldViewModeAlways;

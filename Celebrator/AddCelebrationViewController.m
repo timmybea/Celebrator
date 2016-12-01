@@ -7,6 +7,9 @@
 //
 
 #import "AddCelebrationViewController.h"
+#import <Realm/Realm.h>
+#import "ModelProtocols.h"
+#import "CelebrationRealm.h"
 
 @interface AddCelebrationViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *celebrationWarning;
@@ -20,8 +23,16 @@
 @property (weak, nonatomic) IBOutlet UITextField *celebMonthTF;
 @property (weak, nonatomic) IBOutlet UITextField *celebDayTF;
 @property (weak, nonatomic) IBOutlet UITextField *celebYearTF;
+@property (weak, nonatomic) IBOutlet UISwitch *giveGiftSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *giveCardSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *makeCallSwitch;
+@property (weak, nonatomic) IBOutlet UITextField *celebReminderMonthTF;
+@property (weak, nonatomic) IBOutlet UITextField *celebReminderDayTF;
+@property (weak, nonatomic) IBOutlet UITextField *celebReminderYearTF;
+
 
 @property (strong, nonatomic) NSString *celebration;
+@property (nonatomic) Recipient *recipient;
 
 - (IBAction)saveButton:(UIButton *)sender;
 @end
@@ -66,15 +77,26 @@
 {
     if([self.celebMonthTF hasText] && [self.celebDayTF hasText] && [self.celebYearTF hasText] && self.celebration)
     {
-        //INSTANTIATE CELEBRATION OBJECT
-        //POP VC BACK TO RECIPIENT
+        RLMRealm *realm = [RLMRealm defaultRealm];
+        CelebrationRealm *celebrationRealm = [[CelebrationRealm alloc] init];
+        celebrationRealm.occasion = self.celebration;
+        celebrationRealm.date = [NSDate date];
+        celebrationRealm.giveCard = self.giveCardSwitch.isOn;
+        celebrationRealm.giveGift = self.giveGiftSwitch.isOn;
+        celebrationRealm.makeCall = self.makeCallSwitch.isOn;
+        celebrationRealm.reminderDate = [NSDate date];
+        celebrationRealm.recipient = self.recipientModel;
+        
+        [realm transactionWithBlock:^{
+            [realm addObject:celebrationRealm];
+        }];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        
     }
     else{
         self.celebrationWarning.hidden = NO;
         self.celebrationDateWarning.hidden = NO;
     }
-    
-    
 }
 
 //receive the drop down selection as a string
