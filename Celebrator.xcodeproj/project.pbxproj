@@ -10,7 +10,6 @@
 		2C3C024B323BB6C9B8D4D73D /* libPods-Celebrator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12A21319DD29ABDBCFAFE7FE /* libPods-Celebrator.a */; };
 		522E8D6E1DED0CC8006C38D6 /* Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E8D6D1DED0CC8006C38D6 /* Recipient.m */; };
 		522E8D711DED12E8006C38D6 /* CelebrationRealm.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E8D701DED12E8006C38D6 /* CelebrationRealm.m */; };
-		522E8D781DEE143F006C38D6 /* RecipientListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E8D771DEE143F006C38D6 /* RecipientListView.m */; };
 		522E8D7B1DEE14DF006C38D6 /* ListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E8D7A1DEE14DF006C38D6 /* ListViewCell.m */; };
 		522E8D7E1DEE39AA006C38D6 /* RecipientTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E8D7D1DEE39AA006C38D6 /* RecipientTableViewController.m */; };
 		522E8D841DEE417D006C38D6 /* RecipientListDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E8D831DEE417D006C38D6 /* RecipientListDetailViewController.m */; };
@@ -19,10 +18,8 @@
 		B000CE941DEA2C86008BB9AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B000CE921DEA2C86008BB9AC /* Main.storyboard */; };
 		B000CE961DEA2C86008BB9AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B000CE951DEA2C86008BB9AC /* Assets.xcassets */; };
 		B000CE991DEA2C86008BB9AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B000CE971DEA2C86008BB9AC /* LaunchScreen.storyboard */; };
-		B02EFFD11DECEFE1000DCA97 /* CalendarDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = B02EFFD01DECEFE1000DCA97 /* CalendarDetailView.m */; };
 		B02EFFD41DED0CCE000DCA97 /* CalDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B02EFFD31DED0CCE000DCA97 /* CalDetailViewController.m */; };
 		B040A61F1DEA4767009BFC7F /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B040A61E1DEA4767009BFC7F /* CalendarViewController.m */; };
-		B048A8FE1DEFC43300830A3B /* CalendarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B048A8FD1DEFC43300830A3B /* CalendarTableViewController.m */; };
 		B048A9011DEFDB1200830A3B /* CalendarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B048A9001DEFDB1200830A3B /* CalendarTableViewCell.m */; };
 		B04D8EB61DECE7CB0082C9C1 /* CalendarBranch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B04D8EB51DECE7CB0082C9C1 /* CalendarBranch.storyboard */; };
 		B04D8EB81DECE7E80082C9C1 /* RecipientBranch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B04D8EB71DECE7E80082C9C1 /* RecipientBranch.storyboard */; };
@@ -42,8 +39,6 @@
 		522E8D6F1DED12E8006C38D6 /* CelebrationRealm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CelebrationRealm.h; sourceTree = "<group>"; };
 		522E8D701DED12E8006C38D6 /* CelebrationRealm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CelebrationRealm.m; sourceTree = "<group>"; };
 		522E8D721DED2677006C38D6 /* ModelProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelProtocols.h; sourceTree = "<group>"; };
-		522E8D761DEE143F006C38D6 /* RecipientListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientListView.h; sourceTree = "<group>"; };
-		522E8D771DEE143F006C38D6 /* RecipientListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientListView.m; sourceTree = "<group>"; };
 		522E8D791DEE14DF006C38D6 /* ListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewCell.h; sourceTree = "<group>"; };
 		522E8D7A1DEE14DF006C38D6 /* ListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewCell.m; sourceTree = "<group>"; };
 		522E8D7C1DEE39AA006C38D6 /* RecipientTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientTableViewController.h; sourceTree = "<group>"; };
@@ -59,15 +54,11 @@
 		B000CE951DEA2C86008BB9AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B000CE981DEA2C86008BB9AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B000CE9A1DEA2C86008BB9AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B02EFFCF1DECEFE1000DCA97 /* CalendarDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarDetailView.h; sourceTree = "<group>"; };
-		B02EFFD01DECEFE1000DCA97 /* CalendarDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarDetailView.m; sourceTree = "<group>"; };
 		B02EFFD21DED0CCE000DCA97 /* CalDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalDetailViewController.h; sourceTree = "<group>"; };
 		B02EFFD31DED0CCE000DCA97 /* CalDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalDetailViewController.m; sourceTree = "<group>"; };
 		B02EFFD51DED101F000DCA97 /* CalendarViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewControllerDelegate.h; sourceTree = "<group>"; };
 		B040A61D1DEA4767009BFC7F /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		B040A61E1DEA4767009BFC7F /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
-		B048A8FC1DEFC43300830A3B /* CalendarTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarTableViewController.h; sourceTree = "<group>"; };
-		B048A8FD1DEFC43300830A3B /* CalendarTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarTableViewController.m; sourceTree = "<group>"; };
 		B048A8FF1DEFDB1200830A3B /* CalendarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarTableViewCell.h; sourceTree = "<group>"; };
 		B048A9001DEFDB1200830A3B /* CalendarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarTableViewCell.m; sourceTree = "<group>"; };
 		B04D8EB51DECE7CB0082C9C1 /* CalendarBranch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CalendarBranch.storyboard; sourceTree = "<group>"; };
@@ -172,10 +163,6 @@
 		B0ECEE351DEA4B7F00A215DD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B02EFFCF1DECEFE1000DCA97 /* CalendarDetailView.h */,
-				B02EFFD01DECEFE1000DCA97 /* CalendarDetailView.m */,
-				522E8D761DEE143F006C38D6 /* RecipientListView.h */,
-				522E8D771DEE143F006C38D6 /* RecipientListView.m */,
 				522E8D791DEE14DF006C38D6 /* ListViewCell.h */,
 				522E8D7A1DEE14DF006C38D6 /* ListViewCell.m */,
 				B048A8FF1DEFDB1200830A3B /* CalendarTableViewCell.h */,
@@ -196,8 +183,6 @@
 				B040A61D1DEA4767009BFC7F /* CalendarViewController.h */,
 				B040A61E1DEA4767009BFC7F /* CalendarViewController.m */,
 				B02EFFD51DED101F000DCA97 /* CalendarViewControllerDelegate.h */,
-				B048A8FC1DEFC43300830A3B /* CalendarTableViewController.h */,
-				B048A8FD1DEFC43300830A3B /* CalendarTableViewController.m */,
 				B02EFFD21DED0CCE000DCA97 /* CalDetailViewController.h */,
 				B02EFFD31DED0CCE000DCA97 /* CalDetailViewController.m */,
 				B075609E1DECDEE2009432A0 /* AddRecipientViewController.h */,
@@ -354,16 +339,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B02EFFD11DECEFE1000DCA97 /* CalendarDetailView.m in Sources */,
 				B07560A41DECE03E009432A0 /* Celebration.m in Sources */,
 				522E8D6E1DED0CC8006C38D6 /* Recipient.m in Sources */,
 				B07560A01DECDEE2009432A0 /* AddRecipientViewController.m in Sources */,
-				B048A8FE1DEFC43300830A3B /* CalendarTableViewController.m in Sources */,
 				522E8D7E1DEE39AA006C38D6 /* RecipientTableViewController.m in Sources */,
 				B0D38BC81DEE6A7F00D9B770 /* CelebrationDropDown.m in Sources */,
 				522E8D7B1DEE14DF006C38D6 /* ListViewCell.m in Sources */,
 				B040A61F1DEA4767009BFC7F /* CalendarViewController.m in Sources */,
-				522E8D781DEE143F006C38D6 /* RecipientListView.m in Sources */,
 				B0D38BCB1DEE84AE00D9B770 /* AddCelebrationViewController.m in Sources */,
 				522E8D711DED12E8006C38D6 /* CelebrationRealm.m in Sources */,
 				B000CE8E1DEA2C86008BB9AC /* AppDelegate.m in Sources */,
