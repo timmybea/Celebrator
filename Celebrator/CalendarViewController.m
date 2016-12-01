@@ -11,15 +11,19 @@
 #import "CalDetailViewController.h"
 
 @interface CalendarViewController ()
-@property (weak, nonatomic) IBOutlet UIView *whiteView;
-@property (weak, nonatomic) IBOutlet UILabel *detailLabel;
 
-@property (strong, nonatomic) Celebration *celebration;
+@property (weak, nonatomic) IBOutlet UIView *tableViewContainer;
+
+@property (strong, nonatomic) Celebration *currentCelebration;
 @property (strong, nonatomic) NSMutableDictionary *celebrationsByDate;
 @property (strong, nonatomic) NSDate *dateSelected;
-@property (strong, nonatomic) UIButton *detailButton;
 @property (strong, nonatomic) NSLayoutConstraint *detailButtonHeight;
 @property (strong, nonatomic) NSArray *celebrationsForDate;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *containerViewHeight;
+
+
+
+- (void)createCelebrations;
 
 @end
 
@@ -30,7 +34,6 @@
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Gifter Name2.png"]];
 
-
     _calendarManager = [JTCalendarManager new];
     _calendarManager.delegate = self;
     
@@ -38,55 +41,22 @@
     [_calendarManager setContentView:_calendarContentView];
     [_calendarManager setDate:[NSDate date]];
     
+    //setTableViewDisappear
+    self.tableViewContainer.hidden = YES;
+    
     // Generate celebration and store in dictionary
     [self createCelebrations];
     
-    //white view appearance
-    self.whiteView.layer.cornerRadius = 10;
-    self.whiteView.layer.masksToBounds = YES;
-    
-    
-    //[self.detailButton setExclusiveTouch:YES];
-    self.detailButton = [[UIButton alloc] initWithFrame:CGRectZero];
-    self.detailButton.translatesAutoresizingMaskIntoConstraints = NO;
-    self.detailButton.backgroundColor = [UIColor orangeColor];
-    
-    //detail view appearance
-    [self.detailButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view insertSubview:self.detailButton belowSubview:self.detailLabel];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.detailButton
-                                                                        attribute:NSLayoutAttributeRight
-                                                                        relatedBy:NSLayoutRelationEqual
-                                                                           toItem:self.view
-                                                                        attribute:NSLayoutAttributeRight
-                                                                       multiplier:1
-                                                                         constant:-20]];
-    
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.detailButton
-                                                                        attribute:NSLayoutAttributeLeft
-                                                                        relatedBy:NSLayoutRelationEqual
-                                                                           toItem:self.view
-                                                                        attribute:NSLayoutAttributeLeft
-                                                                       multiplier:1
-                                                                         constant:20]];
-    
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.detailButton                                                                           attribute:NSLayoutAttributeTop
-                                                                           relatedBy:NSLayoutRelationEqual
-                                                                              toItem:self.calendarContentView
-                                                                           attribute:NSLayoutAttributeBottom
-                                                                          multiplier:1
-                                                                            constant:0]];
-    
-    self.detailButtonHeight = [NSLayoutConstraint constraintWithItem:self.detailButton
-                                                        attribute:NSLayoutAttributeHeight
-                                                        relatedBy:NSLayoutRelationEqual
-                                                           toItem:nil
-                                                        attribute:NSLayoutAttributeNotAnAttribute
-                                                       multiplier:1
-                                                         constant:0];
-    
-    [self.view addConstraint:self.detailButtonHeight];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(calendarDetail:) name:@"segueCall" object:nil];
+}
+
+
+//customize calendar view
+- (UIView<JTCalendarDay> *)calendarBuildDayView:(JTCalendarManager *)calendar
+{
+    JTCalendarDayView *view = [JTCalendarDayView new];
+    view.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:13];
+    return view;
 }
 
 - (void)calendar:(JTCalendarManager *)calendar prepareDayView:(JTCalendarDayView *)dayView
@@ -118,42 +88,34 @@
 {
     NSString *key = [[self dateFormatter] stringFromDate:date];
     
-    if(self.celebrationsByDate[key] && [self.celebrationsByDate[key] count] > 0){
+    if(self.celebrationsByDate[key] && [self.celebrationsByDate[key] count] > 0)
+    {
         return YES;
     }
     return NO;
 }
 
-//display celebration info at touch
 - (void)calendar:(JTCalendarManager *)calendar didTouchDayView:(UIView<JTCalendarDay> *)dayView
 {
     //reset label and view
-    self.detailLabel.text = @"";
-    self.detailButtonHeight.constant = 0;
+    self.tableViewContainer.hidden = YES;
+    self.containerViewHeight.constant = 0;
     [self.view layoutIfNeeded];
     
     NSString *key = [[self dateFormatter] stringFromDate:dayView.date];
     if(self.celebrationsByDate[key])
     {
-        NSMutableString *message = [NSMutableString string];
+        NSDictionary *events = @{@"events": self.celebrationsByDate[key]};
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"showEvents" object:self userInfo:events];
+        
         self.celebrationsForDate = self.celebrationsByDate[key];
-        for (Celebration *celebration in self.celebrationsForDate)
-            {
-                [message appendString:[NSString stringWithFormat:@"It is 'persons' %@ \n", celebration.occassion]];
-            }
-            
-        float animationHeight = self.celebrationsForDate.count * 20 + 25;
+        self.tableViewContainer.hidden = NO;
+        float animationHeight = self.celebrationsForDate.count * 40 + 5;
         [UIView animateWithDuration:0.3 animations:^(){
-        self.detailButtonHeight.constant = animationHeight;
+        self.containerViewHeight.constant = animationHeight;
         [self.view layoutIfNeeded];
         }];
-        [self performSelector:@selector(updateDetailLabel:) withObject:message afterDelay:0.3];
     }
-}
-
-- (void)updateDetailLabel: (NSString *)message
-{
-    self.detailLabel.text = message;
 }
 
 - (void)createCelebrations
@@ -181,7 +143,6 @@
         {
             self.celebrationsByDate[key] = [NSMutableArray new];
         }
-        
         [self.celebrationsByDate[key] addObject:event];
     }
 }
@@ -199,9 +160,10 @@
     return dateFormatter;
 }
 
-//button clicked perform segue
--(void) buttonClicked:(UIButton *)sender
+
+- (void)calendarDetail:(NSNotification *)notification
 {
+    self.currentCelebration = [notification.userInfo valueForKey:@"CelebrationSegue"];
     [self performSegueWithIdentifier:@"celebrationCalDetail" sender:self];
 }
 
@@ -209,9 +171,7 @@
 {
     CalDetailViewController *destination = segue.destinationViewController;
     self.delegate = destination;
-    [self.delegate passCelebrationsArray:self.celebrationsForDate];
+    [self.delegate passCelebration:self.currentCelebration];
 }
-
-
 
 @end

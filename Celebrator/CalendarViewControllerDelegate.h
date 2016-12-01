@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Celebration.h"
 
 @protocol CalendarViewControllerDelegate <NSObject>
 
-- (void)passCelebrationsArray:(NSArray *)celebrations;
+- (void)passCelebration:(Celebration *)celebration;
 
 @end

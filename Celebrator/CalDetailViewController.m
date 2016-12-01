@@ -12,10 +12,8 @@
 
 @interface CalDetailViewController () <CalendarViewControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property (weak, nonatomic) IBOutlet UILabel *label;
-@property (strong, nonatomic) NSArray *celebrationsArray;
-@property (nonatomic) int currentCelebration;
+@property (strong, nonatomic) Celebration *celebration;
 
 @end
 
@@ -25,33 +23,13 @@
     [super viewDidLoad];
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Gifter Name2.png"]];
     
-    self.currentCelebration = 0;
-    
-    [self resetCelebrationDetails];
-    
-    if(self.celebrationsArray.count < 2)
-    {
-        self.nextButton.hidden = YES;
-    }
 }
 
-- (void)passCelebrationsArray:(NSArray *)celebrations
+- (void)passCelebration:(Celebration *)celebration;
 {
-    self.celebrationsArray = [[NSArray alloc] initWithArray:celebrations];
-    
-}
-
-- (void)resetCelebrationDetails
-{
-    Celebration *celebration = [self.celebrationsArray objectAtIndex:self.currentCelebration];
+    self.celebration = [[Celebration alloc] init];
+    self.celebration = celebration;
     self.label.text = celebration.occassion;
-}
-
-
-- (IBAction)nextButtonClicked:(UIButton *)sender
-{
-    self.currentCelebration += 1;
-    [self resetCelebrationDetails];
 }
 
 @end
