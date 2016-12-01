@@ -113,7 +113,7 @@
     <resources>
         <image name="AddContact-1" width="16" height="16"/>
         <image name="AllContacts" width="153" height="122"/>
-        <image name="AllContacts4" width="16" height="16"/>
+        <image name="AllContacts4" width="38" height="30"/>
         <image name="Calendar-1" width="74" height="83"/>
     </resources>
 </document>

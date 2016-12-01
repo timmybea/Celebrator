@@ -74,7 +74,7 @@
 {
     self.textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 155, 30)];
     self.textField.backgroundColor = [UIColor whiteColor];
-    self.textField.placeholder = @"Enter custom group";
+    self.textField.placeholder = @"Enter group";
     UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 8, 20)];
     self.textField.leftView = paddingView;
     self.textField.leftViewMode = UITextFieldViewModeAlways;

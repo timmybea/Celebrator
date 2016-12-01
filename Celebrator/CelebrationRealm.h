@@ -15,7 +15,7 @@
 
 @property NSString *occasion;
 @property NSDate *date;
-@property RLMArray<Recipient> *recipients;
+@property Recipient *recipient;
 
 @end
 
