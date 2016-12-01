@@ -8,20 +8,20 @@
 
 #import "CalendarViewController.h"
 #import "Celebration.h"
+#import "CalendarTableViewCell.h"
 #import "CalDetailViewController.h"
 
-@interface CalendarViewController ()
+@interface CalendarViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UIView *tableViewContainer;
-
+//tableView
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) Celebration *currentCelebration;
 @property (strong, nonatomic) NSMutableDictionary *celebrationsByDate;
+
 @property (strong, nonatomic) NSDate *dateSelected;
 @property (strong, nonatomic) NSLayoutConstraint *detailButtonHeight;
 @property (strong, nonatomic) NSArray *celebrationsForDate;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *containerViewHeight;
-
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
 
 - (void)createCelebrations;
 
@@ -42,14 +42,21 @@
     [_calendarManager setDate:[NSDate date]];
     
     //setTableViewDisappear
-    self.tableViewContainer.hidden = YES;
+    self.tableView.hidden = YES;
+    [self.view layoutIfNeeded];
     
     // Generate celebration and store in dictionary
     [self createCelebrations];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(calendarDetail:) name:@"segueCall" object:nil];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.calendarManager reload];
+    //reload data source
+}
+
+#pragma - calendar setup methods
 
 //customize calendar view
 - (UIView<JTCalendarDay> *)calendarBuildDayView:(JTCalendarManager *)calendar
@@ -72,7 +79,7 @@
         dayView.textLabel.textColor = [UIColor whiteColor];
     }
     
-    // Your method to test if a date have an event for example
+    //method to test if a date has an event
     if([self haveCelebrationForDay:dayView.date]){
         dayView.circleView.hidden = NO;
         dayView.circleView.backgroundColor = [UIColor orangeColor];
@@ -98,25 +105,24 @@
 - (void)calendar:(JTCalendarManager *)calendar didTouchDayView:(UIView<JTCalendarDay> *)dayView
 {
     //reset label and view
-    self.tableViewContainer.hidden = YES;
-    self.containerViewHeight.constant = 0;
+    self.tableView.hidden = YES;
+    self.tableViewHeight.constant = 0;
     [self.view layoutIfNeeded];
     
     NSString *key = [[self dateFormatter] stringFromDate:dayView.date];
     if(self.celebrationsByDate[key])
     {
-        NSDictionary *events = @{@"events": self.celebrationsByDate[key]};
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"showEvents" object:self userInfo:events];
-        
         self.celebrationsForDate = self.celebrationsByDate[key];
-        self.tableViewContainer.hidden = NO;
+        self.tableView.hidden = NO;
         float animationHeight = self.celebrationsForDate.count * 40 + 5;
-        [UIView animateWithDuration:0.3 animations:^(){
-        self.containerViewHeight.constant = animationHeight;
-        [self.view layoutIfNeeded];
+        [UIView animateWithDuration:0.4 animations:^(){
+        self.tableViewHeight.constant = animationHeight;
+        [self.tableView reloadData];
         }];
     }
 }
+
+#pragma - make test data source methods
 
 - (void)createCelebrations
 {
@@ -147,7 +153,7 @@
     }
 }
 
-// Used only to have a key for _eventsByDate
+// Used to have a key celebrationsByDate
 - (NSDateFormatter *)dateFormatter
 {
     static NSDateFormatter *dateFormatter;
@@ -160,10 +166,33 @@
     return dateFormatter;
 }
 
+#pragma - table view delegate methods
 
-- (void)calendarDetail:(NSNotification *)notification
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    self.currentCelebration = [notification.userInfo valueForKey:@"CelebrationSegue"];
+    return self.celebrationsForDate.count;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 40;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CalendarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"calCell"];
+    Celebration *celebration = [self.celebrationsForDate objectAtIndex:indexPath.row];
+    NSString *message = [NSString stringWithFormat:@"It is 'persons' %@ \n", celebration.occassion];
+    cell.label.text = message;
+    return cell;
+}
+
+
+//Segue to calendar detail
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.currentCelebration = [self.celebrationsForDate objectAtIndex:indexPath.row];
+//    NSLog(@"Event: %@ SENT FROM TV", celebration);
     [self performSegueWithIdentifier:@"celebrationCalDetail" sender:self];
 }
 

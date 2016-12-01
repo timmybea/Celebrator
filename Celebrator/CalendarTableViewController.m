@@ -18,7 +18,7 @@
 @end
 
 @implementation CalendarTableViewController
-
+//NO LONGER USING!!! DELETE!!!!!!!!!!!!!
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -51,11 +51,11 @@
 }
 
 
-//SIGNAL PARENT VC TO SEGUE TO DETAIL VC
+//signal parent view controller to segue to detail view controller
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //DICTIONARY WITH CELEBRATION AT INDEX PATH
     NSDictionary *celebration = @{@"CelebrationSegue": self.eventsData[indexPath.row]};
+    NSLog(@"Event: %@ SENT FROM TV", self.eventsData[indexPath.row]);
     [[NSNotificationCenter defaultCenter] postNotificationName:@"segueCall" object:self userInfo:celebration];
 }
 

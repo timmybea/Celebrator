@@ -27,6 +27,7 @@
 		B04D8EB61DECE7CB0082C9C1 /* CalendarBranch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B04D8EB51DECE7CB0082C9C1 /* CalendarBranch.storyboard */; };
 		B04D8EB81DECE7E80082C9C1 /* RecipientBranch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B04D8EB71DECE7E80082C9C1 /* RecipientBranch.storyboard */; };
 		B04D8EBA1DECE8210082C9C1 /* ListBranch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B04D8EB91DECE8210082C9C1 /* ListBranch.storyboard */; };
+		B05505801DF08D48003991C0 /* CalendarDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B055057F1DF08D48003991C0 /* CalendarDetailTableViewCell.m */; };
 		B07560A01DECDEE2009432A0 /* AddRecipientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B075609F1DECDEE2009432A0 /* AddRecipientViewController.m */; };
 		B07560A31DECDF8F009432A0 /* RecipientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B07560A21DECDF8F009432A0 /* RecipientViewController.m */; };
 		B07560A41DECE03E009432A0 /* Celebration.m in Sources */ = {isa = PBXBuildFile; fileRef = B0ECEE641DEA6AD500A215DD /* Celebration.m */; };
@@ -73,6 +74,8 @@
 		B04D8EB51DECE7CB0082C9C1 /* CalendarBranch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CalendarBranch.storyboard; sourceTree = "<group>"; };
 		B04D8EB71DECE7E80082C9C1 /* RecipientBranch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RecipientBranch.storyboard; sourceTree = "<group>"; };
 		B04D8EB91DECE8210082C9C1 /* ListBranch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ListBranch.storyboard; sourceTree = "<group>"; };
+		B055057E1DF08D48003991C0 /* CalendarDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarDetailTableViewCell.h; sourceTree = "<group>"; };
+		B055057F1DF08D48003991C0 /* CalendarDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarDetailTableViewCell.m; sourceTree = "<group>"; };
 		B075609E1DECDEE2009432A0 /* AddRecipientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRecipientViewController.h; sourceTree = "<group>"; };
 		B075609F1DECDEE2009432A0 /* AddRecipientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRecipientViewController.m; sourceTree = "<group>"; };
 		B07560A11DECDF8F009432A0 /* RecipientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientViewController.h; sourceTree = "<group>"; };
@@ -180,6 +183,8 @@
 				522E8D7A1DEE14DF006C38D6 /* ListViewCell.m */,
 				B048A8FF1DEFDB1200830A3B /* CalendarTableViewCell.h */,
 				B048A9001DEFDB1200830A3B /* CalendarTableViewCell.m */,
+				B055057E1DF08D48003991C0 /* CalendarDetailTableViewCell.h */,
+				B055057F1DF08D48003991C0 /* CalendarDetailTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -370,6 +375,7 @@
 				B000CE8E1DEA2C86008BB9AC /* AppDelegate.m in Sources */,
 				B02EFFD41DED0CCE000DCA97 /* CalDetailViewController.m in Sources */,
 				B000CE8B1DEA2C86008BB9AC /* main.m in Sources */,
+				B05505801DF08D48003991C0 /* CalendarDetailTableViewCell.m in Sources */,
 				B048A9011DEFDB1200830A3B /* CalendarTableViewCell.m in Sources */,
 				522E8D841DEE417D006C38D6 /* RecipientListDetailViewController.m in Sources */,
 				B0D38BC51DEE30F800D9B770 /* DropDownRecipientViewController.m in Sources */,
