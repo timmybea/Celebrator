@@ -10,6 +10,7 @@
 #import <Realm/Realm.h>
 #import "ModelProtocols.h"
 #import "CelebrationRealm.h"
+#import "Recipient.h"
 
 @interface AddCelebrationViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *celebrationWarning;
@@ -30,7 +31,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *celebReminderDayTF;
 @property (weak, nonatomic) IBOutlet UITextField *celebReminderYearTF;
 
-
+@property (nonatomic) NSDateFormatter *dateFormatter;
 @property (strong, nonatomic) NSString *celebration;
 @property (nonatomic) Recipient *recipient;
 
@@ -51,13 +52,23 @@
     
     self.celebrationWarning.hidden = YES;
     self.celebrationDateWarning.hidden = YES;
-    
 }
+
+//
+//- (void)configureView
+//{
+//    if (self.recipientModel.firstName)
+//    {
+//        self.recipientModel.celebForNameLabel.text = self.recipientModel.firstName;
+//    }
+//}
+
 
 - (void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
     
 }
+
 
 - (void)changeViewHierarchy:(NSNotification *)notification
 {
@@ -73,6 +84,18 @@
     }
 }
 
+- (NSDateFormatter *)dateFormatter
+{
+    static NSDateFormatter *dateFormatter;
+    if(!dateFormatter)
+    {
+        dateFormatter = [NSDateFormatter new];
+        dateFormatter.dateFormat = @"MM-dd-yyyy";
+    }
+    
+    return dateFormatter;
+}
+
 - (IBAction)saveButton:(UIButton *)sender
 {
     if([self.celebMonthTF hasText] && [self.celebDayTF hasText] && [self.celebYearTF hasText] && self.celebration)
@@ -80,11 +103,13 @@
         RLMRealm *realm = [RLMRealm defaultRealm];
         CelebrationRealm *celebrationRealm = [[CelebrationRealm alloc] init];
         celebrationRealm.occasion = self.celebration;
-        celebrationRealm.date = [NSDate date];
+        NSString *dateString = [NSString stringWithFormat:@"%@-%@-%@", self.celebMonthTF.text, self.celebDayTF.text, self.celebYearTF.text];
+        celebrationRealm.date = [self.dateFormatter dateFromString:dateString];
         celebrationRealm.giveCard = self.giveCardSwitch.isOn;
         celebrationRealm.giveGift = self.giveGiftSwitch.isOn;
         celebrationRealm.makeCall = self.makeCallSwitch.isOn;
-        celebrationRealm.reminderDate = [NSDate date];
+        NSString *reminderDateString = [NSString stringWithFormat:@"%@-%@-%@", self.celebReminderMonthTF.text, self.celebReminderDayTF.text, self.celebReminderYearTF.text];
+        celebrationRealm.reminderDate = [self.dateFormatter dateFromString:reminderDateString];
         celebrationRealm.recipient = self.recipientModel;
         
         [realm transactionWithBlock:^{

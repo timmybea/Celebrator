@@ -12,5 +12,6 @@
 @interface AddCelebrationViewController : UIViewController
 
 @property (nonatomic) Recipient *recipientModel;
+@property (weak, nonatomic) IBOutlet UILabel *celebForNameLabel;
 
 @end
