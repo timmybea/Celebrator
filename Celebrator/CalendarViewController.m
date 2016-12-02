@@ -56,7 +56,7 @@
     [super viewWillAppear:animated];
     
     RLMRealm *realm = [RLMRealm defaultRealm];
-    RLMResults<CelebrationRealm *> *allCelebrations =[CelebrationRealm allObjects];
+    RLMResults<CelebrationRealm *> *allCelebrations = [CelebrationRealm allObjects];
     for(CelebrationRealm *celebration in allCelebrations)
     {
         // Use the date as key for eventsByDate
