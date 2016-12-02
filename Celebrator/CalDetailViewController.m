@@ -8,12 +8,11 @@
 
 #import "CalDetailViewController.h"
 #import "CalendarDetailTableViewCell.h"
-#import "Celebration.h"
 #import "AddCelebrationViewController.h"
 
 @interface CalDetailViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UILabel *label;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *celebDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *remindDateLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -33,28 +32,48 @@
     NSLog(@"%@", self.celebrationRealm.date);
 }
 
+#pragma  - setup methods
+
 - (void)passCelebration:(CelebrationRealm *)celebration;
 {
     self.celebrationRealm = celebration;
-    self.label.text = self.celebrationRealm.occasion;
+    self.titleLabel.text = self.celebrationRealm.occasion;
     NSLog(@"%@", self.celebrationRealm.occasion);
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-
-
     [self setupGiftsArray];
     [self setupLabels];
+    [self setupMainlabel];
 }
-
 
 - (void)setupMainlabel
 {
-    NSString *message = [NSString stringWithFormat:@"%@ for %@", self.celebrationRealm.occasion, self.celebrationRealm.recipient];
+    NSString *message = [NSString stringWithFormat:@"%@ for %@", self.celebrationRealm.occasion, self.celebrationRealm.recipient.firstName];
+    self.titleLabel.text = [message uppercaseString];
+}
 
-
-
+- (void)setupGiftsArray
+{
+    //add gift options
+    self.gifts = [[NSMutableArray alloc] init];
+    if(self.celebrationRealm.giveGift == YES)
+    {
+        [self.gifts addObject:@"Gift:"];
+    }
+    
+    if(self.celebrationRealm.giveCard == YES)
+    {
+        [self.gifts addObject:@"Card:"];
+    }
+    
+    if(self.celebrationRealm.makeCall == YES)
+    {
+        [self.gifts addObject:@"Call:"];
+    }
+    
+    self.tableHeight.constant = (self.gifts.count * 40 + 3);
 }
 
 - (void)setupLabels
@@ -71,8 +90,6 @@
     }
 }
 
-
-
 - (NSDateFormatter *)dateFormatter
 {
     static NSDateFormatter *dateFormatter;
@@ -88,8 +105,7 @@
 #pragma - tableview delegate methods
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
-    return self.gifts.count; //between zero and three
+    return self.gifts.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -99,53 +115,17 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+#pragma segue method
 - (IBAction)editButtonPushed:(UIButton *)sender
 {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"RecipientBranch" bundle:nil];
-    AddCelebrationViewController *vc = [sb instantiateViewControllerWithIdentifier:@"myViewController"]; //ADD TO REUSE ID
-    [self presentViewController:vc animated:YES completion:NULL];
+    AddCelebrationViewController *vc = [sb instantiateViewControllerWithIdentifier:@"recipientViewController"];
+    [[self navigationController] pushViewController:vc animated:YES];
 }
-
-//UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-//UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"myViewController"];
-//vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-//[self presentViewController:vc animated:YES completion:NULL];
-//
-//[1:56]
-//if u want to push pop within the confines of the nav view controller
-//
-//[1:56]
-//ure looking for this
-//
-//[1:56]
-//[self.navigationController popViewControllerAnimated: NO];
-//[self.navigationController pushViewController: mevc animated: YES];
-//
-//[1:56]
-//pop meaning get rid of.. push meaning put on top of the nav stack
-
-- (void)setupGiftsArray
-{
-    //add gift options
-    self.gifts = [[NSMutableArray alloc] init];
-    if(self.celebrationRealm.giveGift == YES)
-    {
-        [self.gifts addObject:@"Gift:"];
-    }
-
-    if(self.celebrationRealm.giveCard == YES)
-    {
-        [self.gifts addObject:@"Card:"];
-    }
-
-    if(self.celebrationRealm.makeCall == YES)
-    {
-        [self.gifts addObject:@"Call:"];
-    }
-
-    self.tableHeight.constant = (self.gifts.count * 40 + 3);
-}
-
-
 
 @end

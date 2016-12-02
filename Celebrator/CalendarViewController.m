@@ -7,7 +7,6 @@
 //
 
 #import "CalendarViewController.h"
-#import "Celebration.h"
 #import "CalendarTableViewCell.h"
 #import "CalDetailViewController.h"
 #import "CelebrationRealm.h"
@@ -16,11 +15,9 @@
 
 @interface CalendarViewController () <UITableViewDelegate, UITableViewDataSource>
 
-//tableView
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) CelebrationRealm *currentCelebration;
 @property (strong, nonatomic) NSMutableDictionary *celebrationsByDate;
-
 @property (strong, nonatomic) NSDate *dateSelected;
 @property (strong, nonatomic) NSLayoutConstraint *detailButtonHeight;
 @property (strong, nonatomic) NSArray *celebrationsForDate;
@@ -43,22 +40,16 @@
     [_calendarManager setDate:[NSDate date]];
 
     self.celebrationsByDate = [[NSMutableDictionary alloc] init];
-    //setTableViewDisappear
     self.tableView.hidden = YES;
     [self.view layoutIfNeeded];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-
     [RLMRealm defaultRealm];
     RLMResults<CelebrationRealm *> *allCelebrations =[CelebrationRealm allObjects];
     for(CelebrationRealm *celebrationRealm in allCelebrations)
-
     {
-
         // Use the date as key for eventsByDate
         NSString *key = [[self dateFormatter] stringFromDate:celebrationRealm.date];
         if(!self.celebrationsByDate[key])
@@ -171,7 +162,6 @@
     cell.label.text = message;
     return cell;
 }
-
 
 //Segue to calendar detail
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
