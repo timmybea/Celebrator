@@ -54,7 +54,7 @@
     }
     
     //set date information
-    self
+//    self
 }
 
 
