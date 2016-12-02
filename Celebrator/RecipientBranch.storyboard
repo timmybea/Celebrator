@@ -148,13 +148,25 @@
                                     <constraint firstAttribute="height" constant="218" id="O3N-fM-X6i"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="48" id="15i-pR-GhP">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CelebrationNameID" rowHeight="48" id="15i-pR-GhP" customClass="RecipientTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="343" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="15i-pR-GhP" id="E5Y-iu-paa">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="47"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Something" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8h-m5-zOS">
+                                                    <rect key="frame" x="8" y="13" width="327" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="CelebrationNameCellLabel" destination="P8h-m5-zOS" id="WXs-5C-4mH"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -651,11 +663,11 @@
                         <viewControllerLayoutGuide type="bottom" id="OKK-GP-j8R"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="DSX-pD-nzm">
-                        <rect key="frame" x="0.0" y="0.0" width="564" height="475"/>
+                        <rect key="frame" x="0.0" y="0.0" width="339" height="475"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vHM-Hv-mip">
-                                <rect key="frame" x="0.0" y="0.0" width="564" height="36"/>
+                                <rect key="frame" x="0.0" y="0.0" width="339" height="36"/>
                                 <color key="backgroundColor" red="0.094117647058823528" green="0.0" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="a8B-kh-Avh"/>
@@ -673,14 +685,14 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3dC-Ys-vJK">
-                                <rect key="frame" x="0.0" y="38" width="564" height="429"/>
+                                <rect key="frame" x="0.0" y="38" width="339" height="429"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CelebrationTableCell" rowHeight="25" id="e1c-qh-JVi">
-                                        <rect key="frame" x="0.0" y="28" width="564" height="25"/>
+                                        <rect key="frame" x="0.0" y="28" width="339" height="25"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e1c-qh-JVi" id="Rp5-co-lLZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="564" height="24"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="339" height="24"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>

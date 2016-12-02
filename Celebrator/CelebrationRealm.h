@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 #import <Realm/Realm.h>
 #import "ModelProtocols.h"
+#import "Recipient.h"
 
 @interface CelebrationRealm : RLMObject
 
@@ -19,7 +20,7 @@
 @property BOOL giveGift;
 @property BOOL makeCall;
 @property NSDate *reminderDate;
-@property NSString *recipientKey; //***
+@property (weak) Recipient *recipient;
 
 @end
 

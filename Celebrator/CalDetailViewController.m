@@ -49,13 +49,13 @@
 }
 
 
-- (void)setupMainlabel
-{
-    NSString *message = [NSString stringWithFormat:@"%@ for %@", self.celebrationRealm.occasion, self.celebrationRealm.recipient];
-
-
-
-}
+//- (void)setupMainlabel
+//{
+//    NSString *message = [NSString stringWithFormat:@"%@ for %@", self.celebrationRealm.occasion, self.celebrationRealm.recipient];
+//
+//
+//
+//}
 
 - (void)setupLabels
 {
