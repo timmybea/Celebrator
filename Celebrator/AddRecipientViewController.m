@@ -144,6 +144,10 @@
         RLMRealm *realm = [RLMRealm defaultRealm];
         Recipient *recipient = [[Recipient alloc] init];
         [recipient.celebrations addObjects:self.celebrationsArray];
+        for(CelebrationRealm *celebration in self.celebrationsArray)
+        {
+            celebration.recipient = recipient;
+        }
         recipient.firstName = self.firstNameTextField.text;
         recipient.lastName = self.lastNameTextField.text;
         NSString *dateString = [NSString stringWithFormat:@"%@-%@-%@", self.birthdateDayTextField.text, self.birthdateMonthTextField.text, self.birthdateYearTextField.text];

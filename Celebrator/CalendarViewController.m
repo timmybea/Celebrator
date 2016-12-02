@@ -167,7 +167,7 @@
 {
     CalendarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"calCell"];
     CelebrationRealm *celebration = [self.celebrationsForDate objectAtIndex:indexPath.row];
-    NSString *message = [NSString stringWithFormat:@"It is 'persons' %@ \n", celebration.occasion];
+    NSString *message = [NSString stringWithFormat:@"%@ %@ - %@ \n", celebration.recipient.firstName, celebration.recipient.lastName, celebration.occasion];
     cell.label.text = message;
     return cell;
 }
