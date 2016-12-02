@@ -74,7 +74,7 @@
         [self.gifts addObject:@"Call:"];
     }
 
-    self.tableHeight.constant = (self.gifts.count * 40 + 3);
+    self.tableHeight.constant = (self.gifts.count * 40 + 10);
 }
 
 - (void)setupLabels

@@ -32,6 +32,7 @@
 {
     [super viewDidLoad];
     [self setupUI];
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Gifter Name2.png"]];
 }
 
 

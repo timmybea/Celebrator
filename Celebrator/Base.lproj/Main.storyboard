@@ -116,4 +116,5 @@
         <image name="All_Contacts" width="90" height="63"/>
         <image name="Calendar-2" width="16" height="16"/>
     </resources>
+    <color key="tintColor" red="0.094117647060000004" green="0.0" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
 </document>
