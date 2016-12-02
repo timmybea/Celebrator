@@ -105,16 +105,17 @@
         celebrationRealm.occasion = self.celebration;
         NSString *dateString = [NSString stringWithFormat:@"%@-%@-%@", self.celebMonthTF.text, self.celebDayTF.text, self.celebYearTF.text];
         celebrationRealm.date = [self.dateFormatter dateFromString:dateString];
-        celebrationRealm.giveCard = self.giveCardSwitch.isOn;
-        celebrationRealm.giveGift = self.giveGiftSwitch.isOn;
-        celebrationRealm.makeCall = self.makeCallSwitch.isOn;
+        celebrationRealm.giveCard = self.giveCardSwitch.on;
+        celebrationRealm.giveGift = self.giveGiftSwitch.on;
+        celebrationRealm.makeCall = self.makeCallSwitch.on;
         NSString *reminderDateString = [NSString stringWithFormat:@"%@-%@-%@", self.celebReminderMonthTF.text, self.celebReminderDayTF.text, self.celebReminderYearTF.text];
         celebrationRealm.reminderDate = [self.dateFormatter dateFromString:reminderDateString];
-        celebrationRealm.recipient = self.recipientModel;
+       // celebrationRealm.recipient = self.recipientModel;
+        [self.delegate passCelebrationToRecipient:celebrationRealm];
         
-        [realm transactionWithBlock:^{
-            [realm addObject:celebrationRealm];
-        }];
+//        [realm transactionWithBlock:^{
+//            [realm addObject:celebrationRealm];
+//        }];
         [self.navigationController popToRootViewControllerAnimated:YES];
         
     }

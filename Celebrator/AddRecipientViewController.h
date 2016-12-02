@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CelebrationViewControllerDelegate.h"
 
-@interface AddRecipientViewController : UIViewController
+@interface AddRecipientViewController : UIViewController <CelebrationViewControllerDelegate>
 
 @end

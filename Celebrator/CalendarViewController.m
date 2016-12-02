@@ -32,44 +32,46 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Gifter Name2.png"]];
 
     _calendarManager = [JTCalendarManager new];
     _calendarManager.delegate = self;
-    
+
     [_calendarManager setMenuView:_calendarMenuView];
     [_calendarManager setContentView:_calendarContentView];
     [_calendarManager setDate:[NSDate date]];
-    
+
     self.celebrationsByDate = [[NSMutableDictionary alloc] init];
     //setTableViewDisappear
     self.tableView.hidden = YES;
     [self.view layoutIfNeeded];
-    
+
     // Generate celebration and store in dictionary
     [self createCelebrations];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+
+
     [RLMRealm defaultRealm];
     RLMResults<CelebrationRealm *> *allCelebrations =[CelebrationRealm allObjects];
     for(CelebrationRealm *celebrationRealm in allCelebrations)
+
     {
-        
+
         // Use the date as key for eventsByDate
         NSString *key = [[self dateFormatter] stringFromDate:celebrationRealm.date];
         NSLog(@"COUNT: %@", key);
-        
+
         if(!self.celebrationsByDate[key])
         {
             self.celebrationsByDate[key] = [NSMutableArray new];
         }
         [(NSMutableArray *)self.celebrationsByDate[key] addObject:celebrationRealm];
     }
-    
+
     NSLog(@"ALL BOJECTS QUERY COUNT: %lu", allCelebrations.count);
     NSLog(@"CELEBRATION REALM COUNT:%lu", (unsigned long)self.celebrationsByDate.count);
     [self.calendarManager reload];
@@ -97,7 +99,7 @@
         dayView.circleView.backgroundColor = [UIColor blueColor];
         dayView.textLabel.textColor = [UIColor whiteColor];
     }
-    
+
     //method to test if a date has an event
     if([self haveCelebrationForDay:dayView.date]){
         dayView.circleView.hidden = NO;
@@ -113,7 +115,7 @@
 - (BOOL)haveCelebrationForDay:(NSDate *)date
 {
     NSString *key = [[self dateFormatter] stringFromDate:date];
-    
+
     if(self.celebrationsByDate[key] && [self.celebrationsByDate[key] count] > 0)
     {
         return YES;
@@ -127,7 +129,7 @@
     self.tableView.hidden = YES;
     self.tableViewHeight.constant = 0;
     [self.view layoutIfNeeded];
-    
+
     NSString *key = [[self dateFormatter] stringFromDate:dayView.date];
     if(self.celebrationsByDate[key])
     {
@@ -146,19 +148,19 @@
 - (void)createCelebrations
 {
     self.celebrationsByDate = [NSMutableDictionary new];
-    
+
     //Make date and add to celebration
     NSDate *date = [[self dateFormatter] dateFromString:@"09-12-2016"];
     Celebration *celebration = [[Celebration alloc] initWithOccassion:@"Birthday" andDate:date];
-    
+
     NSDate *date1 = [[self dateFormatter] dateFromString:@"09-12-2016"];
     Celebration *celebration1 = [[Celebration alloc] initWithOccassion:@"Wedding" andDate:date1];
-    
+
     NSDate *date2 = [[self dateFormatter] dateFromString:@"08-12-2016"];
     Celebration *celebration2 = [[Celebration alloc] initWithOccassion:@"Anniversary" andDate:date2];
-    
+
     NSArray *celebrations = [[NSArray alloc] initWithObjects:celebration, celebration1, celebration2, nil];
-    
+
     for(Celebration *event in celebrations)
     {
         NSString *key = [[self dateFormatter] stringFromDate:event.date];
@@ -180,7 +182,7 @@
         dateFormatter = [NSDateFormatter new];
         dateFormatter.dateFormat = @"dd-MM-yyyy";
     }
-    
+
     return dateFormatter;
 }
 
