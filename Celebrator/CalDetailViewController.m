@@ -116,10 +116,10 @@
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-
-}
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//
+//}
 
 #pragma segue method
 - (IBAction)editButtonPushed:(UIButton *)sender
@@ -127,6 +127,30 @@
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"RecipientBranch" bundle:nil];
     AddCelebrationViewController *vc = [sb instantiateViewControllerWithIdentifier:@"recipientViewController"];
     [[self navigationController] pushViewController:vc animated:YES];
+    vc.celebrationRealm = self.celebrationRealm;
 }
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    
+    
+}
+
+
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    if ([[segue identifier] isEqualToString:@"addCelebration"])
+//    {
+//        AddCelebrationViewController *controller = (AddCelebrationViewController* )segue.destinationViewController;
+//        NSString *name = self.firstNameTextField.text;
+//        controller.recipientName = name;
+//        
+//        controller.delegate = self;
+//        
+//    }
+//}
+
 
 @end
