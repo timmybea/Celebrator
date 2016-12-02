@@ -29,12 +29,15 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *birthdateMonthTextField;
 @property (weak, nonatomic) IBOutlet UITextField *birthdateYearTextField;
+//@property (weak, nonatomic) IBOutlet UILabel *celebNameLabel;
 
 
 @property (nonatomic) BOOL isDropDownBehind;
 @property (nonatomic) NSString *group;
 @property (nonatomic) NSDateFormatter *dateFormatter;
 @property (nonatomic) Recipient *sendRecipient;
+@property (nonatomic) NSMutableArray *celebrationsArray;
+
 
 - (IBAction)saveButton:(UIButton *)sender;
 - (IBAction)AddCelebrationButton:(id)sender;
@@ -54,6 +57,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateGroup:) name:@"groupSet" object:nil];
     self.firstNameWarning.hidden = YES;
     self.lastNameWarning.hidden = YES;
+    self.celebrationsArray = [[NSMutableArray alloc] init];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -96,9 +100,19 @@
     if ([[segue identifier] isEqualToString:@"addCelebration"])
     {
         AddCelebrationViewController *controller = (AddCelebrationViewController* )segue.destinationViewController;
-        controller.recipientModel = self.sendRecipient;
+        NSString *name = self.firstNameTextField.text;
+        controller.recipientName = name;
+        
+        controller.delegate = self;
+        
     }
 }
+
+- (void)passCelebrationToRecipient:(CelebrationRealm *)celebration;
+{
+    [self.celebrationsArray addObject:celebration];
+}
+
 
 - (IBAction)saveButton:(UIButton *)sender
 {
@@ -106,6 +120,7 @@
     {
         RLMRealm *realm = [RLMRealm defaultRealm];
         Recipient *recipient = [[Recipient alloc] init];
+        [recipient.celebrations addObjects:self.celebrationsArray];
         recipient.firstName = self.firstNameTextField.text;
         recipient.lastName = self.lastNameTextField.text;
         NSString *dateString = [NSString stringWithFormat:@"%@-%@-%@", self.birthdateDayTextField.text, self.birthdateMonthTextField.text, self.birthdateYearTextField.text];
@@ -132,17 +147,8 @@
 {
     if([self.firstNameTextField hasText] && [self.lastNameTextField hasText])
     {
-        RLMRealm *realm = [RLMRealm defaultRealm];
-        Recipient *recipient = [[Recipient alloc] init];
-        recipient.firstName = self.firstNameTextField.text;
-        recipient.lastName = self.lastNameTextField.text;
-        NSString *dateString = [NSString stringWithFormat:@"%@-%@-%@", self.birthdateDayTextField.text, self.birthdateMonthTextField.text, self.birthdateYearTextField.text];
-        recipient.birthdate = [self.dateFormatter dateFromString:dateString];
-        recipient.group = self.group;
-        [realm transactionWithBlock:^{
-            [realm addObject:recipient];
-        }];
-        self.sendRecipient = recipient;
+       
+        
         
         [self performSegueWithIdentifier:@"addCelebration" sender:self];
         self.firstNameWarning.hidden = YES;

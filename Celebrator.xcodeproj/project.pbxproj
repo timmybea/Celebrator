@@ -45,6 +45,7 @@
 		522E8D7D1DEE39AA006C38D6 /* RecipientTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientTableViewController.m; sourceTree = "<group>"; };
 		522E8D821DEE417D006C38D6 /* RecipientListDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientListDetailViewController.h; sourceTree = "<group>"; };
 		522E8D831DEE417D006C38D6 /* RecipientListDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientListDetailViewController.m; sourceTree = "<group>"; };
+		523E95BD1DF10767005B964A /* CelebrationViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CelebrationViewControllerDelegate.h; sourceTree = "<group>"; };
 		880037F9CC4A4A6BCB0BEA17 /* Pods-Celebrator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Celebrator.release.xcconfig"; path = "Pods/Target Support Files/Pods-Celebrator/Pods-Celebrator.release.xcconfig"; sourceTree = "<group>"; };
 		B000CE861DEA2C86008BB9AC /* Celebrator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Celebrator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B000CE8A1DEA2C86008BB9AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -191,6 +192,7 @@
 				B0D38BC41DEE30F800D9B770 /* DropDownRecipientViewController.m */,
 				B0D38BC91DEE84AE00D9B770 /* AddCelebrationViewController.h */,
 				B0D38BCA1DEE84AE00D9B770 /* AddCelebrationViewController.m */,
+				523E95BD1DF10767005B964A /* CelebrationViewControllerDelegate.h */,
 				B0D38BC61DEE6A7F00D9B770 /* CelebrationDropDown.h */,
 				B0D38BC71DEE6A7F00D9B770 /* CelebrationDropDown.m */,
 			);
