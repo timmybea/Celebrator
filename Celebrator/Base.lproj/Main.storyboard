@@ -32,7 +32,7 @@
         <scene sceneID="MFU-JA-Xnu">
             <objects>
                 <navigationController id="4qr-T9-9uE" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="2" title="Giftees" image="All_Contacts" selectedImage="AllContacts" id="K2L-UT-A9b"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Giftees" image="All_Contacts" selectedImage="All_Contacts" id="K2L-UT-A9b"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="O1Z-op-4KL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -112,8 +112,8 @@
     </scenes>
     <resources>
         <image name="Add_Contact" width="16" height="16"/>
-        <image name="AllContacts" width="153" height="122"/>
         <image name="All_Contacts" width="90" height="63"/>
         <image name="Calendar-2" width="16" height="16"/>
     </resources>
+    <color key="tintColor" red="0.094117647060000004" green="0.0" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
 </document>

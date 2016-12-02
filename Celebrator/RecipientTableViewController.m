@@ -18,7 +18,7 @@
 
 @property (nonatomic) RecipientListDetailViewController *listDetailVC;
 @property (nonatomic) AddRecipientViewController *addRecipientVC;
-@property (nonatomic, weak) UITableView *tableView;
+//@property (nonatomic, weak) UITableView *tableView;
 @property RLMResults *recipientsArray;
 //@property (nonatomic, weak) UITextField *searchTextField;
 
@@ -32,6 +32,7 @@
 {
     [super viewDidLoad];
     [self setupUI];
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Gifter Name2.png"]];
 }
 
 

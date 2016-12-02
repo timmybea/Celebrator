@@ -30,18 +30,21 @@
 @property (weak, nonatomic) IBOutlet UITextField *celebReminderMonthTF;
 @property (weak, nonatomic) IBOutlet UITextField *celebReminderDayTF;
 @property (weak, nonatomic) IBOutlet UITextField *celebReminderYearTF;
+@property (weak, nonatomic) IBOutlet UILabel *celebNameLabel;
 
 @property (nonatomic) NSDateFormatter *dateFormatter;
 @property (strong, nonatomic) NSString *celebration;
 @property (nonatomic) Recipient *recipient;
 
 - (IBAction)saveButton:(UIButton *)sender;
+
 @end
 
 @implementation AddCelebrationViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self configureView];
 
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Gifter Name2.png"]];
 
@@ -54,14 +57,14 @@
     self.celebrationDateWarning.hidden = YES;
 }
 
-//
-//- (void)configureView
-//{
-//    if (self.recipientModel.firstName)
-//    {
-//        self.recipientModel.celebForNameLabel.text = self.recipientModel.firstName;
-//    }
-//}
+
+- (void)configureView
+{
+    if (self.recipient.firstName)
+    {
+        self.celebNameLabel.text = self.recipient.firstName;
+    }
+}
 
 
 - (void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

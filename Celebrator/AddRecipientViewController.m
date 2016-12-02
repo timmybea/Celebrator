@@ -30,7 +30,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *birthdateMonthTextField;
 @property (weak, nonatomic) IBOutlet UITextField *birthdateYearTextField;
-//@property (weak, nonatomic) IBOutlet UILabel *celebNameLabel;
+
 
 
 @property (nonatomic) BOOL isDropDownBehind;
