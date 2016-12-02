@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) CelebrationRealm *celebrationRealm;
 @property (strong, nonatomic) NSMutableArray *gifts;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableHeight;
 
 @end
 
@@ -27,6 +28,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Gifter Name2.png"]];
+
+    NSLog(@"%@", self.celebrationRealm.occasion);
+    NSLog(@"%@", self.celebrationRealm.date);
 }
 
 - (void)passCelebration:(CelebrationRealm *)celebration;
@@ -38,30 +42,37 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    //add gift options
-    self.gifts = [[NSMutableArray alloc] init];
-    if(self.celebrationRealm.giveGift == YES)
-    {
-        [self.gifts addObject:@"Gift:"];
-    }
-    else if(self.celebrationRealm.giveCard == YES)
-    {
-        [self.gifts addObject:@"Card:"];
-    }
-    else if(self.celebrationRealm.makeCall == YES)
-    {
-        [self.gifts addObject:@"Call:"];
-    }
     
-    //set date information
-    self
+    [self setupGiftsArray];
+    [self setupLabels];
+
+    
+    
 }
 
 
+- (void)setupMainlabel
+{
+    NSString *message = [NSString stringWithFormat:@"%@ for %@", self.celebrationRealm.occasion, self.celebrationRealm.recipient];
+    
+    
+    
+}
 
+- (void)setupLabels
+{
+    //set date labels
+    self.celebDateLabel.text = [[self dateFormatter] stringFromDate:self.celebrationRealm.date];
+    if(self.celebrationRealm.reminderDate)
+    {
+        self.remindDateLabel.text = [[self dateFormatter] stringFromDate:self.celebrationRealm.reminderDate];
+    }
+    else
+    {
+        self.remindDateLabel.text = @"No reminder set";
+    }
+}
 
-//self.celebDateLabel;
-//self.remindDateLabel;
 
 
 - (NSDateFormatter *)dateFormatter
@@ -79,6 +90,7 @@
 #pragma - tableview delegate methods
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    
     return self.gifts.count; //between zero and three
 }
 
@@ -113,6 +125,29 @@
 //
 //[1:56]
 //pop meaning get rid of.. push meaning put on top of the nav stack
+
+- (void)setupGiftsArray
+{
+    //add gift options
+    self.gifts = [[NSMutableArray alloc] init];
+    if(self.celebrationRealm.giveGift == YES)
+    {
+        [self.gifts addObject:@"Gift:"];
+    }
+    
+    if(self.celebrationRealm.giveCard == YES)
+    {
+        [self.gifts addObject:@"Card:"];
+    }
+    
+    if(self.celebrationRealm.makeCall == YES)
+    {
+        [self.gifts addObject:@"Call:"];
+    }
+    
+    self.tableHeight.constant = (self.gifts.count * 40 + 3);
+}
+
 
 
 @end
