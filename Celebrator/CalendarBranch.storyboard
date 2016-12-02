@@ -29,7 +29,7 @@
                                         <rect key="frame" x="0.0" y="1" width="375" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jd2-eA-QLP" id="npH-DB-JhD">
-                                            <frame key="frameInset" width="375" height="39"/>
+                                            <frame key="frameInset" width="375" height="40"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jkD-YL-hG1">
@@ -169,11 +169,11 @@
                                     <constraint firstAttribute="height" constant="128" id="iXH-Lj-mj9"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CalDetailCell" id="RtB-Cj-Zu4" customClass="CalendarDetailTableViewCell">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CalDetailCell" rowHeight="40" id="RtB-Cj-Zu4" customClass="CalendarDetailTableViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RtB-Cj-Zu4" id="6UB-Ub-nux">
-                                            <frame key="frameInset" width="375" height="43"/>
+                                            <frame key="frameInset" width="375" height="40"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gift" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hl4-Kr-pMh">
@@ -234,6 +234,7 @@
                         <outlet property="celebDateLabel" destination="dOA-0X-kDU" id="SKc-fi-LnU"/>
                         <outlet property="label" destination="zkC-m7-izW" id="ro5-B0-ofJ"/>
                         <outlet property="remindDateLabel" destination="flV-Zv-UY3" id="GTK-wt-FKB"/>
+                        <outlet property="tableHeight" destination="iXH-Lj-mj9" id="ka1-xd-wnP"/>
                         <outlet property="tableView" destination="8O1-q2-5cS" id="hel-cH-sbc"/>
                     </connections>
                 </viewController>

@@ -18,7 +18,7 @@
 
 //tableView
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) Celebration *currentCelebration;
+@property (strong, nonatomic) CelebrationRealm *currentCelebration;
 @property (strong, nonatomic) NSMutableDictionary *celebrationsByDate;
 
 @property (strong, nonatomic) NSDate *dateSelected;
@@ -47,8 +47,6 @@
     self.tableView.hidden = YES;
     [self.view layoutIfNeeded];
 
-    // Generate celebration and store in dictionary
-    [self createCelebrations];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -63,17 +61,12 @@
 
         // Use the date as key for eventsByDate
         NSString *key = [[self dateFormatter] stringFromDate:celebrationRealm.date];
-        NSLog(@"COUNT: %@", key);
-
         if(!self.celebrationsByDate[key])
         {
             self.celebrationsByDate[key] = [NSMutableArray new];
         }
         [(NSMutableArray *)self.celebrationsByDate[key] addObject:celebrationRealm];
     }
-
-    NSLog(@"ALL BOJECTS QUERY COUNT: %lu", allCelebrations.count);
-    NSLog(@"CELEBRATION REALM COUNT:%lu", (unsigned long)self.celebrationsByDate.count);
     [self.calendarManager reload];
 }
 
@@ -145,34 +138,6 @@
 
 #pragma - make test data source methods
 
-- (void)createCelebrations
-{
-    self.celebrationsByDate = [NSMutableDictionary new];
-
-    //Make date and add to celebration
-    NSDate *date = [[self dateFormatter] dateFromString:@"09-12-2016"];
-    Celebration *celebration = [[Celebration alloc] initWithOccassion:@"Birthday" andDate:date];
-
-    NSDate *date1 = [[self dateFormatter] dateFromString:@"09-12-2016"];
-    Celebration *celebration1 = [[Celebration alloc] initWithOccassion:@"Wedding" andDate:date1];
-
-    NSDate *date2 = [[self dateFormatter] dateFromString:@"08-12-2016"];
-    Celebration *celebration2 = [[Celebration alloc] initWithOccassion:@"Anniversary" andDate:date2];
-
-    NSArray *celebrations = [[NSArray alloc] initWithObjects:celebration, celebration1, celebration2, nil];
-
-    for(Celebration *event in celebrations)
-    {
-        NSString *key = [[self dateFormatter] stringFromDate:event.date];
-
-        if(!self.celebrationsByDate[key])
-        {
-            self.celebrationsByDate[key] = [NSMutableArray new];
-        }
-        [(NSMutableArray *)self.celebrationsByDate[key] addObject:event];
-    }
-}
-
 // Used to have a key celebrationsByDate
 - (NSDateFormatter *)dateFormatter
 {
@@ -201,8 +166,8 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CalendarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"calCell"];
-    Celebration *celebration = [self.celebrationsForDate objectAtIndex:indexPath.row];
-    NSString *message = [NSString stringWithFormat:@"It is 'persons' %@ \n", celebration.occassion];
+    CelebrationRealm *celebration = [self.celebrationsForDate objectAtIndex:indexPath.row];
+    NSString *message = [NSString stringWithFormat:@"It is 'persons' %@ \n", celebration.occasion];
     cell.label.text = message;
     return cell;
 }
@@ -212,7 +177,6 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     self.currentCelebration = [self.celebrationsForDate objectAtIndex:indexPath.row];
-//    NSLog(@"Event: %@ SENT FROM TV", celebration);
     [self performSegueWithIdentifier:@"celebrationCalDetail" sender:self];
 }
 

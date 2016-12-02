@@ -19,7 +19,7 @@
 @property BOOL giveGift;
 @property BOOL makeCall;
 @property NSDate *reminderDate;
-@property Recipient *recipient;
+@property NSString *recipientKey; //***
 
 @end
 

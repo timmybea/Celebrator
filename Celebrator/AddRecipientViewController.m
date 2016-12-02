@@ -44,7 +44,6 @@
 @end
 
 @implementation AddRecipientViewController
-//@"addRecipientViewController"  FOR SEGUE
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -130,11 +129,18 @@
             [realm addObject:recipient];
         }];
         self.sendRecipient = recipient;
-        CalendarViewController *calendarVC= (CalendarViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
-     //   [calendarVC ];
         
+        //clear fields
+        self.firstNameTextField.text = nil;
+        self.lastNameTextField.text = nil;
+        self.birthdateDayTextField.text = nil;
+        self.birthdateMonthTextField.text = nil;
+        self.birthdateYearTextField.text = nil;
+        self.group = nil;
+        //*** reset the button text
+
+        CalendarViewController *calendarVC= (CalendarViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
         [self.tabBarController setSelectedIndex:0];
-       // [self.navigationController popToRootViewControllerAnimated:YES];
     }
     else
     {

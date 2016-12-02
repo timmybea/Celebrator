@@ -42,14 +42,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Gifter Name2.png"]];
-    
+
     [self.view insertSubview:self.containerView belowSubview:self.centreForm];
     self.isDropDownBehind = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeViewHierarchy:) name:@"dropDownClicked" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCelebration:) name:@"celebrationSet" object:nil];
-    
+
     self.celebrationWarning.hidden = YES;
     self.celebrationDateWarning.hidden = YES;
 }
@@ -66,7 +66,7 @@
 
 - (void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
-    
+
 }
 
 
@@ -92,7 +92,7 @@
         dateFormatter = [NSDateFormatter new];
         dateFormatter.dateFormat = @"MM-dd-yyyy";
     }
-    
+
     return dateFormatter;
 }
 
@@ -112,12 +112,13 @@
         celebrationRealm.reminderDate = [self.dateFormatter dateFromString:reminderDateString];
        // celebrationRealm.recipient = self.recipientModel;
         [self.delegate passCelebrationToRecipient:celebrationRealm];
-        
+
+
 //        [realm transactionWithBlock:^{
 //            [realm addObject:celebrationRealm];
 //        }];
         [self.navigationController popToRootViewControllerAnimated:YES];
-        
+
     }
     else{
         self.celebrationWarning.hidden = NO;
