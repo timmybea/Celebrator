@@ -15,5 +15,6 @@
 @property (nonatomic, assign) id <CelebrationViewControllerDelegate> delegate;
 @property (nonatomic) NSString *recipientName;
 @property (weak, nonatomic) IBOutlet UILabel *celebForNameLabel;
+@property (nonatomic) CelebrationRealm *celebrationRealm;
 
 @end

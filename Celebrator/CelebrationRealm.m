@@ -10,5 +10,13 @@
 
 @implementation CelebrationRealm
 
++ (NSDictionary *)defaultPropertyValues {
+    return @{@"primaryKey" : [[NSUUID UUID] UUIDString]};
+}
+
++ (NSString *)primaryKey {
+    return @"primaryKey";
+}
+
 @end
 
