@@ -26,8 +26,6 @@
 @property (strong, nonatomic) NSArray *celebrationsForDate;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
 
-//- (void)createCelebrations;
-
 @end
 
 @implementation CalendarViewController
@@ -44,30 +42,36 @@
     [_calendarManager setContentView:_calendarContentView];
     [_calendarManager setDate:[NSDate date]];
     
+    self.celebrationsByDate = [[NSMutableDictionary alloc] init];
     //setTableViewDisappear
     self.tableView.hidden = YES;
     [self.view layoutIfNeeded];
     
     // Generate celebration and store in dictionary
-//    [self createCelebrations];
+    [self createCelebrations];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    RLMRealm *realm = [RLMRealm defaultRealm];
+    [RLMRealm defaultRealm];
     RLMResults<CelebrationRealm *> *allCelebrations =[CelebrationRealm allObjects];
-    for(CelebrationRealm *celebration in allCelebrations)
+    for(CelebrationRealm *celebrationRealm in allCelebrations)
     {
+        
         // Use the date as key for eventsByDate
-        NSString *key = [[self dateFormatter] stringFromDate:celebration.date];
+        NSString *key = [[self dateFormatter] stringFromDate:celebrationRealm.date];
+        NSLog(@"COUNT: %@", key);
         
         if(!self.celebrationsByDate[key])
         {
             self.celebrationsByDate[key] = [NSMutableArray new];
         }
-        [self.celebrationsByDate[key] addObject:celebration];
+        [(NSMutableArray *)self.celebrationsByDate[key] addObject:celebrationRealm];
     }
+    
+    NSLog(@"ALL BOJECTS QUERY COUNT: %lu", allCelebrations.count);
+    NSLog(@"CELEBRATION REALM COUNT:%lu", (unsigned long)self.celebrationsByDate.count);
     [self.calendarManager reload];
 }
 
@@ -139,27 +143,33 @@
 
 #pragma - make test data source methods
 
-//- (void)createCelebrations
-//{
-//    self.celebrationsByDate = [NSMutableDictionary new];
-//    
-//    //Make date and add to celebration
-//    NSDate *date = [[self dateFormatter] dateFromString:@"09-12-2016"];
-//    Celebration *celebration = [[Celebration alloc] initWithOccassion:@"Birthday" andDate:date];
-//    
-//    NSDate *date1 = [[self dateFormatter] dateFromString:@"09-12-2016"];
-//    Celebration *celebration1 = [[Celebration alloc] initWithOccassion:@"Wedding" andDate:date1];
-//    
-//    NSDate *date2 = [[self dateFormatter] dateFromString:@"08-12-2016"];
-//    Celebration *celebration2 = [[Celebration alloc] initWithOccassion:@"Anniversary" andDate:date2];
-//    
-//    NSArray *celebrations = [[NSArray alloc] initWithObjects:celebration, celebration1, celebration2, nil];
-//    
-////    for(Celebration *event in celebrations)
-////    {
-////
-////    }
-//}
+- (void)createCelebrations
+{
+    self.celebrationsByDate = [NSMutableDictionary new];
+    
+    //Make date and add to celebration
+    NSDate *date = [[self dateFormatter] dateFromString:@"09-12-2016"];
+    Celebration *celebration = [[Celebration alloc] initWithOccassion:@"Birthday" andDate:date];
+    
+    NSDate *date1 = [[self dateFormatter] dateFromString:@"09-12-2016"];
+    Celebration *celebration1 = [[Celebration alloc] initWithOccassion:@"Wedding" andDate:date1];
+    
+    NSDate *date2 = [[self dateFormatter] dateFromString:@"08-12-2016"];
+    Celebration *celebration2 = [[Celebration alloc] initWithOccassion:@"Anniversary" andDate:date2];
+    
+    NSArray *celebrations = [[NSArray alloc] initWithObjects:celebration, celebration1, celebration2, nil];
+    
+    for(Celebration *event in celebrations)
+    {
+        NSString *key = [[self dateFormatter] stringFromDate:event.date];
+
+        if(!self.celebrationsByDate[key])
+        {
+            self.celebrationsByDate[key] = [NSMutableArray new];
+        }
+        [(NSMutableArray *)self.celebrationsByDate[key] addObject:event];
+    }
+}
 
 // Used to have a key celebrationsByDate
 - (NSDateFormatter *)dateFormatter

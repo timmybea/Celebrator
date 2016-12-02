@@ -210,6 +210,9 @@
                                 <state key="normal" title="EDIT">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="editButtonPushed:" destination="pvA-4l-y2F" eventType="touchUpInside" id="4iW-h4-b2x"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.40000000000000002" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -229,7 +232,6 @@
                     </view>
                     <connections>
                         <outlet property="celebDateLabel" destination="dOA-0X-kDU" id="SKc-fi-LnU"/>
-                        <outlet property="editButton" destination="Xfg-gT-3bO" id="CPm-Ab-oPg"/>
                         <outlet property="label" destination="zkC-m7-izW" id="ro5-B0-ofJ"/>
                         <outlet property="remindDateLabel" destination="flV-Zv-UY3" id="GTK-wt-FKB"/>
                         <outlet property="tableView" destination="8O1-q2-5cS" id="hel-cH-sbc"/>
