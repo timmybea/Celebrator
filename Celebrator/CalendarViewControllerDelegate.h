@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Celebration.h"
+#import "CelebrationRealm.h"
 
 @protocol CalendarViewControllerDelegate <NSObject>
 
-- (void)passCelebration:(Celebration *)celebration;
+- (void)passCelebration:(CelebrationRealm *)celebration;
 
 @end

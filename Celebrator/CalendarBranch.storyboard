@@ -169,7 +169,7 @@
                                     <constraint firstAttribute="height" constant="128" id="iXH-Lj-mj9"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CalDetailCell" rowHeight="40" id="RtB-Cj-Zu4" customClass="CalendarDetailTableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CalDetailCell" rowHeight="40" id="RtB-Cj-Zu4" customClass="CalendarDetailTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="375" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RtB-Cj-Zu4" id="6UB-Ub-nux">
@@ -232,10 +232,10 @@
                     </view>
                     <connections>
                         <outlet property="celebDateLabel" destination="dOA-0X-kDU" id="SKc-fi-LnU"/>
-                        <outlet property="label" destination="zkC-m7-izW" id="ro5-B0-ofJ"/>
                         <outlet property="remindDateLabel" destination="flV-Zv-UY3" id="GTK-wt-FKB"/>
                         <outlet property="tableHeight" destination="iXH-Lj-mj9" id="ka1-xd-wnP"/>
                         <outlet property="tableView" destination="8O1-q2-5cS" id="hel-cH-sbc"/>
+                        <outlet property="titleLabel" destination="zkC-m7-izW" id="yXL-K4-WE2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bg6-mV-1mT" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -102,6 +102,7 @@
     {
         RLMRealm *realm = [RLMRealm defaultRealm];
         CelebrationRealm *celebrationRealm = [[CelebrationRealm alloc] init];
+        celebrationRealm.recipient = self.recipient;
         celebrationRealm.occasion = self.celebration;
         NSString *dateString = [NSString stringWithFormat:@"%@-%@-%@", self.celebMonthTF.text, self.celebDayTF.text, self.celebYearTF.text];
         celebrationRealm.date = [self.dateFormatter dateFromString:dateString];
