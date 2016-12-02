@@ -12,9 +12,10 @@
 #import <Realm/Realm.h>
 #import "ModelProtocols.h"
 #import "Recipient.h"
+#import "RecipientTableViewCell.h"
 
 
-@interface AddRecipientViewController () <UITextFieldDelegate>
+@interface AddRecipientViewController () <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UILabel *firstNameWarning;
 @property (weak, nonatomic) IBOutlet UILabel *lastNameWarning;
@@ -47,6 +48,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Gifter Name2.png"]];
     
@@ -82,6 +86,25 @@
     }
 }
 
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RecipientTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CelebrationNameID" forIndexPath:indexPath];
+    CelebrationRealm *celebration = self.celebrationsArray[indexPath.row];
+    [cell displayData:celebration];
+    
+    return cell;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.celebrationsArray.count;
+}
+
 - (NSDateFormatter *)dateFormatter
 {
     static NSDateFormatter *dateFormatter;
@@ -110,6 +133,7 @@
 - (void)passCelebrationToRecipient:(CelebrationRealm *)celebration;
 {
     [self.celebrationsArray addObject:celebration];
+    [self.tableView reloadData];
 }
 
 
@@ -120,6 +144,10 @@
         RLMRealm *realm = [RLMRealm defaultRealm];
         Recipient *recipient = [[Recipient alloc] init];
         [recipient.celebrations addObjects:self.celebrationsArray];
+        for(CelebrationRealm *celebration in self.celebrationsArray)
+        {
+            celebration.recipient = recipient;
+        }
         recipient.firstName = self.firstNameTextField.text;
         recipient.lastName = self.lastNameTextField.text;
         NSString *dateString = [NSString stringWithFormat:@"%@-%@-%@", self.birthdateDayTextField.text, self.birthdateMonthTextField.text, self.birthdateYearTextField.text];
@@ -139,7 +167,7 @@
         self.group = nil;
         //*** reset the button text
 
-        CalendarViewController *calendarVC= (CalendarViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
+        CalendarViewController *calendarVC = (CalendarViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
         [self.tabBarController setSelectedIndex:0];
     }
     else
@@ -153,9 +181,6 @@
 {
     if([self.firstNameTextField hasText] && [self.lastNameTextField hasText])
     {
-       
-        
-        
         [self performSegueWithIdentifier:@"addCelebration" sender:self];
         self.firstNameWarning.hidden = YES;
         self.lastNameWarning.hidden = YES;
