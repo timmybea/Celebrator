@@ -54,21 +54,9 @@
     self.celebrationDateWarning.hidden = YES;
 }
 
-//
-//- (void)configureView
-//{
-//    if (self.recipientModel.firstName)
-//    {
-//        self.recipientModel.celebForNameLabel.text = self.recipientModel.firstName;
-//    }
-//}
-
-
 - (void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
-
 }
-
 
 - (void)changeViewHierarchy:(NSNotification *)notification
 {
@@ -111,7 +99,6 @@
         celebrationRealm.makeCall = self.makeCallSwitch.on;
         NSString *reminderDateString = [NSString stringWithFormat:@"%@-%@-%@", self.celebReminderMonthTF.text, self.celebReminderDayTF.text, self.celebReminderYearTF.text];
         celebrationRealm.reminderDate = [self.dateFormatter dateFromString:reminderDateString];
-       // celebrationRealm.recipient = self.recipientModel;
         [self.delegate passCelebrationToRecipient:celebrationRealm];
 
 
@@ -132,6 +119,21 @@
 {
     self.celebration = [notification.userInfo valueForKey:@"celebration"];
     NSLog(@"%@", self.celebration);
+}
+
+//IF a celebration has been passed to the vc, populate it with the celebration data.
+-(void)viewWillAppear:(BOOL)animated
+{
+    if(self.celebrationRealm)
+    {
+        //parse date into string can be separated into individual day/month/year.
+//        NSString *date = [self.dateFormatter stringFromDate:self.celebrationRealm.date];
+//        self.containerView.
+//        self.celebDayTF.text =
+//        self.celebMonthTF.text =
+//        self.celebYearTF.text =
+//        
+    }
 }
 
 @end

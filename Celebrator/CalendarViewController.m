@@ -46,7 +46,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [RLMRealm defaultRealm];
+    //self.celebrationsByDate = nil;
     RLMResults<CelebrationRealm *> *allCelebrations =[CelebrationRealm allObjects];
     for(CelebrationRealm *celebrationRealm in allCelebrations)
     {
@@ -56,7 +56,22 @@
         {
             self.celebrationsByDate[key] = [NSMutableArray new];
         }
-        [(NSMutableArray *)self.celebrationsByDate[key] addObject:celebrationRealm];
+        
+        // Check if celebrationRealm is already in the array for date
+        BOOL isCelebrationInArray = NO;
+        for(CelebrationRealm *celebration in (NSMutableArray *)self.celebrationsByDate[key])
+        {
+            if([celebrationRealm.primaryKey isEqualToString: celebration.primaryKey])
+            {
+                isCelebrationInArray = YES;
+                break;
+            }
+        }
+        
+        if(!isCelebrationInArray)
+        {
+            [(NSMutableArray *)self.celebrationsByDate[key] addObject:celebrationRealm];
+        }
     }
     [self.calendarManager reload];
 }

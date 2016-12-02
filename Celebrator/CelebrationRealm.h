@@ -21,6 +21,7 @@
 @property BOOL makeCall;
 @property NSDate *reminderDate;
 @property (weak) Recipient *recipient;
+@property NSString *primaryKey;
 
 @end
 
