@@ -12,6 +12,7 @@
 #import "CelebrationRealm.h"
 #import <Realm/Realm.h>
 #import "ModelProtocols.h"
+#import "ColorManager.h"
 
 @interface CalendarViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -22,6 +23,7 @@
 @property (strong, nonatomic) NSLayoutConstraint *detailButtonHeight;
 @property (strong, nonatomic) NSArray *celebrationsForDate;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
+@property (strong, nonatomic) ColorManager *colorManager;
 
 @end
 
@@ -42,11 +44,12 @@
     self.celebrationsByDate = [[NSMutableDictionary alloc] init];
     self.tableView.hidden = YES;
     [self.view layoutIfNeeded];
+    self.colorManager = [[ColorManager alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    //self.celebrationsByDate = nil;
+
     RLMResults<CelebrationRealm *> *allCelebrations =[CelebrationRealm allObjects];
     for(CelebrationRealm *celebrationRealm in allCelebrations)
     {
@@ -82,12 +85,13 @@
 - (UIView<JTCalendarDay> *)calendarBuildDayView:(JTCalendarManager *)calendar
 {
     JTCalendarDayView *view = [JTCalendarDayView new];
-    view.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:13];
+    view.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:14];
     return view;
 }
 
 - (void)calendar:(JTCalendarManager *)calendar prepareDayView:(JTCalendarDayView *)dayView
 {
+    //*** LOOK INTO THIS
     dayView.hidden = NO;
     if([dayView isFromAnotherMonth]){
         dayView.hidden = YES;
@@ -95,14 +99,14 @@
     // Today
     else if([self.calendarManager.dateHelper date:[NSDate date] isTheSameDayThan:dayView.date]){
         dayView.circleView.hidden = NO;
-        dayView.circleView.backgroundColor = [UIColor blueColor];
+        dayView.circleView.backgroundColor = self.colorManager.brightCoral;
         dayView.textLabel.textColor = [UIColor whiteColor];
     }
 
     //method to test if a date has an event
     if([self haveCelebrationForDay:dayView.date]){
         dayView.circleView.hidden = NO;
-        dayView.circleView.backgroundColor = [UIColor orangeColor];
+        dayView.circleView.backgroundColor = self.colorManager.golden;
         dayView.textLabel.textColor = [UIColor blackColor];
     }
     else{

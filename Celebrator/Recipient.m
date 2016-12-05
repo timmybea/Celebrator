@@ -10,11 +10,9 @@
 
 @implementation Recipient
 
-
 + (NSArray *)requiredProperties {
     return @[@"firstName", @"lastName"];
 }
-
 
 @end
 

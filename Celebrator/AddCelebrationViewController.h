@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "CelebrationRealm.h"
 #import "CelebrationViewControllerDelegate.h"
+#import "CalDetailViewControllerProtocol.h"
 
-@interface AddCelebrationViewController : UIViewController
+@interface AddCelebrationViewController : UIViewController <CalDetailViewControllerProtocol>
 
 @property (nonatomic, assign) id <CelebrationViewControllerDelegate> delegate;
 @property (nonatomic) NSString *recipientName;

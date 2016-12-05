@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CalendarDetailTableViewCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UILabel *label;
 
 @end

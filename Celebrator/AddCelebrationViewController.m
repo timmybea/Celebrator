@@ -15,8 +15,6 @@
 @interface AddCelebrationViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *celebrationWarning;
 @property (weak, nonatomic) IBOutlet UILabel *celebrationDateWarning;
-
-
 @property (weak, nonatomic) IBOutlet UIView *centreForm;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (nonatomic) BOOL isDropDownBehind;
@@ -30,10 +28,12 @@
 @property (weak, nonatomic) IBOutlet UITextField *celebReminderMonthTF;
 @property (weak, nonatomic) IBOutlet UITextField *celebReminderDayTF;
 @property (weak, nonatomic) IBOutlet UITextField *celebReminderYearTF;
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
 
 @property (nonatomic) NSDateFormatter *dateFormatter;
-@property (strong, nonatomic) NSString *celebration;
-@property (nonatomic) Recipient *recipient;
+@property (strong, nonatomic) NSString *stringOccasion;
+@property (strong, nonatomic) Recipient *recipient;
+@property (nonatomic) BOOL isEditMode;
 
 - (IBAction)saveButton:(UIButton *)sender;
 @end
@@ -44,12 +44,20 @@
     [super viewDidLoad];
 
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Gifter Name2.png"]];
-
+    
+    if(self.isEditMode)
+    {
+        [self setupEditView];
+    }
+    else
+    {
+        self.celebForNameLabel.text = [[NSString stringWithFormat:@"CELEBRATION FOR %@", self.recipientName] uppercaseString];
+    }
+    
     [self.view insertSubview:self.containerView belowSubview:self.centreForm];
     self.isDropDownBehind = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeViewHierarchy:) name:@"dropDownClicked" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCelebration:) name:@"celebrationSet" object:nil];
-
     self.celebrationWarning.hidden = YES;
     self.celebrationDateWarning.hidden = YES;
 }
@@ -86,12 +94,12 @@
 
 - (IBAction)saveButton:(UIButton *)sender
 {
-    if([self.celebMonthTF hasText] && [self.celebDayTF hasText] && [self.celebYearTF hasText] && self.celebration)
+    if([self.celebMonthTF hasText] && [self.celebDayTF hasText] && [self.celebYearTF hasText] && self.stringOccasion)
     {
-        RLMRealm *realm = [RLMRealm defaultRealm];
+//        RLMRealm *realm = [RLMRealm defaultRealm];
         CelebrationRealm *celebrationRealm = [[CelebrationRealm alloc] init];
         celebrationRealm.recipient = self.recipient;
-        celebrationRealm.occasion = self.celebration;
+        celebrationRealm.occasion = self.stringOccasion;
         NSString *dateString = [NSString stringWithFormat:@"%@-%@-%@", self.celebMonthTF.text, self.celebDayTF.text, self.celebYearTF.text];
         celebrationRealm.date = [self.dateFormatter dateFromString:dateString];
         celebrationRealm.giveCard = self.giveCardSwitch.on;
@@ -100,15 +108,10 @@
         NSString *reminderDateString = [NSString stringWithFormat:@"%@-%@-%@", self.celebReminderMonthTF.text, self.celebReminderDayTF.text, self.celebReminderYearTF.text];
         celebrationRealm.reminderDate = [self.dateFormatter dateFromString:reminderDateString];
         [self.delegate passCelebrationToRecipient:celebrationRealm];
-
-
-//        [realm transactionWithBlock:^{
-//            [realm addObject:celebrationRealm];
-//        }];
         [self.navigationController popToRootViewControllerAnimated:YES];
-
     }
-    else{
+    else
+    {
         self.celebrationWarning.hidden = NO;
         self.celebrationDateWarning.hidden = NO;
     }
@@ -117,23 +120,29 @@
 //receive the drop down selection as a string
 - (void)updateCelebration:(NSNotification *)notification
 {
-    self.celebration = [notification.userInfo valueForKey:@"celebration"];
-    NSLog(@"%@", self.celebration);
+    self.stringOccasion = [notification.userInfo valueForKey:@"celebration"];
 }
 
-//IF a celebration has been passed to the vc, populate it with the celebration data.
--(void)viewWillAppear:(BOOL)animated
+
+#pragma - edit mode methods
+
+//CalDetail delegation method for edit
+-(void)updateCelebrationForEdit:(CelebrationRealm *)celebrationRealm
 {
-    if(self.celebrationRealm)
-    {
-        //parse date into string can be separated into individual day/month/year.
-//        NSString *date = [self.dateFormatter stringFromDate:self.celebrationRealm.date];
-//        self.containerView.
-//        self.celebDayTF.text =
-//        self.celebMonthTF.text =
-//        self.celebYearTF.text =
-//        
-    }
+    self.isEditMode = YES;
+    self.celebrationRealm = celebrationRealm;
 }
+
+-(void)setupEditView
+{
+    self.celebForNameLabel.text = [[NSString stringWithFormat:@"CELEBRATION FOR %@", self.celebrationRealm.recipient.firstName] uppercaseString];
+    self.giveGiftSwitch.on = self.celebrationRealm.giveGift;
+    self.giveCardSwitch.on = self.celebrationRealm.giveCard;
+    self.makeCallSwitch.on = self.celebrationRealm.makeCall;
+    self.saveButton.titleLabel.text = @"EDIT";
+    //BEGIN HERE
+    
+}
+
 
 @end

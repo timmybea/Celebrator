@@ -22,6 +22,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
+@property (weak, nonatomic) IBOutlet UIButton *addCelebButtonView;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *dropDownView;
@@ -30,8 +31,6 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *birthdateMonthTextField;
 @property (weak, nonatomic) IBOutlet UITextField *birthdateYearTextField;
-//@property (weak, nonatomic) IBOutlet UILabel *celebNameLabel;
-
 
 @property (nonatomic) BOOL isDropDownBehind;
 @property (nonatomic) NSString *group;
@@ -51,6 +50,7 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.celebrationsArray = [[NSMutableArray alloc] init];
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Gifter Name2.png"]];
     
@@ -60,8 +60,14 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateGroup:) name:@"groupSet" object:nil];
     self.firstNameWarning.hidden = YES;
     self.lastNameWarning.hidden = YES;
-    self.celebrationsArray = [[NSMutableArray alloc] init];
-}
+    }
+
+
+//-(void)viewWillAppear:(BOOL)animated
+//{
+//    [self.tableView reloadData];
+//    
+//}
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
@@ -77,23 +83,19 @@
     if(self.isDropDownBehind)
     {
         [self.view insertSubview:self.tableView belowSubview:self.dropDownView];
+        [self.view insertSubview:self.addCelebButtonView belowSubview:self.dropDownView];
         self.isDropDownBehind = NO;
     }
     else
     {
+        [self.view insertSubview:self.dropDownView belowSubview:self.addCelebButtonView];
         [self.view insertSubview:self.dropDownView belowSubview:self.tableView];
         self.isDropDownBehind = YES;
     }
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    RecipientTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CelebrationNameID" forIndexPath:indexPath];
-    CelebrationRealm *celebration = self.celebrationsArray[indexPath.row];
-    [cell displayData:celebration];
-    
-    return cell;
-}
+
+#pragma - celebrations table view
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -103,6 +105,15 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.celebrationsArray.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RecipientTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CelebrationNameID" forIndexPath:indexPath];
+    CelebrationRealm *celebration = self.celebrationsArray[indexPath.row];
+    [cell displayData:celebration];
+    
+    return cell;
 }
 
 - (NSDateFormatter *)dateFormatter
@@ -124,9 +135,7 @@
         AddCelebrationViewController *controller = (AddCelebrationViewController* )segue.destinationViewController;
         NSString *name = self.firstNameTextField.text;
         controller.recipientName = name;
-        
         controller.delegate = self;
-        
     }
 }
 
@@ -135,7 +144,6 @@
     [self.celebrationsArray addObject:celebration];
     [self.tableView reloadData];
 }
-
 
 - (IBAction)saveButton:(UIButton *)sender
 {
@@ -195,7 +203,6 @@
 - (void)updateGroup:(NSNotification *)notification
 {
     self.group = [notification.userInfo valueForKey:@"group"];
-    NSLog(@"%@", self.group);
 }
 
 @end
