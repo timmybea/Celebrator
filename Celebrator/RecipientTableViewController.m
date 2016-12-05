@@ -7,7 +7,6 @@
 //
 
 #import "RecipientTableViewController.h"
-#import "RecipientListDetailViewController.h"
 #import "AddRecipientViewController.h"
 #import <Realm/Realm.h>
 #import "ModelProtocols.h"
@@ -16,9 +15,8 @@
 
 @interface RecipientTableViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic) RecipientListDetailViewController *listDetailVC;
 @property (nonatomic) AddRecipientViewController *addRecipientVC;
-@property (nonatomic, weak) UITableView *tableView;
+//@property (nonatomic, weak) UITableView *tableView;
 @property RLMResults *recipientsArray;
 //@property (nonatomic, weak) UITextField *searchTextField;
 
@@ -41,11 +39,11 @@
 - (void)setupUI
 {
     
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(goToAddRecipientView:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+//    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(goToAddRecipientView:)];
+//    self.navigationItem.rightBarButtonItem = addButton;
     self.addRecipientVC = (AddRecipientViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
-     RLMResults<Recipient *> *recipientsArray = [Recipient allObjects];
+//     RLMResults<Recipient *> *recipientsArray = [Recipient allObjects];
    
 }
 //

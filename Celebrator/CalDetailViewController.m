@@ -20,6 +20,7 @@
 @property (strong, nonatomic) NSMutableArray *gifts;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableHeight;
 
+
 @end
 
 @implementation CalDetailViewController
@@ -27,9 +28,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Gifter Name2.png"]];
-
-    NSLog(@"%@", self.celebrationRealm.occasion);
-    NSLog(@"%@", self.celebrationRealm.date);
 }
 
 #pragma  - setup methods
@@ -124,33 +122,12 @@
 #pragma segue method
 - (IBAction)editButtonPushed:(UIButton *)sender
 {
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"RecipientBranch" bundle:nil];
-    AddCelebrationViewController *vc = [sb instantiateViewControllerWithIdentifier:@"recipientViewController"];
-    [[self navigationController] pushViewController:vc animated:YES];
-    vc.celebrationRealm = self.celebrationRealm;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RecipientBranch" bundle:nil];
+    AddCelebrationViewController *destination = [storyboard instantiateViewControllerWithIdentifier:@"recipientViewController"];
+    [[self navigationController] pushViewController:destination animated:YES];
+    self.delegate = destination;
+    [self.delegate updateCelebrationForEdit:self.celebrationRealm];
 }
-
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    
-    
-    
-}
-
-
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    if ([[segue identifier] isEqualToString:@"addCelebration"])
-//    {
-//        AddCelebrationViewController *controller = (AddCelebrationViewController* )segue.destinationViewController;
-//        NSString *name = self.firstNameTextField.text;
-//        controller.recipientName = name;
-//        
-//        controller.delegate = self;
-//        
-//    }
-//}
 
 
 @end
