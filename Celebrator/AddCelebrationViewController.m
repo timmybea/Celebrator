@@ -11,6 +11,7 @@
 #import "ModelProtocols.h"
 #import "CelebrationRealm.h"
 #import "Recipient.h"
+#import "CalDetailViewController.h"
 
 @interface AddCelebrationViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *celebrationWarning;
@@ -28,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *celebReminderMonthTF;
 @property (weak, nonatomic) IBOutlet UITextField *celebReminderDayTF;
 @property (weak, nonatomic) IBOutlet UITextField *celebReminderYearTF;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 
 @property (nonatomic) NSDateFormatter *dateFormatter;
@@ -105,8 +107,21 @@
         celebrationRealm.giveCard = self.giveCardSwitch.on;
         celebrationRealm.giveGift = self.giveGiftSwitch.on;
         celebrationRealm.makeCall = self.makeCallSwitch.on;
-        NSString *reminderDateString = [NSString stringWithFormat:@"%@-%@-%@", self.celebReminderMonthTF.text, self.celebReminderDayTF.text, self.celebReminderYearTF.text];
-        celebrationRealm.reminderDate = [self.dateFormatter dateFromString:reminderDateString];
+        
+        NSDate *pickerDate = [self.datePicker date];
+        UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+        localNotification.fireDate = pickerDate;
+     
+        celebrationRealm.occasion = self.stringOccasion;
+        localNotification.alertAction = @"Show item";
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
+//        NSString *reminderDateString = [NSString stringWithFormat:@"%@-%@-%@", self.celebReminderMonthTF.text, self.celebReminderDayTF.text, self.celebReminderYearTF.text];
+//        celebrationRealm.reminderDate = [self.dateFormatter dateFromString:reminderDateString];
         [self.delegate passCelebrationToRecipient:celebrationRealm];
         [self.navigationController popToRootViewControllerAnimated:YES];
     }

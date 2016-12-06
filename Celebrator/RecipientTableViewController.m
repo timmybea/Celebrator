@@ -7,16 +7,16 @@
 //
 
 #import "RecipientTableViewController.h"
-#import "AddRecipientViewController.h"
 #import <Realm/Realm.h>
 #import "ModelProtocols.h"
 #import "Recipient.h"
+#import "ListViewCell.h"
 
 
 @interface RecipientTableViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic) AddRecipientViewController *addRecipientVC;
-//@property (nonatomic, weak) UITableView *tableView;
+
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property RLMResults *recipientsArray;
 //@property (nonatomic, weak) UITextField *searchTextField;
 
@@ -39,10 +39,6 @@
 - (void)setupUI
 {
     
-//    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(goToAddRecipientView:)];
-//    self.navigationItem.rightBarButtonItem = addButton;
-    self.addRecipientVC = (AddRecipientViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-    
 //     RLMResults<Recipient *> *recipientsArray = [Recipient allObjects];
    
 }
@@ -60,80 +56,18 @@
 //
 //}
 
-//- (void)goToAddRecipientView: (id)sender {
-//    if (!self.recipientsArray)
-//    {
-//        self.recipientsArray = [RLMResults<Recipient *> *recipientsArray];
-//    }
-//    [self performSegueWithIdentifier:@"addRecipientViewController" sender:self];
-//}
 
-//- (IBAction)add:(id)sender {
-//    [self addRecipent];
-//}
-
-//- (void)addRecipent
-//{
-//
-//    Recipient *recipient1 = [[Recipient alloc] init];
-//    recipient1.firstName = @"David";
-//    recipient1.lastName = @"Henderson";
-//    recipient1.group = @"Friends";
-//
-//    RLMRealm *realm = [RLMRealm defaultRealm];
-//
-//    [realm transactionWithBlock:^{
-//        [realm addObject:recipient1];
-//    }];
-//}
-
-
-//- (IBAction)update:(id)sender
-//{
-//    [self updateRecipient];
-//}
-
-//- (void)updateRecipient
-//{
-//    dispatch_async(dispatch_queue_create("background", 0), ^{
-//        RLMRealm *realm = [RLMRealm defaultRealm];
-//        RLMResults<Recipient *> *recipientsArray = [Recipient objectsWhere:@"lastName == Henderson"];
-//        Recipient *recipient1 = [recipientsArray firstObject];
-//        [realm transactionWithBlock:^{
-//            recipient1.lastName = @"Harrison";
-//            [realm addObject:recipient1];
-//        }];
-//    });
-//                                                   
-//}
-
-//- (IBAction)query:(id)sender
-//{
-//     [self queryRecipient];
-//}
-//
-//- (void)queryRecipient
-//{
-//    RLMResults<Recipient *> *queriedRecipients = [Recipient objectsWhere:@"lastName == Henderson"];
-//    NSLog(@"%lu", queriedRecipients.count);
-//}
-
-
-
-
-
-- (void)didReceiveMemoryWarning
+- (void)showAllCelebrations
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    RLMResults<Recipient> *recipientsArray = [Recipient sortedResultsUsingProperty:@"firstName" ascending:YES];
+    NSLog(@"%lu", recipientsArray.count);
 }
-
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 5;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -142,37 +76,26 @@
 }
 
 
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    ListViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListViewCell" forIndexPath:indexPath];
-//    Recipient *recipientCell = self.recipientsArray[indexPath.row];
-//    
-//    return cell;
-//}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ListViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListViewCell" forIndexPath:indexPath];
+    Recipient *recipient = [self.recipientsArray objectAtIndexPath:indexPath.row];
+    [cell configureCellWithRecipient:recipient];
+    
+    return cell;
+}
 
-//
-//
-//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    // Return NO if you do not want the specified item to be editable.
-//    return YES;
-//}
-//
-//
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
 
-//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if (editingStyle == UITableViewCellEditingStyleDelete) {
-//        // Delete the row from the data source
-//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-//    }   
-//}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    self.selectedIndexPath = indexPath;
-//    [self performSegueWithIdentifier:@"showRecipientDetailView" sender:self];
-//}
+    [self performSegueWithIdentifier:@"showRecipientDetailView" sender:self];
+}
 
 
 #pragma mark - Navigation
@@ -187,13 +110,25 @@
 //
 //        [controller setDetailItem:recipient];
 //        controller.navigationItem.leftItemsSupplementBackButton = YES;
-//    }
-//    else if ([[segue identifier] isEqualToString:@"addRecipientViewController"])
-//    {
-//        AddRecipientViewController *controller = (AddRecipientViewController *)[segue destinationViewController];
 //        controller.delegate = self;
 //    }
 //
 //}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+/*
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
+
 
 @end

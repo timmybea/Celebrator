@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CelebrationRealm.h"
 #import "CelebrationViewControllerDelegate.h"
-#import "CalDetailViewControllerProtocol.h"
+//#import "CalDetailViewControllerProtocol.h"
 
 @interface AddCelebrationViewController : UIViewController <CalDetailViewControllerProtocol>
 

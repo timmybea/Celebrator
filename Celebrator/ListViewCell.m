@@ -7,18 +7,29 @@
 //
 
 #import "ListViewCell.h"
+#import "CelebrationRealm.h"
+
+@interface ListViewCell ()
+
+@property (weak, nonatomic) IBOutlet UILabel *recipientNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *recipientOccasionLabel;
+
+@end
 
 @implementation ListViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+}
 
-    // Configure the view for the selected state
+- (void)configureCellWithRecipient:(Recipient *)recipient
+{
+    self.recipientNameLabel.text = recipient.firstName;
+    self.recipientOccasionLabel.text = recipient.celebrations;
 }
 
 @end

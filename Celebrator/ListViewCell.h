@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Recipient.h"
 
 @interface ListViewCell : UITableViewCell
+
+- (void)configureCellWithRecipient:(Recipient *)recipient;
 
 @end
