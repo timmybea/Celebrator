@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.data = [[NSArray alloc] initWithObjects:@"Birthday", @"Anniversary", @"Christmas", @"Valentines Day", @"Mother's Day", @"Father's Day", @"Graduation", @"Other", nil];
+    self.data = [[NSArray alloc] initWithObjects:@"Birthday", @"Appreciation", @"Anniversary", @"Bridal Shower", @"Engagement", @"Baby Shower", @"Farewell/moving", @"Christmas", @"Valentines Day", @"Mother's Day", @"Father's Day", @"Graduation", @"Get well soon", @"Sympathy", @"Promotion", @"Other", nil];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.hidden = YES;
@@ -72,7 +72,7 @@
 
 - (void)appearTextField
 {
-    self.textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 343, 30)];
+    self.textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 360, 30)];
     self.textField.backgroundColor = [UIColor whiteColor];
     self.textField.placeholder = @"Enter celebration";
     UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 8, 20)];

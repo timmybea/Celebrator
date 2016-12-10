@@ -13,6 +13,7 @@
 #import "Recipient.h"
 #import "DateManager.h"
 #import "CalDetailViewController.h"
+#import "ColorManager.h"
 @import UserNotifications;
 
 @interface AddCelebrationViewController () <UITextFieldDelegate, UNUserNotificationCenterDelegate>
@@ -20,8 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *celebrationDateWarning;
 @property (weak, nonatomic) IBOutlet UIView *centreForm;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
-@property (nonatomic) BOOL isDropDownBehind;
-
+@property (weak, nonatomic) IBOutlet UIButton *reminderButton;
 @property (weak, nonatomic) IBOutlet UITextField *celebMonthTF;
 @property (weak, nonatomic) IBOutlet UITextField *celebDayTF;
 @property (weak, nonatomic) IBOutlet UITextField *celebYearTF;
@@ -30,13 +30,17 @@
 @property (weak, nonatomic) IBOutlet UISwitch *makeCallSwitch;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
-
-@property (nonatomic) NSDateFormatter *dateFormatter;
 @property (strong, nonatomic) NSString *stringOccasion;
 @property (strong, nonatomic) Recipient *recipient;
-@property (nonatomic) BOOL isEditMode;
 
 @property (nonatomic) UNUserNotificationCenter *userNotification;
+@property (nonatomic) NSDateFormatter *dateFormatter;
+@property (nonatomic, strong) ColorManager *colorManager;
+
+@property (nonatomic) BOOL isEditMode;
+@property (nonatomic) BOOL isDropDownBehind;
+@property (nonatomic) BOOL getsReminder;
+
 
 - (IBAction)saveButton:(UIButton *)sender;
 @end
@@ -45,25 +49,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.userNotification.delegate = self;
 
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Gifter Name2.png"]];
-
-    if(self.isEditMode)
-    {
-        [self setupEditView];
-    }
-    else
-    {
-        self.celebForNameLabel.text = [[NSString stringWithFormat:@"CELEBRATION FOR %@", self.recipientName] uppercaseString];
-    }
-
-    [self.view insertSubview:self.containerView belowSubview:self.centreForm];
-    self.isDropDownBehind = YES;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeViewHierarchy:) name:@"dropDownClicked" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCelebration:) name:@"celebrationSet" object:nil];
+    self.celebForNameLabel.text = [[NSString stringWithFormat:@"CELEBRATION FOR %@", self.recipientName] uppercaseString];
     self.celebrationWarning.hidden = YES;
     self.celebrationDateWarning.hidden = YES;
+    self.getsReminder = NO;
+    self.colorManager = [[ColorManager alloc] init];
+    
+//    //Setup based on edit more.
+//    if(self.isEditMode)
+//    {
+//        [self setupEditView];
+//    }
+//    else
+//    {
+//        
+//    }
+
+    //Setup notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeViewHierarchy:) name:@"dropDownClicked" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCelebration:) name:@"celebrationSet" object:nil];
+    
+    //Set up views in correct hierarchy
+    self.isDropDownBehind = NO;
+    [self arrangeSubviews];
 }
 
 - (void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -72,14 +84,22 @@
 
 - (void)changeViewHierarchy:(NSNotification *)notification
 {
+    [self arrangeSubviews];
+}
+
+- (void)arrangeSubviews
+{
     if(self.isDropDownBehind)
     {
         [self.view insertSubview:self.centreForm belowSubview:self.containerView];
+        [self.view insertSubview:self.saveButton belowSubview:self.containerView];
+        [self.view insertSubview:self.datePicker belowSubview:self.containerView];
         self.isDropDownBehind = NO;
     }
     else
     {
-        [self.view insertSubview:self.containerView belowSubview:self.centreForm];
+        [self.view insertSubview:self.centreForm aboveSubview:self.containerView];
+        [self.view insertSubview:self.datePicker aboveSubview:self.containerView];
         self.isDropDownBehind = YES;
     }
 }
@@ -114,7 +134,6 @@
     {
         self.center.delegate = self;
 
-//      RLMRealm *realm = [RLMRealm defaultRealm];
         CelebrationRealm *celebrationRealm = [[CelebrationRealm alloc] init];
         celebrationRealm.recipient = self.recipient;
         celebrationRealm.occasion = self.stringOccasion;
@@ -124,45 +143,48 @@
         celebrationRealm.giveGift = self.giveGiftSwitch.on;
         celebrationRealm.makeCall = self.makeCallSwitch.on;
 
-
-        UNMutableNotificationContent *content = [UNMutableNotificationContent new];
-        content.title = [NSString stringWithFormat:@"%@ - %@", celebrationRealm.recipient.firstName, celebrationRealm.occasion];
-
-        NSMutableString *bodyMessage = [[NSMutableString alloc] init];
-        if(celebrationRealm.giveCard)
+        //Reminder
+        if(self.getsReminder)
         {
-            [bodyMessage appendString:@"Get greeting card\n"];
-        }
-        if(celebrationRealm.giveGift)
-        {
-            [bodyMessage appendString:@"Get gift\n"];
-        }
-        if(celebrationRealm.makeCall)
-        {
-            [bodyMessage appendString:@"Call\n"];
-        }
-
-        content.body = [NSString stringWithFormat:@"%@", bodyMessage];
-        content.badge = @([[UIApplication sharedApplication] applicationIconBadgeNumber] +1);
-        content.sound = [UNNotificationSound defaultSound];
-
-        NSDateComponents *dateComponents = [[NSCalendar currentCalendar]
-                                         components:NSCalendarUnitYear +
-                                         NSCalendarUnitMonth + NSCalendarUnitDay +
-                                         NSCalendarUnitHour + NSCalendarUnitMinute fromDate:self.datePicker.date];
-
-        celebrationRealm.reminderDate = self.datePicker.date;
-        UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger
-                                                  triggerWithDateMatchingComponents:dateComponents repeats:NO];
-
-        UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"ReminderAlert" content:content trigger:trigger];
-        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-        [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
-            if (error != nil) {
-                NSLog(@"Something went wrong: %@",error);
+            
+            UNMutableNotificationContent *content = [UNMutableNotificationContent new];
+            content.title = [NSString stringWithFormat:@"%@ - %@", celebrationRealm.recipient.firstName, celebrationRealm.occasion];
+            
+            NSMutableString *bodyMessage = [[NSMutableString alloc] init];
+            if(celebrationRealm.giveCard)
+            {
+                [bodyMessage appendString:@"Get greeting card\n"];
             }
-        }];
-
+            if(celebrationRealm.giveGift)
+            {
+                [bodyMessage appendString:@"Get gift\n"];
+            }
+            if(celebrationRealm.makeCall)
+            {
+                [bodyMessage appendString:@"Call\n"];
+            }
+            
+            content.body = [NSString stringWithFormat:@"%@", bodyMessage];
+            content.badge = @([[UIApplication sharedApplication] applicationIconBadgeNumber] +1);
+            content.sound = [UNNotificationSound defaultSound];
+            
+            NSDateComponents *dateComponents = [[NSCalendar currentCalendar]
+                                                components:NSCalendarUnitYear +
+                                                NSCalendarUnitMonth + NSCalendarUnitDay +
+                                                NSCalendarUnitHour + NSCalendarUnitMinute fromDate:self.datePicker.date];
+            
+            celebrationRealm.reminderDate = self.datePicker.date;
+            UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger
+                                                      triggerWithDateMatchingComponents:dateComponents repeats:NO];
+            
+            UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"ReminderAlert" content:content trigger:trigger];
+            UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+            [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+                if (error != nil) {
+                    NSLog(@"User notification error: %@",error);
+                }
+            }];
+        }
         [self.delegate passCelebrationToRecipient:celebrationRealm];
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
@@ -171,6 +193,21 @@
         self.celebrationWarning.hidden = NO;
         self.celebrationDateWarning.hidden = NO;
     }
+}
+
+- (IBAction)reminderDateButtonTouched:(UIButton *)sender
+{
+    if(self.getsReminder)
+    {
+        self.getsReminder = NO;
+        self.reminderButton.backgroundColor = self.colorManager.aquaMarine;
+        [self.reminderButton setTitle:@"NO" forState:UIControlStateNormal];
+    }
+    else
+    {
+        self.getsReminder = YES;
+        self.reminderButton.backgroundColor = self.colorManager.golden;
+        [self.reminderButton setTitle:@"YES" forState:UIControlStateNormal];    }
 }
 
 
@@ -199,7 +236,7 @@
     self.giveGiftSwitch.on = self.celebrationRealm.giveGift;
     self.giveCardSwitch.on = self.celebrationRealm.giveCard;
     self.makeCallSwitch.on = self.celebrationRealm.makeCall;
-    self.saveButton.titleLabel.text = @"EDIT";
+    [self.saveButton setTitle:@"EDIT" forState:UIControlStateNormal];
 
     //Set textfields
     self.celebDayTF.text = [DateManager separateDayFromDate:self.celebrationRealm.date];
