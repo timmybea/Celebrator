@@ -1,8 +1,8 @@
 //
 //  ColorManager.m
-//  Gifter
+//  Celebrator
 //
-//  Created by Tim Beals on 2016-12-03.
+//  Created by Justine Herman on 12/6/16.
 //  Copyright © 2016 Tim Beals. All rights reserved.
 //
 

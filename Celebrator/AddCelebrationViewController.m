@@ -12,8 +12,10 @@
 #import "CelebrationRealm.h"
 #import "Recipient.h"
 #import "DateManager.h"
+#import "CalDetailViewController.h"
+@import UserNotifications;
 
-@interface AddCelebrationViewController () <UITextFieldDelegate>
+@interface AddCelebrationViewController () <UITextFieldDelegate, UNUserNotificationCenterDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *celebrationWarning;
 @property (weak, nonatomic) IBOutlet UILabel *celebrationDateWarning;
 @property (weak, nonatomic) IBOutlet UIView *centreForm;
@@ -26,15 +28,16 @@
 @property (weak, nonatomic) IBOutlet UISwitch *giveGiftSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *giveCardSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *makeCallSwitch;
-@property (weak, nonatomic) IBOutlet UITextField *celebReminderMonthTF;
-@property (weak, nonatomic) IBOutlet UITextField *celebReminderDayTF;
-@property (weak, nonatomic) IBOutlet UITextField *celebReminderYearTF;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 
 @property (nonatomic) NSDateFormatter *dateFormatter;
 @property (strong, nonatomic) NSString *stringOccasion;
 @property (strong, nonatomic) Recipient *recipient;
 @property (nonatomic) BOOL isEditMode;
+
+@property (nonatomic) UNUserNotificationCenter *userNotification;
+
 - (IBAction)saveButton:(UIButton *)sender;
 @end
 
@@ -42,9 +45,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.userNotification.delegate = self;
 
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Gifter Name2.png"]];
-    
+
     if(self.isEditMode)
     {
         [self setupEditView];
@@ -53,7 +57,7 @@
     {
         self.celebForNameLabel.text = [[NSString stringWithFormat:@"CELEBRATION FOR %@", self.recipientName] uppercaseString];
     }
-    
+
     [self.view insertSubview:self.containerView belowSubview:self.centreForm];
     self.isDropDownBehind = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeViewHierarchy:) name:@"dropDownClicked" object:nil];
@@ -92,10 +96,25 @@
     return dateFormatter;
 }
 
+- (NSDateFormatter *)remindDateFormatter
+{
+    static NSDateFormatter *remindDateFormatter;
+    if(!remindDateFormatter)
+    {
+        remindDateFormatter = [NSDateFormatter new];
+        remindDateFormatter.dateFormat = @"MMM dd, yyyy h:mm a";
+    }
+
+    return remindDateFormatter;
+}
+
 - (IBAction)saveButton:(UIButton *)sender
 {
     if([self.celebMonthTF hasText] && [self.celebDayTF hasText] && [self.celebYearTF hasText] && self.stringOccasion)
     {
+        self.center.delegate = self;
+
+//      RLMRealm *realm = [RLMRealm defaultRealm];
         CelebrationRealm *celebrationRealm = [[CelebrationRealm alloc] init];
         celebrationRealm.recipient = self.recipient;
         celebrationRealm.occasion = self.stringOccasion;
@@ -104,8 +123,46 @@
         celebrationRealm.giveCard = self.giveCardSwitch.on;
         celebrationRealm.giveGift = self.giveGiftSwitch.on;
         celebrationRealm.makeCall = self.makeCallSwitch.on;
-        NSString *reminderDateString = [NSString stringWithFormat:@"%@-%@-%@", self.celebReminderMonthTF.text, self.celebReminderDayTF.text, self.celebReminderYearTF.text];
-        celebrationRealm.reminderDate = [self.dateFormatter dateFromString:reminderDateString];
+
+
+        UNMutableNotificationContent *content = [UNMutableNotificationContent new];
+        content.title = [NSString stringWithFormat:@"%@ - %@", celebrationRealm.recipient.firstName, celebrationRealm.occasion];
+
+        NSMutableString *bodyMessage = [[NSMutableString alloc] init];
+        if(celebrationRealm.giveCard)
+        {
+            [bodyMessage appendString:@"Get greeting card\n"];
+        }
+        if(celebrationRealm.giveGift)
+        {
+            [bodyMessage appendString:@"Get gift\n"];
+        }
+        if(celebrationRealm.makeCall)
+        {
+            [bodyMessage appendString:@"Call\n"];
+        }
+
+        content.body = [NSString stringWithFormat:@"%@", bodyMessage];
+        content.badge = @([[UIApplication sharedApplication] applicationIconBadgeNumber] +1);
+        content.sound = [UNNotificationSound defaultSound];
+
+        NSDateComponents *dateComponents = [[NSCalendar currentCalendar]
+                                         components:NSCalendarUnitYear +
+                                         NSCalendarUnitMonth + NSCalendarUnitDay +
+                                         NSCalendarUnitHour + NSCalendarUnitMinute fromDate:self.datePicker.date];
+
+        celebrationRealm.reminderDate = self.datePicker.date;
+        UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger
+                                                  triggerWithDateMatchingComponents:dateComponents repeats:NO];
+
+        UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"ReminderAlert" content:content trigger:trigger];
+        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+        [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+            if (error != nil) {
+                NSLog(@"Something went wrong: %@",error);
+            }
+        }];
+
         [self.delegate passCelebrationToRecipient:celebrationRealm];
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
@@ -115,6 +172,7 @@
         self.celebrationDateWarning.hidden = NO;
     }
 }
+
 
 //receive the drop down selection as a string
 - (void)updateCelebration:(NSNotification *)notification
@@ -136,25 +194,25 @@
 {
     //Set labels
     self.celebForNameLabel.text = [[NSString stringWithFormat:@"CELEBRATION FOR %@", self.celebrationRealm.recipient.firstName] uppercaseString];
-    
+
     //Set switches
     self.giveGiftSwitch.on = self.celebrationRealm.giveGift;
     self.giveCardSwitch.on = self.celebrationRealm.giveCard;
     self.makeCallSwitch.on = self.celebrationRealm.makeCall;
     self.saveButton.titleLabel.text = @"EDIT";
-    
+
     //Set textfields
     self.celebDayTF.text = [DateManager separateDayFromDate:self.celebrationRealm.date];
     self.celebMonthTF.text = [DateManager separateMonthFromDate:self.celebrationRealm.date];
     self.celebYearTF.text = [DateManager separateYearFromDate: self.celebrationRealm.date];
-    
+
     if(self.celebrationRealm.reminderDate)
     {
         self.celebReminderDayTF.text = [DateManager separateDayFromDate:self.celebrationRealm.reminderDate];
         self.celebReminderMonthTF.text = [DateManager separateMonthFromDate:self.celebrationRealm.reminderDate];
         self.celebReminderYearTF.text = [DateManager separateYearFromDate:self.celebrationRealm.reminderDate];
     }
-    
+
     //refactor to class method and put in own class
     //next step: reminder date and "add occasion" button update
 }
