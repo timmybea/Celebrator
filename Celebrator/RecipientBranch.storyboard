@@ -318,15 +318,16 @@
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jgw-hL-c3z">
-                                <rect key="frame" x="18" y="81" width="339" height="519"/>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="mCJ-Dn-Hu0">
+                                <rect key="frame" x="20" y="437" width="339" height="163"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="519" id="bLg-as-RZM"/>
+                                    <constraint firstAttribute="height" constant="163" id="pw4-6p-0WI"/>
+                                    <constraint firstAttribute="width" constant="339" id="uap-F4-wJ7"/>
                                 </constraints>
-                                <connections>
-                                    <segue destination="3Pu-II-EEh" kind="embed" id="ATO-Kq-vbi"/>
-                                </connections>
-                            </containerView>
+                                <date key="date" timeIntervalSinceReferenceDate="502706764.60571098">
+                                    <!--2016-12-06 08:46:04 +0000-->
+                                </date>
+                            </datePicker>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wr4-dC-8Jc" userLabel="CelebrationForm">
                                 <rect key="frame" x="0.0" y="118" width="375" height="329"/>
                                 <subviews>
@@ -517,16 +518,15 @@
                                     <action selector="saveButton:" destination="zx3-MT-9JD" eventType="touchUpInside" id="s73-AC-RNb"/>
                                 </connections>
                             </button>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="mCJ-Dn-Hu0">
-                                <rect key="frame" x="20" y="437" width="339" height="163"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jgw-hL-c3z">
+                                <rect key="frame" x="18" y="81" width="339" height="519"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="163" id="pw4-6p-0WI"/>
-                                    <constraint firstAttribute="width" constant="339" id="uap-F4-wJ7"/>
+                                    <constraint firstAttribute="height" constant="519" id="bLg-as-RZM"/>
                                 </constraints>
-                                <date key="date" timeIntervalSinceReferenceDate="502706764.60571098">
-                                    <!--2016-12-06 08:46:04 +0000-->
-                                </date>
-                            </datePicker>
+                                <connections>
+                                    <segue destination="3Pu-II-EEh" kind="embed" id="ATO-Kq-vbi"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" red="0.48627450979999998" green="0.84705882349999995" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
