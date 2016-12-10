@@ -81,7 +81,7 @@
     self.celebDateLabel.text = [[self dateFormatter] stringFromDate:self.celebrationRealm.date];
     if(self.celebrationRealm.reminderDate)
     {
-        self.remindDateLabel.text = [[self dateFormatter] stringFromDate:self.celebrationRealm.reminderDate];
+        self.remindDateLabel.text = [[self remindDateFormatter] stringFromDate:self.celebrationRealm.reminderDate];
     }
     else
     {
@@ -95,10 +95,22 @@
     if(!dateFormatter)
     {
         dateFormatter = [NSDateFormatter new];
-        dateFormatter.dateFormat = @"MM-dd-yyyy";
+        dateFormatter.dateFormat = @"MMM dd, yyyy";
     }
 
     return dateFormatter;
+}
+
+- (NSDateFormatter *)remindDateFormatter
+{
+    static NSDateFormatter *remindDateFormatter;
+    if(!remindDateFormatter)
+    {
+        remindDateFormatter = [NSDateFormatter new];
+        remindDateFormatter.dateFormat = @"MMM dd, yyyy h:mm a";
+    }
+    
+    return remindDateFormatter;
 }
 
 #pragma - tableview delegate methods
