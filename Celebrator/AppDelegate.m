@@ -13,26 +13,10 @@
 
 @property(weak, nonatomic) id<UNUserNotificationCenterDelegate> delegate;
 
-
 @end
 
 
 @implementation AppDelegate
-
-//- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    // Override point for customization after application launch.
-//    if ([application respondsToSelector:@selector(isRegisteredForRemoteNotifications)]) {
-//        
-//        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-//        [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert + UNAuthorizationOptionSound + UNAuthorizationOptionBadge) completionHandler:^(BOOL granted, NSError * _Nullable error) {
-//            if (!granted) {
-//                //Show alert asking to go to settings and allow permission
-//            }
-//        }];
-//    }
-//    application.applicationIconBadgeNumber = 0;
-//    return YES;
-//}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];

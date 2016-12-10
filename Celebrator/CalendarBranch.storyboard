@@ -143,19 +143,19 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25/ 12/ 2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dOA-0X-kDU">
-                                        <rect key="frame" x="195" y="24" width="180" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25/ 12/ 2016 12:00 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flV-Zv-UY3">
+                                        <rect key="frame" x="177" y="68" width="190" height="21"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="180" id="8xf-32-JDr"/>
+                                            <constraint firstAttribute="width" constant="190" id="LDO-Og-yxa"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25/ 12/ 2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flV-Zv-UY3">
-                                        <rect key="frame" x="195" y="68.5" width="180" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25/ 12/ 2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dOA-0X-kDU">
+                                        <rect key="frame" x="177" y="24" width="190" height="21"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="180" id="LDO-Og-yxa"/>
+                                            <constraint firstAttribute="width" constant="190" id="8xf-32-JDr"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -170,10 +170,10 @@
                                     <constraint firstItem="LXa-cr-a7J" firstAttribute="leading" secondItem="lgr-Fd-RaM" secondAttribute="leading" constant="18" id="Nwo-jO-Ze0"/>
                                     <constraint firstAttribute="height" constant="118" id="OZa-bf-OSG"/>
                                     <constraint firstItem="SPy-l1-sF6" firstAttribute="leading" secondItem="lgr-Fd-RaM" secondAttribute="leading" constant="18" id="Qci-Hr-BHm"/>
-                                    <constraint firstItem="flV-Zv-UY3" firstAttribute="top" secondItem="dOA-0X-kDU" secondAttribute="bottom" constant="24" id="b7I-el-MwJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="dOA-0X-kDU" secondAttribute="trailing" id="kp0-fG-AKa"/>
+                                    <constraint firstItem="flV-Zv-UY3" firstAttribute="top" secondItem="dOA-0X-kDU" secondAttribute="bottom" constant="23" id="b7I-el-MwJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="dOA-0X-kDU" secondAttribute="trailing" constant="8" id="kp0-fG-AKa"/>
                                     <constraint firstItem="LXa-cr-a7J" firstAttribute="leading" secondItem="lgr-Fd-RaM" secondAttribute="leading" constant="18" id="lVn-YG-Wd0"/>
-                                    <constraint firstAttribute="trailing" secondItem="flV-Zv-UY3" secondAttribute="trailing" id="vUJ-Mh-9Bb"/>
+                                    <constraint firstAttribute="trailing" secondItem="flV-Zv-UY3" secondAttribute="trailing" constant="8" id="vUJ-Mh-9Bb"/>
                                     <constraint firstItem="SPy-l1-sF6" firstAttribute="top" secondItem="lgr-Fd-RaM" secondAttribute="top" constant="24" id="w5c-gb-3Pr"/>
                                 </constraints>
                             </view>

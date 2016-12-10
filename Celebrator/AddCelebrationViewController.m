@@ -27,9 +27,6 @@
 @property (weak, nonatomic) IBOutlet UISwitch *giveGiftSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *giveCardSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *makeCallSwitch;
-@property (weak, nonatomic) IBOutlet UITextField *celebReminderMonthTF;
-@property (weak, nonatomic) IBOutlet UITextField *celebReminderDayTF;
-@property (weak, nonatomic) IBOutlet UITextField *celebReminderYearTF;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 
@@ -128,9 +125,23 @@
         
         
         UNMutableNotificationContent *content = [UNMutableNotificationContent new];
-        content.title = [NSString localizedUserNotificationStringForKey:@"Reminder" arguments:nil];
-        content.body = [NSString localizedUserNotificationStringForKey:@"Reminder message"
-                                                            arguments:nil];
+        content.title = [NSString stringWithFormat:@"%@ - %@", celebrationRealm.recipient.firstName, celebrationRealm.occasion];
+        
+        NSMutableString *bodyMessage = [[NSMutableString alloc] init];
+        if(celebrationRealm.giveCard)
+        {
+            [bodyMessage appendString:@"Get greeting card\n"];
+        }
+        if(celebrationRealm.giveGift)
+        {
+            [bodyMessage appendString:@"Get gift\n"];
+        }
+        if(celebrationRealm.makeCall)
+        {
+            [bodyMessage appendString:@"Call\n"];
+        }
+        
+        content.body = [NSString stringWithFormat:@"%@", bodyMessage];
         content.badge = @([[UIApplication sharedApplication] applicationIconBadgeNumber] +1);
         content.sound = [UNNotificationSound defaultSound];
         
@@ -139,22 +150,10 @@
                                          NSCalendarUnitMonth + NSCalendarUnitDay +
                                          NSCalendarUnitHour + NSCalendarUnitMinute fromDate:self.datePicker.date];
         
-        NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-        NSDate *date = [gregorianCalendar dateFromComponents:dateComponents];
-        
-        NSString *convertMonth = [NSString stringWithFormat:@"%ld", dateComponents.month];
-        NSString *convertDay = [NSString stringWithFormat:@"%ld", dateComponents.day];
-        NSString *convertYear = [NSString stringWithFormat:@"%ld", dateComponents.year];
-        NSString *convertHour = [NSString stringWithFormat:@"%ld", dateComponents.hour];
-        NSString *convertMinute = [NSString stringWithFormat:@"%ld", dateComponents.minute];
-        
-        NSString *reminderDateString = [NSString stringWithFormat:@"%@ %@ %@ %@:%@", convertMonth, convertDay, convertYear, convertHour, convertMinute];
         celebrationRealm.reminderDate = self.datePicker.date;
-        //[self.remindDateFormatter dateFromString:reminderDateString];
         UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger
                                                   triggerWithDateMatchingComponents:dateComponents repeats:NO];
         
-        // Create the request object.
         UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"ReminderAlert" content:content trigger:trigger];
         UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
         [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
