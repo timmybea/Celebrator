@@ -7,24 +7,75 @@
 //
 
 #import "AppDelegate.h"
+@import UserNotifications;
 
 @interface AppDelegate ()
 
+@property(weak, nonatomic) id<UNUserNotificationCenterDelegate> delegate;
+
+
 @end
+
 
 @implementation AppDelegate
 
+//- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+//    // Override point for customization after application launch.
+//    if ([application respondsToSelector:@selector(isRegisteredForRemoteNotifications)]) {
+//        
+//        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+//        [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert + UNAuthorizationOptionSound + UNAuthorizationOptionBadge) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+//            if (!granted) {
+//                //Show alert asking to go to settings and allow permission
+//            }
+//        }];
+//    }
+//    application.applicationIconBadgeNumber = 0;
+//    return YES;
+//}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    
-    // Handle launching from a notification
-    UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
-    if (locationNotification) {
-        // Set icon badge number to zero
-        application.applicationIconBadgeNumber = 0;
-    }
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert)
+                          completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                              if (!error) {
+                                  NSLog(@"request authorization succeeded!");
+                                  [self showAlert];
+                              }
+                          }];
+    application.applicationIconBadgeNumber = 0;
     return YES;
 }
+
+- (void)showAlert {
+    UIAlertController *objAlertController = [UIAlertController alertControllerWithTitle:@"Alert" message:@"show the alert" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"OK"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction *action) {
+                                                        NSLog(@"Ok clicked!");
+                                   }];
+    [objAlertController addAction:cancelAction];
+    
+    
+    [[[[[UIApplication sharedApplication] windows] objectAtIndex:0] rootViewController] presentViewController:objAlertController animated:YES completion:^{
+        
+    }];
+    
+}
+
+//Called when a notification is delivered to a foreground app.
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler{
+    NSLog(@"User Info : %@",notification.request.content.userInfo);
+    completionHandler(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge);
+}
+
+//Called to let your app know which action was selected by the user for a given notification.
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)())completionHandler{
+    NSLog(@"User Info : %@",response.notification.request.content.userInfo);
+    completionHandler();
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -52,20 +103,5 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
-{
-    UIApplicationState state = [application applicationState];
-    if (state == UIApplicationStateActive)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reminder"
-                                                        message:notification.alertBody
-                                                       delegate:self cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-    }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
-    application.applicationIconBadgeNumber = 0;
-}
 
 @end

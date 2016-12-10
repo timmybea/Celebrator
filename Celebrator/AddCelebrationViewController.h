@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "CelebrationRealm.h"
 #import "CelebrationViewControllerDelegate.h"
-//#import "CalDetailViewControllerProtocol.h"
+#import "CalDetailViewControllerProtocol.h"
+@import UserNotifications;
 
 @interface AddCelebrationViewController : UIViewController <CalDetailViewControllerProtocol>
 
@@ -17,5 +18,6 @@
 @property (nonatomic) NSString *recipientName;
 @property (weak, nonatomic) IBOutlet UILabel *celebForNameLabel;
 @property (nonatomic) CelebrationRealm *celebrationRealm;
+@property (nonatomic) UNUserNotificationCenter *center;
 
 @end

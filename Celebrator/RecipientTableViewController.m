@@ -10,17 +10,16 @@
 #import <Realm/Realm.h>
 #import "ModelProtocols.h"
 #import "Recipient.h"
+#import "CelebrationRealm.h"
 #import "ListViewCell.h"
 
 
 @interface RecipientTableViewController () <UITableViewDelegate, UITableViewDataSource>
 
 
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
-@property RLMResults *recipientsArray;
-//@property (nonatomic, weak) UITextField *searchTextField;
-
-//- (void)searchRecipients:(RLMResults *)recipientsArray;
+//@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property RLMResults<CelebrationRealm*> *celebrationsArray;
+//@property (nonatomic) Recipient *recipient;
 
 @end
 
@@ -29,38 +28,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setupUI];
+
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Gifter Name2.png"]];
 }
 
-
-#pragma mark - UI
-
-- (void)setupUI
+-(void)viewWillAppear:(BOOL)animated
 {
+    [self fetchAllCelebrations];
     
-//     RLMResults<Recipient *> *recipientsArray = [Recipient allObjects];
-   
 }
-//
+
+
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 //{
-//    Recipient *recipientSectionHeader = self.data[group];
-//    return recipientSectionHeader.title;
+//
 //
 //}
 
 
-//- (void)searchRecipients:(RLMResults *)recipientsArray
-//{
-//
-//}
-
-
-- (void)showAllCelebrations
+- (void)fetchAllCelebrations
 {
-    RLMResults<Recipient> *recipientsArray = [Recipient sortedResultsUsingProperty:@"firstName" ascending:YES];
-    NSLog(@"%lu", recipientsArray.count);
+    RLMResults<CelebrationRealm *> *celebrationsArray = [CelebrationRealm allObjects];
+    self.celebrationsArray = [celebrationsArray sortedResultsUsingProperty:@"date" ascending:YES];
+    [self.tableView reloadData];
+    NSLog(@"%@", self.celebrationsArray);
 }
 
 #pragma mark - Table view data source
@@ -72,15 +63,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.recipientsArray.count;
+    return self.celebrationsArray.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ListViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListViewCell" forIndexPath:indexPath];
-    Recipient *recipient = [self.recipientsArray objectAtIndexPath:indexPath.row];
-    [cell configureCellWithRecipient:recipient];
+    CelebrationRealm *celebration = self.celebrationsArray[indexPath.row];
+    [cell configureCellWithCelebration:celebration];
     
     return cell;
 }

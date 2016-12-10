@@ -7,12 +7,14 @@
 //
 
 #import "ListViewCell.h"
-#import "CelebrationRealm.h"
+#import "Recipient.h"
 
 @interface ListViewCell ()
 
-@property (weak, nonatomic) IBOutlet UILabel *recipientNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *recipientOccasionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *allCelebrationsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateOfCelebrationLabel;
+@property (nonatomic) Recipient *recipient;
+
 
 @end
 
@@ -26,10 +28,23 @@
     [super setSelected:selected animated:animated];
 }
 
-- (void)configureCellWithRecipient:(Recipient *)recipient
+- (NSDateFormatter *)dateFormatter
 {
-    self.recipientNameLabel.text = recipient.firstName;
-    self.recipientOccasionLabel.text = recipient.celebrations;
+    static NSDateFormatter *dateFormatter;
+    if(!dateFormatter)
+    {
+        dateFormatter = [NSDateFormatter new];
+        dateFormatter.dateFormat = @"dd/MM/yy";
+    }
+    
+    return dateFormatter;
+}
+
+- (void)configureCellWithCelebration:(CelebrationRealm *)celebration
+{
+    NSString *fullName = [NSString stringWithFormat:@"%@ %@", celebration.recipient.firstName, celebration.recipient.lastName];
+    self.allCelebrationsLabel.text = [NSString stringWithFormat:@"%@ - %@", fullName, celebration.occasion];
+    self.dateOfCelebrationLabel.text = [[self dateFormatter] stringFromDate:celebration.date];
 }
 
 @end

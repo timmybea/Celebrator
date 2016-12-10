@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Recipient.h"
+#import "CelebrationRealm.h"
 
 @interface ListViewCell : UITableViewCell
 
-- (void)configureCellWithRecipient:(Recipient *)recipient;
+- (void)configureCellWithCelebration:(CelebrationRealm *)celebration;
 
 @end

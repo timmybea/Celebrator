@@ -12,8 +12,9 @@
 #import "CelebrationRealm.h"
 #import "Recipient.h"
 #import "CalDetailViewController.h"
+@import UserNotifications;
 
-@interface AddCelebrationViewController () <UITextFieldDelegate>
+@interface AddCelebrationViewController () <UITextFieldDelegate, UNUserNotificationCenterDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *celebrationWarning;
 @property (weak, nonatomic) IBOutlet UILabel *celebrationDateWarning;
 @property (weak, nonatomic) IBOutlet UIView *centreForm;
@@ -36,6 +37,8 @@
 @property (strong, nonatomic) NSString *stringOccasion;
 @property (strong, nonatomic) Recipient *recipient;
 @property (nonatomic) BOOL isEditMode;
+@property (nonatomic) UNUserNotificationCenter *userNotification;
+
 
 - (IBAction)saveButton:(UIButton *)sender;
 @end
@@ -44,6 +47,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.userNotification.delegate = self;
 
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Gifter Name2.png"]];
     
@@ -94,11 +98,25 @@
     return dateFormatter;
 }
 
+- (NSDateFormatter *)remindDateFormatter
+{
+    static NSDateFormatter *remindDateFormatter;
+    if(!remindDateFormatter)
+    {
+        remindDateFormatter = [NSDateFormatter new];
+        remindDateFormatter.dateFormat = @"MMM dd, yyyy h:mm a";
+    }
+    
+    return remindDateFormatter;
+}
+
 - (IBAction)saveButton:(UIButton *)sender
 {
     if([self.celebMonthTF hasText] && [self.celebDayTF hasText] && [self.celebYearTF hasText] && self.stringOccasion)
     {
-//        RLMRealm *realm = [RLMRealm defaultRealm];
+        self.center.delegate = self;
+        
+//      RLMRealm *realm = [RLMRealm defaultRealm];
         CelebrationRealm *celebrationRealm = [[CelebrationRealm alloc] init];
         celebrationRealm.recipient = self.recipient;
         celebrationRealm.occasion = self.stringOccasion;
@@ -108,20 +126,43 @@
         celebrationRealm.giveGift = self.giveGiftSwitch.on;
         celebrationRealm.makeCall = self.makeCallSwitch.on;
         
-        NSDate *pickerDate = [self.datePicker date];
-        UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-        localNotification.fireDate = pickerDate;
-     
-        celebrationRealm.occasion = self.stringOccasion;
-        localNotification.alertAction = @"Show item";
-        localNotification.timeZone = [NSTimeZone defaultTimeZone];
-        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
-        [self dismissViewControllerAnimated:YES completion:nil];
         
-//        NSString *reminderDateString = [NSString stringWithFormat:@"%@-%@-%@", self.celebReminderMonthTF.text, self.celebReminderDayTF.text, self.celebReminderYearTF.text];
-//        celebrationRealm.reminderDate = [self.dateFormatter dateFromString:reminderDateString];
+        UNMutableNotificationContent *content = [UNMutableNotificationContent new];
+        content.title = [NSString localizedUserNotificationStringForKey:@"Reminder" arguments:nil];
+        content.body = [NSString localizedUserNotificationStringForKey:@"Reminder message"
+                                                            arguments:nil];
+        content.badge = @([[UIApplication sharedApplication] applicationIconBadgeNumber] +1);
+        content.sound = [UNNotificationSound defaultSound];
+        
+        NSDateComponents *dateComponents = [[NSCalendar currentCalendar]
+                                         components:NSCalendarUnitYear +
+                                         NSCalendarUnitMonth + NSCalendarUnitDay +
+                                         NSCalendarUnitHour + NSCalendarUnitMinute fromDate:self.datePicker.date];
+        
+        NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+        NSDate *date = [gregorianCalendar dateFromComponents:dateComponents];
+        
+        NSString *convertMonth = [NSString stringWithFormat:@"%ld", dateComponents.month];
+        NSString *convertDay = [NSString stringWithFormat:@"%ld", dateComponents.day];
+        NSString *convertYear = [NSString stringWithFormat:@"%ld", dateComponents.year];
+        NSString *convertHour = [NSString stringWithFormat:@"%ld", dateComponents.hour];
+        NSString *convertMinute = [NSString stringWithFormat:@"%ld", dateComponents.minute];
+        
+        NSString *reminderDateString = [NSString stringWithFormat:@"%@ %@ %@ %@:%@", convertMonth, convertDay, convertYear, convertHour, convertMinute];
+        celebrationRealm.reminderDate = self.datePicker.date;
+        //[self.remindDateFormatter dateFromString:reminderDateString];
+        UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger
+                                                  triggerWithDateMatchingComponents:dateComponents repeats:NO];
+        
+        // Create the request object.
+        UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"ReminderAlert" content:content trigger:trigger];
+        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+        [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+            if (error != nil) {
+                NSLog(@"Something went wrong: %@",error);
+            }
+        }];
+        
         [self.delegate passCelebrationToRecipient:celebrationRealm];
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
@@ -131,6 +172,7 @@
         self.celebrationDateWarning.hidden = NO;
     }
 }
+
 
 //receive the drop down selection as a string
 - (void)updateCelebration:(NSNotification *)notification
