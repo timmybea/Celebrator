@@ -24,6 +24,11 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="apG-1h-8Ud"/>
                                 </constraints>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="26Q-zu-Qsc">
+                                    <rect key="frame" x="0.0" y="41" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="calCell" rowHeight="40" id="jd2-eA-QLP" customClass="CalendarTableViewCell">
                                         <rect key="frame" x="0.0" y="1" width="375" height="40"/>
@@ -169,12 +174,17 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="135" id="iXH-Lj-mj9"/>
                                 </constraints>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="q6E-Wn-alm">
+                                    <rect key="frame" x="0.0" y="68" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CalDetailCell" rowHeight="40" id="RtB-Cj-Zu4" customClass="CalendarDetailTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="375" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RtB-Cj-Zu4" id="6UB-Ub-nux">
-                                            <frame key="frameInset" width="336" height="40"/>
+                                            <frame key="frameInset" width="336" height="39"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gift" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hl4-Kr-pMh">

@@ -11,6 +11,7 @@
 #import "ModelProtocols.h"
 #import "CelebrationRealm.h"
 #import "Recipient.h"
+#import "DateManager.h"
 
 @interface AddCelebrationViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *celebrationWarning;
@@ -34,7 +35,6 @@
 @property (strong, nonatomic) NSString *stringOccasion;
 @property (strong, nonatomic) Recipient *recipient;
 @property (nonatomic) BOOL isEditMode;
-
 - (IBAction)saveButton:(UIButton *)sender;
 @end
 
@@ -96,7 +96,6 @@
 {
     if([self.celebMonthTF hasText] && [self.celebDayTF hasText] && [self.celebYearTF hasText] && self.stringOccasion)
     {
-//        RLMRealm *realm = [RLMRealm defaultRealm];
         CelebrationRealm *celebrationRealm = [[CelebrationRealm alloc] init];
         celebrationRealm.recipient = self.recipient;
         celebrationRealm.occasion = self.stringOccasion;
@@ -135,14 +134,32 @@
 
 -(void)setupEditView
 {
+    //Set labels
     self.celebForNameLabel.text = [[NSString stringWithFormat:@"CELEBRATION FOR %@", self.celebrationRealm.recipient.firstName] uppercaseString];
+    
+    //Set switches
     self.giveGiftSwitch.on = self.celebrationRealm.giveGift;
     self.giveCardSwitch.on = self.celebrationRealm.giveCard;
     self.makeCallSwitch.on = self.celebrationRealm.makeCall;
     self.saveButton.titleLabel.text = @"EDIT";
-    //BEGIN HERE
     
+    //Set textfields
+    self.celebDayTF.text = [DateManager separateDayFromDate:self.celebrationRealm.date];
+    self.celebMonthTF.text = [DateManager separateMonthFromDate:self.celebrationRealm.date];
+    self.celebYearTF.text = [DateManager separateYearFromDate: self.celebrationRealm.date];
+    
+    if(self.celebrationRealm.reminderDate)
+    {
+        self.celebReminderDayTF.text = [DateManager separateDayFromDate:self.celebrationRealm.reminderDate];
+        self.celebReminderMonthTF.text = [DateManager separateMonthFromDate:self.celebrationRealm.reminderDate];
+        self.celebReminderYearTF.text = [DateManager separateYearFromDate:self.celebrationRealm.reminderDate];
+    }
+    
+    //refactor to class method and put in own class
+    //next step: reminder date and "add occasion" button update
 }
+
+
 
 
 @end
