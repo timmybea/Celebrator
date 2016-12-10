@@ -13,8 +13,6 @@
 		522E8D7B1DEE14DF006C38D6 /* ListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E8D7A1DEE14DF006C38D6 /* ListViewCell.m */; };
 		522E8D7E1DEE39AA006C38D6 /* RecipientTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E8D7D1DEE39AA006C38D6 /* RecipientTableViewController.m */; };
 		523E95C01DF1398E005B964A /* RecipientTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 523E95BF1DF1398E005B964A /* RecipientTableViewCell.m */; };
-		527D4BCD1DF7B8B900382A21 /* ColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 527D4BCC1DF7B8B900382A21 /* ColorManager.m */; };
-		527D4BD11DF7C81A00382A21 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 527D4BD01DF7C81900382A21 /* TabBarViewController.m */; };
 		52FA5F741DFACA4500A3F0B3 /* NotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FA5F731DFACA4500A3F0B3 /* NotificationManager.m */; };
 		B000CE8B1DEA2C86008BB9AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B000CE8A1DEA2C86008BB9AC /* main.m */; };
 		B000CE8E1DEA2C86008BB9AC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B000CE8D1DEA2C86008BB9AC /* AppDelegate.m */; };
@@ -50,11 +48,7 @@
 		523E95BD1DF10767005B964A /* CelebrationViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CelebrationViewControllerDelegate.h; sourceTree = "<group>"; };
 		523E95BE1DF1398E005B964A /* RecipientTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientTableViewCell.h; sourceTree = "<group>"; };
 		523E95BF1DF1398E005B964A /* RecipientTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientTableViewCell.m; sourceTree = "<group>"; };
-		527D4BCB1DF7B8B900382A21 /* ColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorManager.h; sourceTree = "<group>"; };
-		527D4BCC1DF7B8B900382A21 /* ColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorManager.m; sourceTree = "<group>"; };
 		527D4BCE1DF7BA5300382A21 /* CalDetailViewControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalDetailViewControllerProtocol.h; sourceTree = "<group>"; };
-		527D4BCF1DF7C81900382A21 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
-		527D4BD01DF7C81900382A21 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		52FA5F721DFACA4500A3F0B3 /* NotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationManager.h; sourceTree = "<group>"; };
 		52FA5F731DFACA4500A3F0B3 /* NotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationManager.m; sourceTree = "<group>"; };
 		880037F9CC4A4A6BCB0BEA17 /* Pods-Celebrator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Celebrator.release.xcconfig"; path = "Pods/Target Support Files/Pods-Celebrator/Pods-Celebrator.release.xcconfig"; sourceTree = "<group>"; };
@@ -198,8 +192,6 @@
 				522E8D7D1DEE39AA006C38D6 /* RecipientTableViewController.m */,
 				B040A61D1DEA4767009BFC7F /* CalendarViewController.h */,
 				B040A61E1DEA4767009BFC7F /* CalendarViewController.m */,
-				527D4BCF1DF7C81900382A21 /* TabBarViewController.h */,
-				527D4BD01DF7C81900382A21 /* TabBarViewController.m */,
 				B02EFFD51DED101F000DCA97 /* CalendarViewControllerDelegate.h */,
 				527D4BCE1DF7BA5300382A21 /* CalDetailViewControllerProtocol.h */,
 				B02EFFD21DED0CCE000DCA97 /* CalDetailViewController.h */,
@@ -226,10 +218,8 @@
 				B000CE8D1DEA2C86008BB9AC /* AppDelegate.m */,
 				522E8D6F1DED12E8006C38D6 /* CelebrationRealm.h */,
 				522E8D701DED12E8006C38D6 /* CelebrationRealm.m */,
-				527D4BCB1DF7B8B900382A21 /* ColorManager.h */,
 				52FA5F721DFACA4500A3F0B3 /* NotificationManager.h */,
 				52FA5F731DFACA4500A3F0B3 /* NotificationManager.m */,
-				527D4BCC1DF7B8B900382A21 /* ColorManager.m */,
 				522E8D6C1DED0CC8006C38D6 /* Recipient.h */,
 				522E8D6D1DED0CC8006C38D6 /* Recipient.m */,
 				522E8D721DED2677006C38D6 /* ModelProtocols.h */,
@@ -368,9 +358,7 @@
 				B00BEB7C1DF873310048E925 /* DateManager.m in Sources */,
 				522E8D6E1DED0CC8006C38D6 /* Recipient.m in Sources */,
 				B07560A01DECDEE2009432A0 /* AddRecipientViewController.m in Sources */,
-				527D4BD11DF7C81A00382A21 /* TabBarViewController.m in Sources */,
 				522E8D7E1DEE39AA006C38D6 /* RecipientTableViewController.m in Sources */,
-				527D4BCD1DF7B8B900382A21 /* ColorManager.m in Sources */,
 				523E95C01DF1398E005B964A /* RecipientTableViewCell.m in Sources */,
 				B0D38BC81DEE6A7F00D9B770 /* CelebrationDropDown.m in Sources */,
 				522E8D7B1DEE14DF006C38D6 /* ListViewCell.m in Sources */,
