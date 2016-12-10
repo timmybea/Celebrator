@@ -206,12 +206,12 @@
     self.celebMonthTF.text = [DateManager separateMonthFromDate:self.celebrationRealm.date];
     self.celebYearTF.text = [DateManager separateYearFromDate: self.celebrationRealm.date];
 
-    if(self.celebrationRealm.reminderDate)
-    {
-        self.celebReminderDayTF.text = [DateManager separateDayFromDate:self.celebrationRealm.reminderDate];
-        self.celebReminderMonthTF.text = [DateManager separateMonthFromDate:self.celebrationRealm.reminderDate];
-        self.celebReminderYearTF.text = [DateManager separateYearFromDate:self.celebrationRealm.reminderDate];
-    }
+//    if(self.celebrationRealm.reminderDate)
+//    {
+//        self.celebReminderDayTF.text = [DateManager separateDayFromDate:self.celebrationRealm.reminderDate];
+//        self.celebReminderMonthTF.text = [DateManager separateMonthFromDate:self.celebrationRealm.reminderDate];
+//        self.celebReminderYearTF.text = [DateManager separateYearFromDate:self.celebrationRealm.reminderDate];
+//    }
 
     //refactor to class method and put in own class
     //next step: reminder date and "add occasion" button update
