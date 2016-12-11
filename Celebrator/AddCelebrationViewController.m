@@ -51,23 +51,21 @@
     [super viewDidLoad];
     
     self.userNotification.delegate = self;
-
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Gifter Name2.png"]];
-    self.celebForNameLabel.text = [[NSString stringWithFormat:@"CELEBRATION FOR %@", self.tempRecipient.firstName] uppercaseString];
     self.celebrationWarning.hidden = YES;
     self.celebrationDateWarning.hidden = YES;
     self.getsReminder = NO;
     self.colorManager = [[ColorManager alloc] init];
     
-//    //Setup based on edit more.
-//    if(self.isEditMode)
-//    {
-//        [self setupEditView];
-//    }
-//    else
-//    {
-//        
-//    }
+    //Setup based on edit more.
+    if(self.isEditMode)
+    {
+        [self setupEditView];
+    }
+    else
+    {
+        self.celebForNameLabel.text = [[NSString stringWithFormat:@"CELEBRATION FOR %@", self.tempRecipient.firstName] uppercaseString];
+    }
 
     //Setup notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeViewHierarchy:) name:@"dropDownClicked" object:nil];
@@ -132,6 +130,13 @@
 {
     if([self.celebMonthTF hasText] && [self.celebDayTF hasText] && [self.celebYearTF hasText] && self.stringOccasion)
     {
+        if(self.isEditMode)
+        {
+            //self.celebrationRealm.recipient = //***
+        }
+        
+        
+        
         self.center.delegate = self;
 
         CelebrationRealm *celebrationRealm = [[CelebrationRealm alloc] init];
@@ -231,8 +236,9 @@
 {
     //Set labels
     self.celebForNameLabel.text = [[NSString stringWithFormat:@"CELEBRATION FOR %@", self.celebrationRealm.recipient.firstName] uppercaseString];
+    self.stringOccasion = self.celebrationRealm.occasion;
 
-    //Set switches
+    //Set switches and buttons
     self.giveGiftSwitch.on = self.celebrationRealm.giveGift;
     self.giveCardSwitch.on = self.celebrationRealm.giveCard;
     self.makeCallSwitch.on = self.celebrationRealm.makeCall;
@@ -243,18 +249,19 @@
     self.celebMonthTF.text = [DateManager separateMonthFromDate:self.celebrationRealm.date];
     self.celebYearTF.text = [DateManager separateYearFromDate: self.celebrationRealm.date];
 
-//    if(self.celebrationRealm.reminderDate)
-//    {
-//        self.celebReminderDayTF.text = [DateManager separateDayFromDate:self.celebrationRealm.reminderDate];
-//        self.celebReminderMonthTF.text = [DateManager separateMonthFromDate:self.celebrationRealm.reminderDate];
-//        self.celebReminderYearTF.text = [DateManager separateYearFromDate:self.celebrationRealm.reminderDate];
-//    }
+    //Set reminder
+    if(self.celebrationRealm.reminderDate)
+    {
+        self.reminderButton.backgroundColor = self.colorManager.golden;
+        [self.reminderButton setTitle:@"YES" forState:UIControlStateNormal];
+        self.datePicker.date = self.celebrationRealm.reminderDate;
+    }
 
-    //refactor to class method and put in own class
-    //next step: reminder date and "add occasion" button update
+    //Set occasion button
+    NSDictionary *occasion = @{@"occasion": self.celebrationRealm.occasion};
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateButtonForEdit" object:self userInfo:occasion];
+    
 }
-
-
 
 
 @end

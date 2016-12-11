@@ -24,6 +24,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateButtonForEdit:) name:@"updateButtonForEdit" object:nil];
+    
     self.data = [[NSArray alloc] initWithObjects:@"Birthday", @"Appreciation", @"Anniversary", @"Bridal Shower", @"Engagement", @"Baby Shower", @"Farewell/moving", @"Christmas", @"Valentines Day", @"Mother's Day", @"Father's Day", @"Graduation", @"Get well soon", @"Sympathy", @"Promotion", @"Other", nil];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -124,5 +126,13 @@
 {
     [self.view endEditing:YES];
 }
+
+- (void)updateButtonForEdit:(NSNotification *)notification
+{
+    NSString *occasion = [notification.userInfo valueForKey:@"occasion"];
+    [self.celebrationButton setTitle:occasion forState:UIControlStateNormal];
+}
+
+
 
 @end
