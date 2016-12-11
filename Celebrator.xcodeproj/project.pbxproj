@@ -33,6 +33,7 @@
 		B0D38BC81DEE6A7F00D9B770 /* CelebrationDropDown.m in Sources */ = {isa = PBXBuildFile; fileRef = B0D38BC71DEE6A7F00D9B770 /* CelebrationDropDown.m */; };
 		B0D38BCB1DEE84AE00D9B770 /* AddCelebrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0D38BCA1DEE84AE00D9B770 /* AddCelebrationViewController.m */; };
 		B0F5F2811DFD9D8100229ED5 /* TempRecipient.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F5F2801DFD9D8100229ED5 /* TempRecipient.m */; };
+		B0F5F2831DFDF14B00229ED5 /* Notes in Resources */ = {isa = PBXBuildFile; fileRef = B0F5F2821DFDF14B00229ED5 /* Notes */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		B0D38BCA1DEE84AE00D9B770 /* AddCelebrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCelebrationViewController.m; sourceTree = "<group>"; };
 		B0F5F27F1DFD9D8100229ED5 /* TempRecipient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempRecipient.h; sourceTree = "<group>"; };
 		B0F5F2801DFD9D8100229ED5 /* TempRecipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempRecipient.m; sourceTree = "<group>"; };
+		B0F5F2821DFDF14B00229ED5 /* Notes */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Notes; sourceTree = "<group>"; };
 		C8FBA127A81B00766F7A9798 /* Pods-Celebrator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Celebrator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Celebrator/Pods-Celebrator.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,6 +150,7 @@
 				B000CE951DEA2C86008BB9AC /* Assets.xcassets */,
 				B000CE9A1DEA2C86008BB9AC /* Info.plist */,
 				B000CE891DEA2C86008BB9AC /* Supporting Files */,
+				B0F5F2821DFDF14B00229ED5 /* Notes */,
 			);
 			path = Celebrator;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				B04D8EBA1DECE8210082C9C1 /* ListBranch.storyboard in Resources */,
 				B000CE991DEA2C86008BB9AC /* LaunchScreen.storyboard in Resources */,
 				B000CE961DEA2C86008BB9AC /* Assets.xcassets in Resources */,
+				B0F5F2831DFDF14B00229ED5 /* Notes in Resources */,
 				B000CE941DEA2C86008BB9AC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

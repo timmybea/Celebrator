@@ -148,16 +148,17 @@
     {
         RLMRealm *realm = [RLMRealm defaultRealm];
         Recipient *recipient = [[Recipient alloc] init];
-        [recipient.celebrations addObjects:self.celebrationsArray];
-        for(CelebrationRealm *celebration in self.celebrationsArray)
-        {
-            celebration.recipient = recipient;
-        }
         recipient.firstName = self.firstNameTextField.text;
         recipient.lastName = self.lastNameTextField.text;
         NSString *dateString = [NSString stringWithFormat:@"%@-%@-%@", self.birthdateDayTextField.text, self.birthdateMonthTextField.text, self.birthdateYearTextField.text];
         recipient.birthdate = [self.dateFormatter dateFromString:dateString];
         recipient.group = self.group;
+        
+        [recipient.celebrations addObjects:self.celebrationsArray];
+        for(CelebrationRealm *celebration in self.celebrationsArray)
+        {
+            celebration.recipient = recipient;
+        }
         [realm transactionWithBlock:^{
             [realm addObject:recipient];
         }];
@@ -172,7 +173,7 @@
         self.group = nil;
         //*** reset the button text
 
-        CalendarViewController *calendarVC = (CalendarViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
+        //CalendarViewController *calendarVC = (CalendarViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
         [self.tabBarController setSelectedIndex:0];
     }
     else

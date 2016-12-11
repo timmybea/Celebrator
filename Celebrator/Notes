@@ -1,0 +1,13 @@
+BUGS
+
+
+
+
+ADD RECIPIENT
+If the dob is entered and they select birthday as the occasion, make the birthday show up in the textfields automatically.
+
+
+EDIT CELEBRATION
+if yoiu edit the date of the celebration after it has been created, you end up with two dates in the calendar (you might need to do the realm request in view will load)
+How do you change the details of the user notification?
+

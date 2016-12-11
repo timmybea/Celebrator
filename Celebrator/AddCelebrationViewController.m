@@ -13,7 +13,6 @@
 #import "DateManager.h"
 #import "CalDetailViewController.h"
 #import "ColorManager.h"
-//@import UserNotifications;
 
 @interface AddCelebrationViewController () <UITextFieldDelegate, UNUserNotificationCenterDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *celebrationWarning;
@@ -30,8 +29,6 @@
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property (strong, nonatomic) NSString *stringOccasion;
-@property (strong, nonatomic) Recipient *recipient;
-
 
 @property (nonatomic) UNUserNotificationCenter *userNotification;
 @property (nonatomic) NSDateFormatter *dateFormatter;
@@ -132,66 +129,75 @@
     {
         if(self.isEditMode)
         {
-            //self.celebrationRealm.recipient = //***
+            //Edit celebration
+            RLMRealm *realm = [RLMRealm defaultRealm];
+            [realm beginWriteTransaction];
+            self.celebrationRealm.occasion = self.stringOccasion;
+            NSString *dateString = [NSString stringWithFormat:@"%@-%@-%@", self.celebMonthTF.text, self.celebDayTF.text, self.celebYearTF.text];
+            self.celebrationRealm.date = [self.dateFormatter dateFromString:dateString];
+            self.celebrationRealm.giveCard = self.giveCardSwitch.on;
+            self.celebrationRealm.giveGift = self.giveGiftSwitch.on;
+            self. celebrationRealm.makeCall = self.makeCallSwitch.on;
+            [realm commitWriteTransaction];
+            [self.navigationController popToRootViewControllerAnimated:YES];
         }
-        
-        
-        
-        self.center.delegate = self;
-
-        CelebrationRealm *celebrationRealm = [[CelebrationRealm alloc] init];
-        celebrationRealm.recipient = self.recipient;
-        celebrationRealm.occasion = self.stringOccasion;
-        NSString *dateString = [NSString stringWithFormat:@"%@-%@-%@", self.celebMonthTF.text, self.celebDayTF.text, self.celebYearTF.text];
-        celebrationRealm.date = [self.dateFormatter dateFromString:dateString];
-        celebrationRealm.giveCard = self.giveCardSwitch.on;
-        celebrationRealm.giveGift = self.giveGiftSwitch.on;
-        celebrationRealm.makeCall = self.makeCallSwitch.on;
-
-        //Reminder
-        if(self.getsReminder)
+        else
         {
+            //Save celebration
+            CelebrationRealm *celebrationRealm = [[CelebrationRealm alloc] init];
+            celebrationRealm.occasion = self.stringOccasion;
+            NSString *dateString = [NSString stringWithFormat:@"%@-%@-%@", self.celebMonthTF.text, self.celebDayTF.text, self.celebYearTF.text];
+            celebrationRealm.date = [self.dateFormatter dateFromString:dateString];
+            celebrationRealm.giveCard = self.giveCardSwitch.on;
+            celebrationRealm.giveGift = self.giveGiftSwitch.on;
+            celebrationRealm.makeCall = self.makeCallSwitch.on;
             
-            UNMutableNotificationContent *content = [UNMutableNotificationContent new];
-            content.title = [NSString stringWithFormat:@"%@ - %@", celebrationRealm.recipient.firstName, celebrationRealm.occasion];
-            
-            NSMutableString *bodyMessage = [[NSMutableString alloc] init];
-            if(celebrationRealm.giveCard)
+            //Reminder
+            self.center.delegate = self;
+            if(self.getsReminder)
             {
-                [bodyMessage appendString:@"Get greeting card\n"];
-            }
-            if(celebrationRealm.giveGift)
-            {
-                [bodyMessage appendString:@"Get gift\n"];
-            }
-            if(celebrationRealm.makeCall)
-            {
-                [bodyMessage appendString:@"Call\n"];
-            }
-            
-            content.body = [NSString stringWithFormat:@"%@", bodyMessage];
-            content.badge = @([[UIApplication sharedApplication] applicationIconBadgeNumber] +1);
-            content.sound = [UNNotificationSound defaultSound];
-            
-            NSDateComponents *dateComponents = [[NSCalendar currentCalendar]
-                                                components:NSCalendarUnitYear +
-                                                NSCalendarUnitMonth + NSCalendarUnitDay +
-                                                NSCalendarUnitHour + NSCalendarUnitMinute fromDate:self.datePicker.date];
-            
-            celebrationRealm.reminderDate = self.datePicker.date;
-            UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger
-                                                      triggerWithDateMatchingComponents:dateComponents repeats:NO];
-            
-            UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"ReminderAlert" content:content trigger:trigger];
-            UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-            [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
-                if (error != nil) {
-                    NSLog(@"User notification error: %@",error);
+                
+                UNMutableNotificationContent *content = [UNMutableNotificationContent new];
+                content.title = [NSString stringWithFormat:@"%@ - %@", self.tempRecipient.firstName, celebrationRealm.occasion];
+                
+                NSMutableString *bodyMessage = [[NSMutableString alloc] init];
+                if(celebrationRealm.giveCard)
+                {
+                    [bodyMessage appendString:@"Get greeting card\n"];
                 }
-            }];
+                if(celebrationRealm.giveGift)
+                {
+                    [bodyMessage appendString:@"Get gift\n"];
+                }
+                if(celebrationRealm.makeCall)
+                {
+                    [bodyMessage appendString:@"Call\n"];
+                }
+                
+                content.body = [NSString stringWithFormat:@"%@", bodyMessage];
+                content.badge = @([[UIApplication sharedApplication] applicationIconBadgeNumber] +1);
+                content.sound = [UNNotificationSound defaultSound];
+                
+                NSDateComponents *dateComponents = [[NSCalendar currentCalendar]
+                                                    components:NSCalendarUnitYear +
+                                                    NSCalendarUnitMonth + NSCalendarUnitDay +
+                                                    NSCalendarUnitHour + NSCalendarUnitMinute fromDate:self.datePicker.date];
+                
+                celebrationRealm.reminderDate = self.datePicker.date;
+                UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger
+                                                          triggerWithDateMatchingComponents:dateComponents repeats:NO];
+                
+                UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"ReminderAlert" content:content trigger:trigger];
+                UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+                [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+                    if (error != nil) {
+                        NSLog(@"User notification error: %@",error);
+                    }
+                }];
+            }
+            [self.delegate passCelebrationToRecipient:celebrationRealm];
+            [self.navigationController popToRootViewControllerAnimated:YES];
         }
-        [self.delegate passCelebrationToRecipient:celebrationRealm];
-        [self.navigationController popToRootViewControllerAnimated:YES];
     }
     else
     {
