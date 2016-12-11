@@ -78,10 +78,10 @@
 - (void)setupLabels
 {
     //set date labels
-    self.celebDateLabel.text = [[self dateFormatter] stringFromDate:self.celebrationRealm.date];
+    self.celebDateLabel.text = [self.dateFormatter stringFromDate:self.celebrationRealm.date];
     if(self.celebrationRealm.reminderDate)
     {
-        self.remindDateLabel.text = [[self remindDateFormatter] stringFromDate:self.celebrationRealm.reminderDate];
+        self.remindDateLabel.text = [self.remindDateFormatter stringFromDate:self.celebrationRealm.reminderDate];
     }
     else
     {
@@ -95,9 +95,9 @@
     if(!dateFormatter)
     {
         dateFormatter = [NSDateFormatter new];
+        dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
         dateFormatter.dateFormat = @"MMM dd, yyyy";
     }
-
     return dateFormatter;
 }
 
@@ -107,6 +107,7 @@
     if(!remindDateFormatter)
     {
         remindDateFormatter = [NSDateFormatter new];
+        remindDateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
         remindDateFormatter.dateFormat = @"MMM dd, yyyy h:mm a";
     }
     

@@ -13,5 +13,6 @@
 + (NSString *)separateYearFromDate:(NSDate *)date;
 + (NSString *)separateMonthFromDate:(NSDate *)date;
 + (NSString *)separateDayFromDate:(NSDate *)date;
++ (NSDate *)nextBirthdayFromDOB:(NSDate *)dob;
 
 @end

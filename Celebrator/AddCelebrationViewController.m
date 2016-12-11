@@ -105,6 +105,7 @@
     if(!dateFormatter)
     {
         dateFormatter = [NSDateFormatter new];
+        dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
         dateFormatter.dateFormat = @"MM-dd-yyyy";
     }
 
@@ -117,6 +118,7 @@
     if(!remindDateFormatter)
     {
         remindDateFormatter = [NSDateFormatter new];
+        remindDateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
         remindDateFormatter.dateFormat = @"MMM dd, yyyy h:mm a";
     }
 
@@ -226,8 +228,14 @@
 - (void)updateCelebration:(NSNotification *)notification
 {
     self.stringOccasion = [notification.userInfo valueForKey:@"celebration"];
+    if([self.stringOccasion isEqualToString:@"Birthday"])
+    {
+        NSDate *nextBirthday = [DateManager nextBirthdayFromDOB:self.tempRecipient.dateOfBirth];
+        self.celebDayTF.text = [DateManager separateDayFromDate: nextBirthday];
+        self.celebMonthTF.text = [DateManager separateMonthFromDate: nextBirthday];
+        self.celebYearTF.text = [DateManager separateYearFromDate: nextBirthday];
+    }
 }
-
 
 #pragma - edit mode methods
 
