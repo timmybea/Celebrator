@@ -9,12 +9,11 @@
 #import "AddCelebrationViewController.h"
 #import <Realm/Realm.h>
 #import "ModelProtocols.h"
-#import "CelebrationRealm.h"
 #import "Recipient.h"
 #import "DateManager.h"
 #import "CalDetailViewController.h"
 #import "ColorManager.h"
-@import UserNotifications;
+//@import UserNotifications;
 
 @interface AddCelebrationViewController () <UITextFieldDelegate, UNUserNotificationCenterDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *celebrationWarning;
@@ -32,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property (strong, nonatomic) NSString *stringOccasion;
 @property (strong, nonatomic) Recipient *recipient;
+
 
 @property (nonatomic) UNUserNotificationCenter *userNotification;
 @property (nonatomic) NSDateFormatter *dateFormatter;
@@ -53,7 +53,7 @@
     self.userNotification.delegate = self;
 
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Gifter Name2.png"]];
-    self.celebForNameLabel.text = [[NSString stringWithFormat:@"CELEBRATION FOR %@", self.recipientName] uppercaseString];
+    self.celebForNameLabel.text = [[NSString stringWithFormat:@"CELEBRATION FOR %@", self.tempRecipient.firstName] uppercaseString];
     self.celebrationWarning.hidden = YES;
     self.celebrationDateWarning.hidden = YES;
     self.getsReminder = NO;

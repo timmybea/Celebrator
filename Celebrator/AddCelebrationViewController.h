@@ -10,12 +10,13 @@
 #import "CelebrationRealm.h"
 #import "CelebrationViewControllerDelegate.h"
 #import "CalDetailViewControllerProtocol.h"
+#import "TempRecipient.h"
 @import UserNotifications;
 
 @interface AddCelebrationViewController : UIViewController <CalDetailViewControllerProtocol>
 
 @property (nonatomic, assign) id <CelebrationViewControllerDelegate> delegate;
-@property (nonatomic) NSString *recipientName;
+@property (strong, nonatomic) TempRecipient *tempRecipient;
 @property (weak, nonatomic) IBOutlet UILabel *celebForNameLabel;
 @property (nonatomic) CelebrationRealm *celebrationRealm;
 @property (nonatomic) UNUserNotificationCenter *center;

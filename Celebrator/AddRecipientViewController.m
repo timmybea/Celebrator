@@ -12,6 +12,7 @@
 #import <Realm/Realm.h>
 #import "ModelProtocols.h"
 #import "Recipient.h"
+#import "TempRecipient.h"
 #import "RecipientTableViewCell.h"
 
 
@@ -61,13 +62,6 @@
     self.firstNameWarning.hidden = YES;
     self.lastNameWarning.hidden = YES;
     }
-
-
-//-(void)viewWillAppear:(BOOL)animated
-//{
-//    [self.tableView reloadData];
-//    
-//}
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
@@ -133,8 +127,11 @@
     if ([[segue identifier] isEqualToString:@"addCelebration"])
     {
         AddCelebrationViewController *controller = (AddCelebrationViewController* )segue.destinationViewController;
-        NSString *name = self.firstNameTextField.text;
-        controller.recipientName = name;
+        
+        NSString *dateString = [NSString stringWithFormat:@"%@-%@-%@", self.birthdateDayTextField.text, self.birthdateMonthTextField.text, self.birthdateYearTextField.text];
+        NSDate *dob = [self.dateFormatter dateFromString:dateString];
+        TempRecipient *tempRecipient = [[TempRecipient alloc] initWithFirstName:self.firstNameTextField.text andDateOfBirth:dob];
+        controller.tempRecipient = tempRecipient;
         controller.delegate = self;
     }
 }
