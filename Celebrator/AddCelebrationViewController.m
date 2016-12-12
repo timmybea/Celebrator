@@ -235,6 +235,13 @@
         self.celebMonthTF.text = [DateManager separateMonthFromDate: nextBirthday];
         self.celebYearTF.text = [DateManager separateYearFromDate: nextBirthday];
     }
+    else
+    {
+        NSDate *occasionDate = [DateManager getHolidayDate:self.stringOccasion];
+        self.celebDayTF.text = [DateManager separateDayFromDate: occasionDate];
+        self.celebMonthTF.text = [DateManager separateMonthFromDate: occasionDate];
+        self.celebYearTF.text = [DateManager separateYearFromDate: occasionDate];
+    }
 }
 
 #pragma - edit mode methods

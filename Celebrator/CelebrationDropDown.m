@@ -26,7 +26,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateButtonForEdit:) name:@"updateButtonForEdit" object:nil];
     
-    self.data = [[NSArray alloc] initWithObjects:@"Birthday", @"Appreciation", @"Anniversary", @"Bridal Shower", @"Engagement", @"Baby Shower", @"Farewell/moving", @"Christmas", @"Valentines Day", @"Mother's Day", @"Father's Day", @"Graduation", @"Get well soon", @"Sympathy", @"Promotion", @"Other", nil];
+    self.data = [[NSArray alloc] initWithObjects:@"Birthday", @"Appreciation", @"Anniversary", @"Bridal Shower", @"Engagement", @"Baby Shower", @"Farewell/moving", @"Christmas", @"Valentine's Day", @"Mother's Day", @"Father's Day", @"Graduation", @"Get well soon", @"Sympathy", @"Promotion", @"Other", nil];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.hidden = YES;

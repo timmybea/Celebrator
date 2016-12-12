@@ -14,5 +14,6 @@
 + (NSString *)separateMonthFromDate:(NSDate *)date;
 + (NSString *)separateDayFromDate:(NSDate *)date;
 + (NSDate *)nextBirthdayFromDOB:(NSDate *)dob;
++ (NSDate *)getHolidayDate:(NSString *)holiday;
 
 @end

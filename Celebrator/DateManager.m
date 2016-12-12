@@ -32,35 +32,11 @@
     return [formatter stringFromDate:date];
 }
 
-+ (NSDateFormatter *)dateFormatter
-{
-    static NSDateFormatter *dateFormatter;
-    if(!dateFormatter)
-    {
-        dateFormatter = [NSDateFormatter new];
-        dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
-        dateFormatter.dateFormat = @"MM-dd-yyyy";
-    }
-    
-    return dateFormatter;
-}
-
-
 + (NSDate *)nextBirthdayFromDOB:(NSDate *)dob
 {
-    //
-    //NSString *birthdayString        = @"02/29/1980";
-    //
-    //// Convert the string to a NSDate
-    //NSDateFormatter *formatter      = [NSDateFormatter new];
-    //formatter.timeZone              = [NSTimeZone timeZoneWithName:@"UTC"];
-    //formatter.dateFormat            = @"MM/dd/yyyy";
-    //NSDate *birthday                = [formatter dateFromString:birthdayString];
-    //
-    
     // Break dob into components and change to current year
     NSCalendar *cal = [NSCalendar currentCalendar];
-    cal.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+//    cal.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
     NSDate *now = [NSDate date];
     NSDateComponents *currentComps = [cal components:NSCalendarUnitYear fromDate:now];
     NSDateComponents *birthdayComps = [cal components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:dob];
@@ -79,6 +55,36 @@
     }
     
     return birthdayDate;
+}
+
++ (NSDate *)getHolidayDate:(NSString *)holiday
+{
+    //Future goal: users select country and important dates are accessed via API
+    //Create holiday dates
+    static NSDateFormatter *dateFormatter;
+    if(!dateFormatter)
+    {
+        dateFormatter = [NSDateFormatter new];
+        dateFormatter.dateFormat = @"dd-MM-yyyy";
+    }
+    
+    NSString *valentinesDayString = @"14-02-2017";
+    NSDate *valentinesDay = [dateFormatter dateFromString:valentinesDayString];
+    NSString *mothersDayString = @"14-05-2017";
+    NSDate *mothersDay = [dateFormatter dateFromString:mothersDayString];
+    NSString *fathersDayString = @"18-06-2017";
+    NSDate *fathersDay = [dateFormatter dateFromString:fathersDayString];
+    NSString *christmasString = @"25-12-2016";
+    NSDate *christmas = [dateFormatter dateFromString:christmasString];
+    
+    NSDictionary *holidays = @{
+                               @"Valentine's Day": valentinesDay,
+                               @"Mother's Day": mothersDay,
+                               @"Father's Day": fathersDay,
+                               @"Christmas": christmas
+                               };
+    
+    return [holidays objectForKey:holiday];
 }
 
 @end
