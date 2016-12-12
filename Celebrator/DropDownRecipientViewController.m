@@ -29,6 +29,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.hidden = YES;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetGroupButton:) name:@"resetGroupButton" object:nil];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -73,8 +74,6 @@
 - (void)appearTextField
 {
     self.textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 373, 30)];
-//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.textField attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
-//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.textField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1 constant:0]];
     self.textField.backgroundColor = [UIColor whiteColor];
     self.textField.placeholder = @"Enter group";
     UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 8, 20)];
@@ -126,5 +125,11 @@
 {
     [self.view endEditing:YES];
 }
+
+- (void)resetGroupButton:(NSNotification *)notification
+{
+    [self.groupButton setTitle:@"ADD GROUP" forState:UIControlStateNormal];
+}
+
 
 @end

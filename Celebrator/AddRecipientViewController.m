@@ -36,7 +36,7 @@
 @property (nonatomic) BOOL isDropDownBehind;
 @property (nonatomic) NSString *group;
 @property (nonatomic) NSDateFormatter *dateFormatter;
-@property (nonatomic) Recipient *sendRecipient;
+//@property (nonatomic) Recipient *sendRecipient;
 @property (nonatomic) NSMutableArray *celebrationsArray;
 
 
@@ -51,8 +51,6 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.celebrationsArray = [[NSMutableArray alloc] init];
-    
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Gifter Name2.png"]];
     
     [self.view insertSubview:self.dropDownView belowSubview:self.tableView];
@@ -61,10 +59,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateGroup:) name:@"groupSet" object:nil];
     self.firstNameWarning.hidden = YES;
     self.lastNameWarning.hidden = YES;
-    }
+}
 
-- (void) viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:YES];
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.tableView reloadData];
 }
 
 - (void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -139,6 +138,10 @@
 
 - (void)passCelebrationToRecipient:(CelebrationRealm *)celebration;
 {
+    if(!self.celebrationsArray)
+    {
+        self.celebrationsArray = [[NSMutableArray alloc] init];
+    }
     [self.celebrationsArray addObject:celebration];
     [self.tableView reloadData];
 }
@@ -163,18 +166,18 @@
         [realm transactionWithBlock:^{
             [realm addObject:recipient];
         }];
-        self.sendRecipient = recipient;
+        //self.sendRecipient = recipient;
         
-        //clear fields
+        //clear fields ***
         self.firstNameTextField.text = nil;
         self.lastNameTextField.text = nil;
         self.birthdateDayTextField.text = nil;
         self.birthdateMonthTextField.text = nil;
         self.birthdateYearTextField.text = nil;
         self.group = nil;
-        //*** reset the button text
-
-        //CalendarViewController *calendarVC = (CalendarViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
+        self.celebrationsArray = nil;
+        //self.sendRecipient = nil;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"resetGroupButton" object:self userInfo:nil];
         [self.tabBarController setSelectedIndex:0];
     }
     else

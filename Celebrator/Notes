@@ -8,8 +8,12 @@ When setting the giftee's next birthday, it is often off by one day compared wit
 
 ADD RECIPIENT
 
+DELETE recipient
+
+
+
 
 EDIT CELEBRATION
 if you edit the date of the celebration after it has been created, you end up with two dates in the calendar (you might need to do the realm request in view will load)
-How do you change the details of the user notification?
-
+How do you change the details of the user notification after it has been created?
+DELETE celebration
