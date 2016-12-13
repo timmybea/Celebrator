@@ -97,20 +97,20 @@
         dayView.hidden = YES;
     }
     // Today
-    else if([self.calendarManager.dateHelper date:[NSDate date] isTheSameDayThan:dayView.date]){
+    if([self.calendarManager.dateHelper date:[NSDate date] isTheSameDayThan:dayView.date]){
         dayView.circleView.hidden = NO;
         dayView.circleView.backgroundColor = self.colorManager.brightCoral;
         dayView.textLabel.textColor = [UIColor whiteColor];
+    } else {
+        dayView.dotView.hidden = YES;
+        dayView.circleView.hidden = YES;
+        dayView.textLabel.textColor = [UIColor blackColor];
     }
-
     //method to test if a date has an event
     if([self haveCelebrationForDay:dayView.date]){
         dayView.circleView.hidden = NO;
         dayView.circleView.backgroundColor = self.colorManager.golden;
         dayView.textLabel.textColor = [UIColor blackColor];
-    }
-    else{
-        dayView.dotView.hidden = YES;
     }
 }
 
@@ -155,7 +155,7 @@
     if(!dateFormatter)
     {
         dateFormatter = [NSDateFormatter new];
-        dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+        //dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
         dateFormatter.dateFormat = @"dd-MM-yyyy";
     }
 

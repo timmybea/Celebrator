@@ -105,7 +105,7 @@
     if(!dateFormatter)
     {
         dateFormatter = [NSDateFormatter new];
-        dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+        //dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
         dateFormatter.dateFormat = @"MM-dd-yyyy";
     }
 
@@ -118,7 +118,7 @@
     if(!remindDateFormatter)
     {
         remindDateFormatter = [NSDateFormatter new];
-        remindDateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+        //remindDateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
         remindDateFormatter.dateFormat = @"MMM dd, yyyy h:mm a";
     }
 

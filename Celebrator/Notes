@@ -9,6 +9,7 @@ When setting the giftee's next birthday, it is often off by one day compared wit
 ADD RECIPIENT
 
 DELETE recipient
+get time zone of the user
 
 
 
