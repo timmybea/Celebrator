@@ -186,6 +186,7 @@
 //Segue to calendar detail
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.currentCelebration = [self.celebrationsForDate objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"celebrationCalDetail" sender:self];
 }

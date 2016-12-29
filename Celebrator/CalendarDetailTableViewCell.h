@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ColorManager.h"
 
 @interface CalendarDetailTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *label;
+@property (strong, nonatomic) ColorManager *colorManager;
 
 @end

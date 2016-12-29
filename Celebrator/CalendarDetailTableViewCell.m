@@ -8,11 +8,14 @@
 
 #import "CalendarDetailTableViewCell.h"
 
+
 @implementation CalendarDetailTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    self.tintColor = [UIColor whiteColor];
+    self.contentView.superview.backgroundColor = self.colorManager.aquaMarine;
+    self.accessoryView.backgroundColor = self.colorManager.aquaMarine;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
