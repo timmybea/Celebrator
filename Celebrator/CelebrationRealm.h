@@ -19,6 +19,9 @@
 @property BOOL giveCard;
 @property BOOL giveGift;
 @property BOOL makeCall;
+@property BOOL isCardDone;
+@property BOOL isGiftDone;
+@property BOOL isCallDone;
 @property NSDate *reminderDate;
 @property (weak) Recipient *recipient;
 @property NSString *primaryKey;

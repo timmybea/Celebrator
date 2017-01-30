@@ -153,6 +153,9 @@
             celebrationRealm.giveCard = self.giveCardSwitch.on;
             celebrationRealm.giveGift = self.giveGiftSwitch.on;
             celebrationRealm.makeCall = self.makeCallSwitch.on;
+            celebrationRealm.isCallDone = NO;
+            celebrationRealm.isCardDone = NO;
+            celebrationRealm.isGiftDone = NO;
             
             //Reminder
             self.center.delegate = self;

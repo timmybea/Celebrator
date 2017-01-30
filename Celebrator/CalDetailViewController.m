@@ -126,12 +126,43 @@
     cell.label.text = [self.gifts objectAtIndex:indexPath.row];
     return cell;
 }
-//***
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     CalendarDetailTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    
+    NSString *action = [self.gifts objectAtIndex:indexPath.row];
+    if ([action isEqualToString: @"Gift:"]) {
+        if (self.celebrationRealm.isGiftDone == NO) {
+            self.celebrationRealm.isGiftDone = YES;
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        } else {
+            self.celebrationRealm.isGiftDone = NO;
+            cell.accessoryType = NO;
+        }
+    } else if ([action isEqualToString:@"Card:"]) {
+        if (self.celebrationRealm.isCardDone == NO) {
+            self.celebrationRealm.isCardDone = YES;
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        } else {
+            self.celebrationRealm.isCardDone = NO;
+            cell.accessoryType = NO;
+        }
+    } else if ([action  isEqualToString:@"Call:"]){
+        if (self.celebrationRealm.isCallDone == NO) {
+            self.celebrationRealm.isCallDone = YES;
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        } else {
+            self.celebrationRealm.isCallDone = NO;
+            cell.accessoryType = NO;
+            
+        }
+    }
+    [realm commitWriteTransaction];
 }
 
 #pragma segue method
