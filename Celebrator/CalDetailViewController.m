@@ -123,7 +123,22 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CalendarDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CalDetailCell"];
-    cell.label.text = [self.gifts objectAtIndex:indexPath.row];
+    NSString *action = [self.gifts objectAtIndex:indexPath.row];
+    
+    if ([action isEqualToString: @"Gift:"]) {
+        if (self.celebrationRealm.isGiftDone) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+    } else if ([action isEqualToString:@"Card:"]) {
+        if (self.celebrationRealm.isCardDone) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+    } else if ([action isEqualToString:@"Call:"]) {
+        if (self.celebrationRealm.isCallDone) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+    }
+    cell.label.text = action;
     return cell;
 }
 
