@@ -50,6 +50,14 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
+    [self queryCelebrations];
+    //[self.calendarManager reload];
+}
+
+
+#pragma - query celebrations and update calendar view
+
+- (void)queryCelebrations {
     RLMResults<CelebrationRealm *> *allCelebrations =[CelebrationRealm allObjects];
     for(CelebrationRealm *celebrationRealm in allCelebrations)
     {

@@ -47,21 +47,17 @@
     
     for (Recipient *recipient in recipientArray) {
         NSString *group = recipient.group;
-        Recipient *recip = [[Recipient alloc] init];
-        recip.firstName = recipient.firstName;
-        recip.lastName = recipient.lastName;
-        recip.primaryKey = recipient.primaryKey;
         
         if (newObject.group == nil) {
             newObject.group = group;
-            [newObject.recipients addObject:recip];
+            [newObject.recipients addObject:recipient];
         } else if ([newObject.group isEqualToString:group]) {
-            [newObject.recipients addObject:recip];
+            [newObject.recipients addObject:recipient];
         } else {
             [self.recipientTableObjects addObject:newObject];
             newObject = [[RecipientTableObject alloc] init];
             newObject.group = group;
-            [newObject.recipients addObject:recip];
+            [newObject.recipients addObject:recipient];
         }
     }
     [self.recipientTableObjects addObject:newObject];
@@ -117,14 +113,30 @@
     RecipientTableObject *object = [self.recipientTableObjects objectAtIndex:indexPath.section];
     Recipient *recipient = [object.recipients objectAtIndex:indexPath.row];
     NSString *name = [NSString stringWithFormat:@"%@ %@", recipient.firstName, recipient.lastName];
-    cell.recipientLabel.text = recipient.primaryKey;
+    cell.recipientLabel.text = name;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [[RLMRealm defaultRealm] beginWriteTransaction];
+        RecipientTableObject *object = [self.recipientTableObjects objectAtIndex:indexPath.section];
+        Recipient *recip = [object.recipients objectAtIndex:indexPath.row];
+        
+        
+        while (recip.celebrations.count > 0){
+            CelebrationRealm *celebration = recip.celebrations.firstObject;
+            [recip.celebrations removeObjectAtIndex:0];
+            [[RLMRealm defaultRealm]deleteObject:celebration];
+        }
+        
+        [[RLMRealm defaultRealm]deleteObject:recip];
+        [[RLMRealm defaultRealm] commitWriteTransaction];
+        [self fetchAllCelebrations];
+        tableView.reloadData;
+        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+       // [tableView setEditing:NO animated:YES];
     }
 }
 
