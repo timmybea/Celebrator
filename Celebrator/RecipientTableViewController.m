@@ -14,6 +14,7 @@
 #import "RecipientListCell.h"
 #import "RecipientTableObject.h"
 #import "ColorManager.h"
+#import "AddRecipientViewController.h"
 
 @interface RecipientTableViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -141,28 +142,15 @@
     }
 }
 
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RecipientBranch" bundle:nil];
+    AddRecipientViewController *destination = [storyboard instantiateViewControllerWithIdentifier:@"AddRecipientVC"];
+    [[self navigationController] pushViewController:destination animated:YES];
+
+    //        self.delegate = destination;
+//        [self.delegate updateCelebrationForEdit:self.celebrationRealm];
 //    [self performSegueWithIdentifier:@"showRecipientDetailView" sender:self];
-//}
-
-
-#pragma mark - Navigation
-
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    if ([[segue identifier] isEqualToString:@"showRecipientDetailView"])
-//    {
-//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        Recipient *recipient = [self.recipientsArray objectAtIndex:indexPath];
-//        RecipientListDetailViewController *controller = (RecipientListDetailViewController)segue.destinationViewController;
-//
-//        [controller setDetailItem:recipient];
-//        controller.navigationItem.leftItemsSupplementBackButton = YES;
-//        controller.delegate = self;
-//    }
-//
-//}
+}
 
 - (void)didReceiveMemoryWarning
 {

@@ -14,7 +14,7 @@
         <!--Add Recipient View Controller-->
         <scene sceneID="HH6-lv-HcN">
             <objects>
-                <viewController id="fag-Re-8Sg" customClass="AddRecipientViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddRecipientVC" id="fag-Re-8Sg" customClass="AddRecipientViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NWS-Ws-l1y"/>
                         <viewControllerLayoutGuide type="bottom" id="vIs-2A-B2M"/>
@@ -608,7 +608,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="26"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wZC-I8-AeK" id="tCh-Xz-z1d">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="25.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="25"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -692,7 +692,7 @@
                                         <rect key="frame" x="0.0" y="28" width="339" height="25"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e1c-qh-JVi" id="Rp5-co-lLZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="339" height="24.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="339" height="24"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
