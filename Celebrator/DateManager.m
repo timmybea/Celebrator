@@ -36,11 +36,9 @@
 {
     // Break dob into components and change to current year
     NSCalendar *cal = [NSCalendar currentCalendar];
-//    cal.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
     NSDate *now = [NSDate date];
     NSDateComponents *currentComps = [cal components:NSCalendarUnitYear fromDate:now];
     NSDateComponents *birthdayComps = [cal components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:dob];
-    
     birthdayComps.year = currentComps.year;
     
     // Create date from modified components

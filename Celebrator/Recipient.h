@@ -13,6 +13,7 @@
 
 @interface Recipient : RLMObject
 
+@property NSString *primaryKey;
 @property NSString *firstName;
 @property NSString *lastName;
 @property NSDate *birthdate;

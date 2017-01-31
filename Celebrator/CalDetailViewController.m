@@ -72,7 +72,7 @@
         [self.gifts addObject:@"Call:"];
     }
 
-    self.tableHeight.constant = (self.gifts.count * 40 + 10);
+    self.tableHeight.constant = (self.gifts.count * 44);
 }
 
 - (void)setupLabels
@@ -95,7 +95,6 @@
     if(!dateFormatter)
     {
         dateFormatter = [NSDateFormatter new];
-        //dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
         dateFormatter.dateFormat = @"MMM dd, yyyy";
     }
     return dateFormatter;
@@ -107,7 +106,6 @@
     if(!remindDateFormatter)
     {
         remindDateFormatter = [NSDateFormatter new];
-        //remindDateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
         remindDateFormatter.dateFormat = @"MMM dd, yyyy h:mm a";
     }
     
@@ -167,7 +165,7 @@
             self.celebrationRealm.isCardDone = NO;
             cell.accessoryType = NO;
         }
-    } else if ([action  isEqualToString:@"Call:"]){
+    } else if ([action isEqualToString:@"Call:"]){
         if (self.celebrationRealm.isCallDone == NO) {
             self.celebrationRealm.isCallDone = YES;
             cell.accessoryType = UITableViewCellAccessoryCheckmark;

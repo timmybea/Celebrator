@@ -138,7 +138,7 @@
     {
         self.celebrationsForDate = self.celebrationsByDate[key];
         self.tableView.hidden = NO;
-        float animationHeight = self.celebrationsForDate.count * 40 + 5;
+        float animationHeight = self.celebrationsForDate.count * 40;
         [UIView animateWithDuration:0.4 animations:^(){
         self.tableViewHeight.constant = animationHeight;
         [self.tableView reloadData];
@@ -180,6 +180,7 @@
     CelebrationRealm *celebration = [self.celebrationsForDate objectAtIndex:indexPath.row];
     NSString *message = [NSString stringWithFormat:@"%@ %@ - %@ \n", celebration.recipient.firstName, celebration.recipient.lastName, celebration.occasion];
     cell.label.text = message;
+    cell.label.textColor = UIColor.whiteColor;
     return cell;
 }
 

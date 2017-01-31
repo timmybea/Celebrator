@@ -50,6 +50,7 @@
         Recipient *recip = [[Recipient alloc] init];
         recip.firstName = recipient.firstName;
         recip.lastName = recipient.lastName;
+        recip.primaryKey = recipient.primaryKey;
         
         if (newObject.group == nil) {
             newObject.group = group;
@@ -116,7 +117,7 @@
     RecipientTableObject *object = [self.recipientTableObjects objectAtIndex:indexPath.section];
     Recipient *recipient = [object.recipients objectAtIndex:indexPath.row];
     NSString *name = [NSString stringWithFormat:@"%@ %@", recipient.firstName, recipient.lastName];
-    cell.recipientLabel.text = name;
+    cell.recipientLabel.text = recipient.primaryKey;
     return cell;
 }
 

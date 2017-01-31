@@ -31,23 +31,6 @@
     return YES;
 }
 
-//- (void)showAlert {
-//    UIAlertController *objAlertController = [UIAlertController alertControllerWithTitle:@"Alert" message:@"show the alert" preferredStyle:UIAlertControllerStyleAlert];
-//    
-//    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"OK"
-//                                                           style:UIAlertActionStyleCancel
-//                                                         handler:^(UIAlertAction *action) {
-//                                                        NSLog(@"Ok clicked!");
-//                                   }];
-//    [objAlertController addAction:cancelAction];
-//    
-//    
-//    [[[[[UIApplication sharedApplication] windows] objectAtIndex:0] rootViewController] presentViewController:objAlertController animated:YES completion:^{
-//        
-//    }];
-//    
-//}
-
 //Called when a notification is delivered to a foreground app.
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler{
     NSLog(@"User Info : %@",notification.request.content.userInfo);
@@ -59,9 +42,5 @@
     NSLog(@"User Info : %@",response.notification.request.content.userInfo);
     completionHandler();
 }
-
-
-
-
 
 @end
