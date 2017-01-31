@@ -146,10 +146,12 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RecipientBranch" bundle:nil];
     AddRecipientViewController *destination = [storyboard instantiateViewControllerWithIdentifier:@"AddRecipientVC"];
     [[self navigationController] pushViewController:destination animated:YES];
-
-    //        self.delegate = destination;
-//        [self.delegate updateCelebrationForEdit:self.celebrationRealm];
-//    [self performSegueWithIdentifier:@"showRecipientDetailView" sender:self];
+    
+    RecipientTableObject *object = [self.recipientTableObjects objectAtIndex:indexPath.section];
+    Recipient *recip = [object.recipients objectAtIndex:indexPath.row];
+    
+    self.delegate = destination;
+    [self.delegate updateAddRecipientForEdit:recip];
 }
 
 - (void)didReceiveMemoryWarning

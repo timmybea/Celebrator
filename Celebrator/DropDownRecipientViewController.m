@@ -128,7 +128,12 @@
 
 - (void)resetGroupButton:(NSNotification *)notification
 {
-    [self.groupButton setTitle:@"ADD GROUP" forState:UIControlStateNormal];
+    NSString *group = [notification.userInfo valueForKey:@"group"];
+    if (group == nil) {
+        [self.groupButton setTitle:@"ADD GROUP" forState:UIControlStateNormal];
+    } else {
+        [self.groupButton setTitle:group forState:UIControlStateNormal];
+    }
 }
 
 

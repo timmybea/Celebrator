@@ -14,6 +14,7 @@
 #import "Recipient.h"
 #import "TempRecipient.h"
 #import "RecipientTableViewCell.h"
+#import "DateManager.h"
 
 
 @interface AddRecipientViewController () <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
@@ -33,7 +34,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *birthdateMonthTextField;
 @property (weak, nonatomic) IBOutlet UITextField *birthdateYearTextField;
 
+@property (nonatomic) BOOL isEditMode;
 @property (nonatomic) BOOL isDropDownBehind;
+@property (nonatomic) Recipient *recipient;
 @property (nonatomic) NSString *group;
 @property (nonatomic) NSDateFormatter *dateFormatter;
 //@property (nonatomic) Recipient *sendRecipient;
@@ -59,6 +62,17 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateGroup:) name:@"groupSet" object:nil];
     self.firstNameWarning.hidden = YES;
     self.lastNameWarning.hidden = YES;
+    
+    //Setup based on edit more.
+    if(self.isEditMode)
+    {
+        [self setupEditMode];
+    }
+    else
+    {
+        //
+    }
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -205,6 +219,28 @@
 - (void)updateGroup:(NSNotification *)notification
 {
     self.group = [notification.userInfo valueForKey:@"group"];
+}
+
+#pragma - RecipientTableViewControllerProtocol method for editing an existing recipient
+
+-(void)updateAddRecipientForEdit:(Recipient *)recipient {
+    self.isEditMode = YES;
+    self.recipient = recipient;
+}
+
+-(void)setupEditMode {
+//    NSLog(@"EDIT MODE FOR ADD RECIPIENT!");
+    self.firstNameTextField.text = self.recipient.firstName;
+    self.lastNameTextField.text = self.recipient.lastName;
+    
+    if (self.recipient.birthdate != nil) {
+        self.birthdateMonthTextField.text = [DateManager separateMonthFromDate:self.recipient.birthdate];
+        self.birthdateDayTextField.text = [DateManager separateDayFromDate:self.recipient.birthdate];
+        self.birthdateYearTextField.text = [DateManager separateYearFromDate:self.recipient.birthdate];
+    }
+    NSDictionary *group = @{@"group": self.recipient.group};
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"resetGroupButton" object:self userInfo:group];
+    
 }
 
 @end

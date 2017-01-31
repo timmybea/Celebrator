@@ -87,6 +87,7 @@
 		B055057F1DF08D48003991C0 /* CalendarDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarDetailTableViewCell.m; sourceTree = "<group>"; };
 		B075609E1DECDEE2009432A0 /* AddRecipientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRecipientViewController.h; sourceTree = "<group>"; };
 		B075609F1DECDEE2009432A0 /* AddRecipientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRecipientViewController.m; sourceTree = "<group>"; };
+		B08E8D2F1E412B8B00D31CA0 /* RecipientTableViewControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientTableViewControllerProtocol.h; sourceTree = "<group>"; };
 		B0D38BC31DEE30F800D9B770 /* DropDownRecipientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropDownRecipientViewController.h; sourceTree = "<group>"; };
 		B0D38BC41DEE30F800D9B770 /* DropDownRecipientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropDownRecipientViewController.m; sourceTree = "<group>"; };
 		B0D38BC61DEE6A7F00D9B770 /* CelebrationDropDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CelebrationDropDown.h; sourceTree = "<group>"; };
@@ -202,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				B00BEB761DF872B70048E925 /* CalDetailViewControllerProtocol.h */,
+				B08E8D2F1E412B8B00D31CA0 /* RecipientTableViewControllerProtocol.h */,
 				522E8D7C1DEE39AA006C38D6 /* RecipientTableViewController.h */,
 				522E8D7D1DEE39AA006C38D6 /* RecipientTableViewController.m */,
 				B040A61D1DEA4767009BFC7F /* CalendarViewController.h */,

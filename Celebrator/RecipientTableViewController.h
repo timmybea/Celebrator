@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RecipientTableViewControllerProtocol.h"
 
 @interface RecipientTableViewController : UITableViewController
+
+@property (nonatomic, assign) id <RecipientTableViewControllerProtocol> delegate;
 
 @end
