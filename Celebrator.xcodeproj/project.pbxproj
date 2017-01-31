@@ -21,6 +21,8 @@
 		B000CE991DEA2C86008BB9AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B000CE971DEA2C86008BB9AC /* LaunchScreen.storyboard */; };
 		B00BEB791DF872D60048E925 /* ColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B00BEB781DF872D60048E925 /* ColorManager.m */; };
 		B00BEB7C1DF873310048E925 /* DateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B00BEB7B1DF873310048E925 /* DateManager.m */; };
+		B01269CA1E3FD0D600D29835 /* RecipientTableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B01269C91E3FD0D600D29835 /* RecipientTableObject.m */; };
+		B01269D01E3FE74200D29835 /* RecipientListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B01269CF1E3FE74200D29835 /* RecipientListCell.m */; };
 		B02EFFD41DED0CCE000DCA97 /* CalDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B02EFFD31DED0CCE000DCA97 /* CalDetailViewController.m */; };
 		B040A61F1DEA4767009BFC7F /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B040A61E1DEA4767009BFC7F /* CalendarViewController.m */; };
 		B048A9011DEFDB1200830A3B /* CalendarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B048A9001DEFDB1200830A3B /* CalendarTableViewCell.m */; };
@@ -67,6 +69,10 @@
 		B00BEB781DF872D60048E925 /* ColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorManager.m; sourceTree = "<group>"; };
 		B00BEB7A1DF873310048E925 /* DateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateManager.h; sourceTree = "<group>"; };
 		B00BEB7B1DF873310048E925 /* DateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateManager.m; sourceTree = "<group>"; };
+		B01269C81E3FD0D600D29835 /* RecipientTableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientTableObject.h; sourceTree = "<group>"; };
+		B01269C91E3FD0D600D29835 /* RecipientTableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientTableObject.m; sourceTree = "<group>"; };
+		B01269CE1E3FE74200D29835 /* RecipientListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientListCell.h; sourceTree = "<group>"; };
+		B01269CF1E3FE74200D29835 /* RecipientListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientListCell.m; sourceTree = "<group>"; };
 		B02EFFD21DED0CCE000DCA97 /* CalDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalDetailViewController.h; sourceTree = "<group>"; };
 		B02EFFD31DED0CCE000DCA97 /* CalDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalDetailViewController.m; sourceTree = "<group>"; };
 		B02EFFD51DED101F000DCA97 /* CalendarViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewControllerDelegate.h; sourceTree = "<group>"; };
@@ -186,6 +192,8 @@
 				B048A9001DEFDB1200830A3B /* CalendarTableViewCell.m */,
 				B055057E1DF08D48003991C0 /* CalendarDetailTableViewCell.h */,
 				B055057F1DF08D48003991C0 /* CalendarDetailTableViewCell.m */,
+				B01269CE1E3FE74200D29835 /* RecipientListCell.h */,
+				B01269CF1E3FE74200D29835 /* RecipientListCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -233,6 +241,8 @@
 				B00BEB7B1DF873310048E925 /* DateManager.m */,
 				B0F5F27F1DFD9D8100229ED5 /* TempRecipient.h */,
 				B0F5F2801DFD9D8100229ED5 /* TempRecipient.m */,
+				B01269C81E3FD0D600D29835 /* RecipientTableObject.h */,
+				B01269C91E3FD0D600D29835 /* RecipientTableObject.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -266,7 +276,7 @@
 		B000CE7E1DEA2C86008BB9AC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Tim Beals";
 				TargetAttributes = {
 					B000CE851DEA2C86008BB9AC = {
@@ -365,6 +375,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B00BEB7C1DF873310048E925 /* DateManager.m in Sources */,
+				B01269D01E3FE74200D29835 /* RecipientListCell.m in Sources */,
 				522E8D6E1DED0CC8006C38D6 /* Recipient.m in Sources */,
 				B07560A01DECDEE2009432A0 /* AddRecipientViewController.m in Sources */,
 				522E8D7E1DEE39AA006C38D6 /* RecipientTableViewController.m in Sources */,
@@ -375,6 +386,7 @@
 				B0D38BCB1DEE84AE00D9B770 /* AddCelebrationViewController.m in Sources */,
 				52FA5F741DFACA4500A3F0B3 /* NotificationManager.m in Sources */,
 				522E8D711DED12E8006C38D6 /* CelebrationRealm.m in Sources */,
+				B01269CA1E3FD0D600D29835 /* RecipientTableObject.m in Sources */,
 				B000CE8E1DEA2C86008BB9AC /* AppDelegate.m in Sources */,
 				B02EFFD41DED0CCE000DCA97 /* CalDetailViewController.m in Sources */,
 				B0F5F2811DFD9D8100229ED5 /* TempRecipient.m in Sources */,
@@ -426,6 +438,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -474,6 +487,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
