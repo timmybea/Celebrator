@@ -33,7 +33,7 @@
     [super viewDidLoad];
 
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Gifter Name2.png"]];
-
+    
     _calendarManager = [JTCalendarManager new];
     _calendarManager.delegate = self;
 
@@ -41,7 +41,6 @@
     [_calendarManager setContentView:_calendarContentView];
     [_calendarManager setDate:[NSDate date]];
 
-    self.celebrationsByDate = [[NSMutableDictionary alloc] init];
     self.tableView.hidden = YES;
     [self.view layoutIfNeeded];
     self.colorManager = [[ColorManager alloc] init];
@@ -51,13 +50,14 @@
     [super viewWillAppear:animated];
 
     [self queryCelebrations];
-    //[self.calendarManager reload];
+    [self.calendarManager reload];
 }
 
 
 #pragma - query celebrations and update calendar view
 
 - (void)queryCelebrations {
+    self.celebrationsByDate = [[NSMutableDictionary alloc] init];
     RLMResults<CelebrationRealm *> *allCelebrations =[CelebrationRealm allObjects];
     for(CelebrationRealm *celebrationRealm in allCelebrations)
     {

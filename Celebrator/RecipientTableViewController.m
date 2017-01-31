@@ -135,6 +135,7 @@
         [[RLMRealm defaultRealm] commitWriteTransaction];
         [self fetchAllCelebrations];
         tableView.reloadData;
+
         //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
        // [tableView setEditing:NO animated:YES];
     }
