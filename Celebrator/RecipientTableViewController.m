@@ -136,9 +136,6 @@
         [[RLMRealm defaultRealm] commitWriteTransaction];
         [self fetchAllCelebrations];
         tableView.reloadData;
-
-        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-       // [tableView setEditing:NO animated:YES];
     }
 }
 
@@ -157,7 +154,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 

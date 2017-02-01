@@ -19,6 +19,8 @@
 
 @interface AddRecipientViewController () <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
+
 @property (weak, nonatomic) IBOutlet UILabel *firstNameWarning;
 @property (weak, nonatomic) IBOutlet UILabel *lastNameWarning;
 
@@ -36,10 +38,11 @@
 
 @property (nonatomic) BOOL isEditMode;
 @property (nonatomic) BOOL isDropDownBehind;
+@property (nonatomic) BOOL segueToEditCelebration;
+@property (nonatomic) CelebrationRealm *celebrationEdit;
 @property (nonatomic) Recipient *recipient;
 @property (nonatomic) NSString *group;
 @property (nonatomic) NSDateFormatter *dateFormatter;
-//@property (nonatomic) Recipient *sendRecipient;
 @property (nonatomic) NSMutableArray *celebrationsArray;
 
 
@@ -68,11 +71,6 @@
     {
         [self setupEditMode];
     }
-    else
-    {
-        //
-    }
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -123,6 +121,35 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    //EDIT MODE FOR THAT CELEBRATION
+    self.segueToEditCelebration = YES;
+    self.celebrationEdit = [self.celebrationsArray objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"addCelebration" sender:self];
+    
+    
+    
+    
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RecipientBranch" bundle:nil];
+//    AddCelebrationViewController *destination = [storyboard instantiateViewControllerWithIdentifier:@"recipientViewController"];
+//    [[self navigationController] pushViewController:destination animated:YES];
+//    self.delegate = destination;
+//    [self.delegate updateCelebrationForEdit:self.celebrationRealm];
+
+    
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        [[RLMRealm defaultRealm] beginWriteTransaction];
+        CelebrationRealm *celebration = [self.celebrationsArray objectAtIndex:indexPath.row];
+        [[RLMRealm defaultRealm]deleteObject:celebration];
+        [[RLMRealm defaultRealm] commitWriteTransaction];
+        tableView.reloadData;
+    }
+}
+
 - (NSDateFormatter *)dateFormatter
 {
     static NSDateFormatter *dateFormatter;
@@ -140,49 +167,100 @@
 {
     if ([[segue identifier] isEqualToString:@"addCelebration"])
     {
-        AddCelebrationViewController *controller = (AddCelebrationViewController* )segue.destinationViewController;
-        
-        NSString *dateString = [NSString stringWithFormat:@"%@-%@-%@", self.birthdateDayTextField.text, self.birthdateMonthTextField.text, self.birthdateYearTextField.text];
-        NSDate *dob = [self.dateFormatter dateFromString:dateString];
-        TempRecipient *tempRecipient = [[TempRecipient alloc] initWithFirstName:self.firstNameTextField.text andDateOfBirth:dob];
-        controller.tempRecipient = tempRecipient;
-        controller.delegate = self;
+        if (self.segueToEditCelebration) {
+            
+            self.segueToEditCelebration = NO;
+            AddCelebrationViewController *controller = (AddCelebrationViewController* )segue.destinationViewController;
+            
+            CelebrationRealm *celebration = self.celebrationEdit;
+            self.delegate = controller;
+            [self.delegate updateCelebrationForEdit:celebration];
+            
+        } else {
+            AddCelebrationViewController *controller = (AddCelebrationViewController* )segue.destinationViewController;
+            
+            NSString *dateString = [NSString stringWithFormat:@"%@-%@-%@", self.birthdateDayTextField.text, self.birthdateMonthTextField.text, self.birthdateYearTextField.text];
+            NSDate *dob = [self.dateFormatter dateFromString:dateString];
+            TempRecipient *tempRecipient = [[TempRecipient alloc] initWithFirstName:self.firstNameTextField.text andDateOfBirth:dob];
+            controller.tempRecipient = tempRecipient;
+            controller.delegate = self;
+        }
     }
 }
 
+//Delegate method to return the celebration to the table view
 - (void)passCelebrationToRecipient:(CelebrationRealm *)celebration;
 {
     if(!self.celebrationsArray)
     {
         self.celebrationsArray = [[NSMutableArray alloc] init];
     }
-    [self.celebrationsArray addObject:celebration];
-    [self.tableView reloadData];
+    if (self.isEditMode) {
+        RLMRealm *realm = [RLMRealm defaultRealm];
+        [realm transactionWithBlock:^{
+            [realm addObject:celebration];
+            celebration.recipient = self.recipient;
+            [self.celebrationsArray addObject:celebration];
+            [self.tableView reloadData];
+        }];
+    } else {
+        [self.celebrationsArray addObject:celebration];
+        [self.tableView reloadData];
+    }
 }
 
 - (IBAction)saveButton:(UIButton *)sender
 {
     if([self.firstNameTextField hasText] && [self.lastNameTextField hasText])
     {
-        RLMRealm *realm = [RLMRealm defaultRealm];
-        Recipient *recipient = [[Recipient alloc] init];
-        recipient.firstName = self.firstNameTextField.text;
-        recipient.lastName = self.lastNameTextField.text;
-        NSString *dateString = [NSString stringWithFormat:@"%@-%@-%@", self.birthdateDayTextField.text, self.birthdateMonthTextField.text, self.birthdateYearTextField.text];
-        recipient.birthdate = [self.dateFormatter dateFromString:dateString];
-        recipient.group = self.group;
-        
-        [recipient.celebrations addObjects:self.celebrationsArray];
-        for(CelebrationRealm *celebration in self.celebrationsArray)
-        {
-            celebration.recipient = recipient;
+        if(self.isEditMode) {
+            RLMRealm *realm = [RLMRealm defaultRealm];
+            [realm beginWriteTransaction];
+            self.recipient.firstName = self.firstNameTextField.text;
+            self.recipient.lastName = self.lastNameTextField.text;
+            NSString *dateString = [NSString stringWithFormat:@"%@-%@-%@", self.birthdateDayTextField.text, self.birthdateMonthTextField.text, self.birthdateYearTextField.text];
+            self.recipient.birthdate = [self.dateFormatter dateFromString:dateString];
+            self.recipient.group = self.group;
+            
+            NSMutableArray *newCelebrations = [[NSMutableArray alloc] init];
+            BOOL isCelebInRecipient = NO;
+            
+            for(CelebrationRealm *celebration in self.celebrationsArray)
+            {
+                for (CelebrationRealm *celeb in self.recipient.celebrations) {
+                    if ([celebration.primaryKey isEqualToString:celeb.primaryKey]) {
+                        isCelebInRecipient = YES;
+                    }
+                }
+                if(!isCelebInRecipient) {
+                    celebration.recipient = self.recipient;
+                    [newCelebrations addObject:celebration];
+                }
+            }
+            if(newCelebrations.count > 0) {
+                [self.recipient.celebrations addObjects:newCelebrations];
+            }
+            [realm commitWriteTransaction];
+        } else {
+            RLMRealm *realm = [RLMRealm defaultRealm];
+            Recipient *recipient = [[Recipient alloc] init];
+            recipient.firstName = self.firstNameTextField.text;
+            recipient.lastName = self.lastNameTextField.text;
+            NSString *dateString = [NSString stringWithFormat:@"%@-%@-%@", self.birthdateDayTextField.text, self.birthdateMonthTextField.text, self.birthdateYearTextField.text];
+            recipient.birthdate = [self.dateFormatter dateFromString:dateString];
+            recipient.group = self.group;
+            
+            [recipient.celebrations addObjects:self.celebrationsArray];
+            for(CelebrationRealm *celebration in self.celebrationsArray)
+            {
+                celebration.recipient = recipient;
+            }
+            [realm transactionWithBlock:^{
+                [realm addObject:recipient];
+            }];
         }
-        [realm transactionWithBlock:^{
-            [realm addObject:recipient];
-        }];
-        //self.sendRecipient = recipient;
         
-        //clear fields ***
+        //clear fields
         self.firstNameTextField.text = nil;
         self.lastNameTextField.text = nil;
         self.birthdateDayTextField.text = nil;
@@ -190,9 +268,13 @@
         self.birthdateYearTextField.text = nil;
         self.group = nil;
         self.celebrationsArray = nil;
-        //self.sendRecipient = nil;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"resetGroupButton" object:self userInfo:nil];
-        [self.tabBarController setSelectedIndex:0];
+        
+        if(self.isEditMode) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        } else {
+            [self.tabBarController setSelectedIndex:0];
+        }
     }
     else
     {
@@ -229,7 +311,6 @@
 }
 
 -(void)setupEditMode {
-//    NSLog(@"EDIT MODE FOR ADD RECIPIENT!");
     self.firstNameTextField.text = self.recipient.firstName;
     self.lastNameTextField.text = self.recipient.lastName;
     
@@ -238,9 +319,14 @@
         self.birthdateDayTextField.text = [DateManager separateDayFromDate:self.recipient.birthdate];
         self.birthdateYearTextField.text = [DateManager separateYearFromDate:self.recipient.birthdate];
     }
+    self.group = self.recipient.group;
     NSDictionary *group = @{@"group": self.recipient.group};
     [[NSNotificationCenter defaultCenter] postNotificationName:@"resetGroupButton" object:self userInfo:group];
     
+    self.celebrationsArray = self.recipient.celebrations;
+    [self.tableView reloadData];
+    
+    [self.saveButton setTitle:@"SAVE CHANGES" forState:UIControlStateNormal];
 }
 
 @end

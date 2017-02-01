@@ -141,7 +141,7 @@
             self.celebrationRealm.giveGift = self.giveGiftSwitch.on;
             self. celebrationRealm.makeCall = self.makeCallSwitch.on;
             [realm commitWriteTransaction];
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self.navigationController popViewControllerAnimated:YES];
         }
         else
         {
@@ -200,8 +200,10 @@
                     }
                 }];
             }
+            
             [self.delegate passCelebrationToRecipient:celebrationRealm];
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self.navigationController popViewControllerAnimated:YES];
+//            [self.navigationController popToRootViewControllerAnimated:YES];
         }
     }
     else
@@ -266,7 +268,7 @@
     self.giveGiftSwitch.on = self.celebrationRealm.giveGift;
     self.giveCardSwitch.on = self.celebrationRealm.giveCard;
     self.makeCallSwitch.on = self.celebrationRealm.makeCall;
-    [self.saveButton setTitle:@"EDIT" forState:UIControlStateNormal];
+    [self.saveButton setTitle:@"SAVE CHANGES" forState:UIControlStateNormal];
 
     //Set textfields
     self.celebDayTF.text = [DateManager separateDayFromDate:self.celebrationRealm.date];

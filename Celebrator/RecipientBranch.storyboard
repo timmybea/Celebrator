@@ -273,6 +273,7 @@
                         <outlet property="firstNameWarning" destination="gDZ-kW-YhZ" id="KqW-P8-Yv3"/>
                         <outlet property="lastNameTextField" destination="HIi-yy-MEG" id="Mkz-FJ-Ti6"/>
                         <outlet property="lastNameWarning" destination="Gzf-x0-UrG" id="rnR-Gy-uGB"/>
+                        <outlet property="saveButton" destination="HaI-IG-WXF" id="mh8-4j-P0i"/>
                         <outlet property="tableView" destination="e54-as-7LT" id="dhk-ha-6aB"/>
                         <segue destination="zx3-MT-9JD" kind="show" identifier="addCelebration" id="mYb-9Z-d0x"/>
                     </connections>

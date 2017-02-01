@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "CelebrationViewControllerDelegate.h"
 #import "RecipientTableViewControllerProtocol.h"
+#import "CalDetailViewControllerProtocol.h"
 
 @interface AddRecipientViewController : UIViewController <CelebrationViewControllerDelegate, RecipientTableViewControllerProtocol>
+
+@property (nonatomic, assign) id <CalDetailViewControllerProtocol> delegate;
 
 @end
