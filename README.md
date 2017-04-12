@@ -6,7 +6,7 @@ Language: Objective C
 
 Frameworks: NSDate, JTCalendar, Realm, UNUserNotifications
 
-Checkout the demo on youtube: [Gifter](https://www.youtube.com/watch?v=7QZEy1-AoZg) 
+Checkout the demo on youtube: [Gifter](https://www.youtube.com/watch?v=46zLSb2Z9XI) 
 
 ![giftee](https://cloud.githubusercontent.com/assets/21972121/22521022/68ce2792-e86b-11e6-8ad9-14040027d201.png)
 ![celebration](https://cloud.githubusercontent.com/assets/21972121/22521132/ceba766e-e86b-11e6-8d7b-26d92d129ea3.png)
